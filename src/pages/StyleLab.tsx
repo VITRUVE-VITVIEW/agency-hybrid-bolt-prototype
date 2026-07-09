@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useCallback } from 'react'
 import './StyleLab.css'
 
 import DemoFrame from '../components/DemoFrame/DemoFrame'
@@ -21,17 +21,32 @@ import navigation from '../data/navigation'
 import agencyConfig from '../config/agency.config'
 import { heroDarkEditorialData, heroGradientData, heroHybridData } from '../data/heroData'
 
-/* Flatten top-level navigation items for the header nav demo */
-const primaryNavItems = navigation
-  .filter(item => !item.children)
-  .map(item => ({ path: item.path, label: item.label }))
+/* Top-level nav items without deep children — for header nav demo */
+const primaryNavItems = navigation.map(item => ({ path: item.path, label: item.label }))
 
-/* Social entries for the rail demo */
+/* Social entries typed for the hero */
 const socialEntries = [
-  { platform: 'LinkedIn', url: agencyConfig.social.linkedin },
-  { platform: 'Instagram', url: agencyConfig.social.instagram },
-  { platform: 'Twitter', url: agencyConfig.social.twitter },
+  { platform: 'linkedin' as const, url: agencyConfig.social.linkedin },
+  { platform: 'instagram' as const, url: agencyConfig.social.instagram },
+  { platform: 'twitter' as const, url: agencyConfig.social.twitter },
 ]
+
+/* Flat nav for fullscreen menu */
+const fullscreenNavItems = navigation.map(item => ({
+  path: item.path,
+  label: item.label,
+  pillar: item.pillar,
+}))
+
+/* Nested nav for mobile menu */
+const mobileNavItems = navigation.map(item => ({
+  path: item.path,
+  label: item.label,
+  children: item.children?.map(child => ({
+    path: child.path,
+    label: child.label,
+  })),
+}))
 
 export default function StyleLab() {
   const [fullscreenOpen, setFullscreenOpen] = useState(false)
@@ -42,26 +57,15 @@ export default function StyleLab() {
   const mobileTriggerRef = useRef<HTMLButtonElement>(null)
   const modalTriggerRef = useRef<HTMLButtonElement>(null)
 
-  /* Flat nav for fullscreen menu */
-  const fullscreenNavItems = navigation.map(item => ({
-    path: item.path,
-    label: item.label,
-    pillar: item.pillar,
-  }))
-
-  /* Nested nav for mobile menu */
-  const mobileNavItems = navigation.map(item => ({
-    path: item.path,
-    label: item.label,
-    children: item.children?.map(child => ({
-      path: child.path,
-      label: child.label,
-    })),
-  }))
+  const openFullscreen = useCallback(() => setFullscreenOpen(true), [])
+  const closeFullscreen = useCallback(() => setFullscreenOpen(false), [])
+  const openMobileMenu = useCallback(() => setMobileMenuOpen(true), [])
+  const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), [])
+  const openModal = useCallback(() => setModalOpen(true), [])
+  const closeModal = useCallback(() => setModalOpen(false), [])
 
   return (
     <div className="style-lab">
-      {/* Single top anchor for BackToTop focus */}
       <a id="page-top" tabIndex={-1} className="sr-only" aria-hidden="true">Haut de page</a>
 
       <header className="style-lab__header">
@@ -70,7 +74,19 @@ export default function StyleLab() {
           <h1 id="style-lab-title" className="style-lab__title" tabIndex={-1}>Style Lab</h1>
           <p className="style-lab__subtitle">
             Surface de comparaison et de validation des composants globaux et des héros.
+            Navigation disponible ci-dessous.
           </p>
+          <nav className="style-lab__toc" aria-label="Navigation Style Lab">
+            <ul className="style-lab__toc-list" role="list">
+              {['section-global', 'section-heros', 'section-projets', 'section-contenu', 'section-expertises', 'section-composants'].map(id => (
+                <li key={id}>
+                  <a href={`#${id}`} className="style-lab__toc-link label">
+                    {id.replace('section-', '').charAt(0).toUpperCase() + id.replace('section-', '').slice(1)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </header>
 
@@ -81,50 +97,56 @@ export default function StyleLab() {
           <h2 className="style-lab__section-title">Global</h2>
           <div className="style-lab__section-body">
 
-            {/* Header Variant A */}
+            {/* Header Variant A — minimal */}
             <DemoFrame label="En-tête — Variante A (minimale, recommandée)" height="72px" background="dark" clip>
               <HeaderMinimal
                 logoText={agencyConfig.logoText}
-                onMenuOpen={() => setFullscreenOpen(true)}
+                contactLabel="Contact"
+                contactPath="/contact"
+                onMenuOpen={openFullscreen}
                 variant="solid-dark"
                 demoMode
               />
             </DemoFrame>
 
-            {/* Header Variant B */}
-            <DemoFrame label="En-tête — Variante B (navigation horizontale)" height="72px" background="dark" clip>
+            {/* Header Variant B — horizontal nav */}
+            <DemoFrame label="En-tête — Variante B (navigation horizontale + CTA contact)" height="72px" background="dark" clip>
               <HeaderNavigation
                 logoText={agencyConfig.logoText}
                 primaryNav={primaryNavItems}
-                onMenuOpen={() => setFullscreenOpen(true)}
+                contactLabel="Contact"
+                contactPath="/contact"
+                onMenuOpen={openFullscreen}
                 variant="solid-dark"
                 demoMode
               />
             </DemoFrame>
 
-            {/* Header transparent */}
-            <DemoFrame label="En-tête transparent sur dégradé" height="72px" background="dark" clip>
+            {/* Header transparent — on a gradient surface so contrast is real */}
+            <DemoFrame label="En-tête transparent — sur surface dégradée (Esprit 02)" height="72px" background="gradient-ia" clip>
               <HeaderNavigation
                 logoText={agencyConfig.logoText}
                 primaryNav={primaryNavItems}
-                onMenuOpen={() => setFullscreenOpen(true)}
+                contactLabel="Contact"
+                contactPath="/contact"
+                onMenuOpen={openFullscreen}
                 variant="transparent"
                 demoMode
               />
             </DemoFrame>
 
-            {/* Fullscreen menu trigger */}
-            <DemoFrame label="Menu plein écran éditorial" background="dark">
+            {/* Fullscreen menu */}
+            <DemoFrame label="Menu plein écran éditorial — cliquer pour ouvrir" background="dark">
               <div className="style-lab__demo-pad">
-                <p className="text-sm style-lab__demo-hint">
-                  Cliquer sur le bouton pour ouvrir le menu plein écran.
+                <p className="style-lab__demo-hint text-sm">
+                  Menu plein écran Esprit 01 — navigation par clavier, touche Échap, restauration du focus.
                 </p>
                 <IconButton
                   ref={fullscreenTriggerRef}
                   variant="menu"
                   label="Ouvrir le menu plein écran"
                   tone="light"
-                  onClick={() => setFullscreenOpen(true)}
+                  onClick={openFullscreen}
                 >
                   <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
                     <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -133,33 +155,46 @@ export default function StyleLab() {
               </div>
             </DemoFrame>
 
-            {/* Mobile menu demo */}
-            <DemoFrame label="Menu mobile (forceDemoMode — visible à toutes largeurs)" background="light">
+            {/* Mobile menu — phone preview */}
+            <DemoFrame label="Menu mobile — aperçu dans un cadre téléphone" background="light">
               <div className="style-lab__demo-pad">
-                <p className="text-sm" style={{ color: 'var(--color-text-body)', marginBottom: 'var(--space-md)' }}>
-                  Cliquer sur le bouton pour ouvrir le menu mobile.
+                <p className="style-lab__demo-hint-light text-sm">
+                  Menu latéral mobile avec accordéons Digital / IA / Conseil.
+                  Forçage de visibilité desktop (forceDemoMode=true).
+                  Navigation clavier + touche Échap fonctionnelles.
                 </p>
-                <IconButton
-                  ref={mobileTriggerRef}
-                  variant="menu"
-                  label="Ouvrir le menu mobile"
-                  tone="dark"
-                  onClick={() => setMobileMenuOpen(true)}
-                >
-                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                    <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                </IconButton>
+                <div className="style-lab__phone-frame">
+                  {/* Simulated phone header */}
+                  <div className="style-lab__phone-header">
+                    <span className="label style-lab__phone-logo">{agencyConfig.logoText}</span>
+                    <IconButton
+                      ref={mobileTriggerRef}
+                      variant="menu"
+                      label="Ouvrir le menu mobile"
+                      tone="dark"
+                      onClick={openMobileMenu}
+                    >
+                      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                    </IconButton>
+                  </div>
+                  <div className="style-lab__phone-body">
+                    <p className="style-lab__phone-placeholder text-sm">
+                      Surface page mobile — appuyer sur l'icône menu
+                    </p>
+                  </div>
+                </div>
               </div>
             </DemoFrame>
 
             {/* Vertical rail */}
-            <DemoFrame label="Rail vertical" height="200px" background="dark" clip>
+            <DemoFrame label="Rail vertical — indicateur de section (demo mode)" height="200px" background="dark" clip>
               <VerticalRail sectionLabel="Accueil" demoMode />
             </DemoFrame>
 
             {/* Social rail */}
-            <DemoFrame label="Rail social" height="200px" background="dark" clip>
+            <DemoFrame label="Rail social — icônes SVG internes, cibles 44×44 px" height="200px" background="dark" clip>
               <SocialRail entries={socialEntries} demoMode />
             </DemoFrame>
 
@@ -170,18 +205,18 @@ export default function StyleLab() {
               </div>
             </DemoFrame>
 
-            {/* BackToTop — single instance attached to the Style Lab viewport */}
-            <DemoFrame label="Retour en haut (actif après défilement — bouton en bas à droite)" background="dark">
+            {/* BackToTop note */}
+            <DemoFrame label="Retour en haut — apparaît après 400 px de défilement (bouton en bas à droite)" background="dark">
               <div className="style-lab__demo-pad">
                 <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                  Le bouton apparaît en bas à droite après avoir défilé de 400px.
-                  Il repositionne le focus sur le titre de cette page.
+                  Le bouton fixe apparaît en bas à droite de la page.
+                  Il restitue le focus sur le titre Style Lab.
                 </p>
               </div>
             </DemoFrame>
 
             {/* Buttons */}
-            <DemoFrame label="Variantes de boutons principaux" background="dark">
+            <DemoFrame label="Variantes de boutons — primaire, secondaire, light, dark, éditorial" background="dark">
               <div className="style-lab__demo-pad style-lab__demo-row">
                 <Button variant="primary">Primaire</Button>
                 <Button variant="secondary">Secondaire</Button>
@@ -191,13 +226,13 @@ export default function StyleLab() {
               </div>
             </DemoFrame>
 
-            {/* Modal trigger */}
-            <DemoFrame label="Modale — déclencheur et comportement" background="light">
+            {/* Modal */}
+            <DemoFrame label="Modale accessible — focus trap, Échap, restauration du focus" background="light">
               <div className="style-lab__demo-pad">
                 <button
                   ref={modalTriggerRef}
                   className="btn btn--primary"
-                  onClick={() => setModalOpen(true)}
+                  onClick={openModal}
                 >
                   Ouvrir la modale
                 </button>
@@ -212,33 +247,43 @@ export default function StyleLab() {
           <h2 className="style-lab__section-title">Héros</h2>
           <div className="style-lab__section-body">
 
-            <DemoFrame label="Héros éditorial sombre — Esprit 01" clip>
+            {/* Hero Dark Editorial */}
+            <DemoFrame label="Héros éditorial sombre — Esprit 01 (Barlow Condensed, contour, grille)">
               <HeroDarkEditorial
                 data={heroDarkEditorialData}
                 headingLevel={2}
                 isDemo
                 accessibleLabel="Démonstration : Héros éditorial sombre Esprit 01"
                 scrollTargetId="section-projets"
+                showRail
+                sectionLabel="Accueil"
               />
             </DemoFrame>
 
-            <DemoFrame label="Héros dégradé — Esprit 02" clip>
+            {/* Hero Gradient */}
+            <DemoFrame label="Héros dégradé — Esprit 02 (Space Grotesk, rail vertical + social, play)">
               <HeroGradient
                 data={heroGradientData}
                 headingLevel={2}
                 isDemo
                 accessibleLabel="Démonstration : Héros dégradé Esprit 02"
                 scrollTargetId="section-contenu"
+                showRail
+                sectionLabel="Accueil"
+                socialEntries={socialEntries}
               />
             </DemoFrame>
 
-            <DemoFrame label="Héros hybride recommandé" clip>
+            {/* Hero Hybrid */}
+            <DemoFrame label="Héros hybride recommandé (Space Grotesk + segment contour Barlow, gradient violet)">
               <HeroHybrid
                 data={heroHybridData}
                 headingLevel={2}
                 isDemo
                 accessibleLabel="Démonstration : Héros hybride recommandé"
                 scrollTargetId="section-expertises"
+                showRail
+                sectionLabel="Accueil"
               />
             </DemoFrame>
 
@@ -302,13 +347,13 @@ export default function StyleLab() {
 
       </main>
 
-      {/* Single BackToTop instance — attached to the Style Lab viewport */}
+      {/* Single BackToTop instance */}
       <BackToTop topAnchorId="style-lab-title" />
 
-      {/* Overlays — rendered outside the main content */}
+      {/* Overlays */}
       <FullscreenMenu
         isOpen={fullscreenOpen}
-        onClose={() => setFullscreenOpen(false)}
+        onClose={closeFullscreen}
         triggerRef={fullscreenTriggerRef}
         navItems={fullscreenNavItems}
         logoText={agencyConfig.logoText}
@@ -316,7 +361,7 @@ export default function StyleLab() {
 
       <MobileMenu
         isOpen={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
+        onClose={closeMobileMenu}
         triggerRef={mobileTriggerRef}
         navItems={mobileNavItems}
         logoText={agencyConfig.logoText}
@@ -325,7 +370,7 @@ export default function StyleLab() {
 
       <Modal
         isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
+        onClose={closeModal}
         triggerRef={modalTriggerRef}
         title="Exemple de modale"
       >

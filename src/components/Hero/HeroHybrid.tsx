@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import type { HeroData } from '../../types'
 import HeroHeadline from './HeroHeadline'
 import ScrollIndicator from '../ScrollIndicator/ScrollIndicator'
+import VerticalRail from '../VerticalRail/VerticalRail'
 import './HeroHybrid.css'
 
 interface HeroHybridProps {
@@ -10,21 +11,18 @@ interface HeroHybridProps {
   isDemo?: boolean
   accessibleLabel?: string
   scrollTargetId: string
+  showRail?: boolean
+  sectionLabel?: string
 }
 
-/**
- * Recommended hybrid hero.
- * Primary headline: Space Grotesk 'geometric' segments.
- * Optional outlined accent word: Barlow Condensed 'outline' segment.
- * Background: hybrid dark violet gradient (--gradient-hybrid).
- * Restrained dark-violet shift — IA magenta/violet tokens used sparingly.
- */
 export default function HeroHybrid({
   data,
   headingLevel = 2,
   isDemo = false,
   accessibleLabel = 'Héros hybride',
   scrollTargetId,
+  showRail = false,
+  sectionLabel = 'Accueil',
 }: HeroHybridProps) {
   return (
     <section
@@ -38,6 +36,8 @@ export default function HeroHybrid({
           ))}
         </div>
       )}
+
+      {showRail && <VerticalRail sectionLabel={sectionLabel} demoMode={isDemo} />}
 
       <div className="hero-hybrid__inner container--wide">
         <div className="hero-hybrid__content">

@@ -1,25 +1,31 @@
+/* ──────────────────────────────────────────────────────────
+   Hybrid Hero — recommended production variant
+   Space Grotesk primary + one Barlow Condensed outlined segment.
+   Dark violet gradient. Subtle editorial grid (decorative only).
+   Content always in flow — nothing clips.
+────────────────────────────────────────────────────────── */
+
 .hero-hybrid {
   position: relative;
-  min-height: 100vh;
+  min-height: min(100vh, 900px);
   background: var(--gradient-hybrid);
   color: var(--color-text-white);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
 }
 
 .hero-hybrid--demo {
-  min-height: 600px;
+  min-height: 0;
 }
 
-/* Subtle grid — lighter than Esprit 01 */
+/* Decorative grid — clipped inside its own layer only */
 .hero-hybrid__grid {
   position: absolute;
   inset: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   pointer-events: none;
+  overflow: hidden;
 }
 
 .hero-hybrid__grid-line {
@@ -28,7 +34,8 @@
 
 .hero-hybrid__inner {
   position: relative;
-  padding: var(--space-3xl) var(--container-padding-x);
+  flex: 1;
+  padding: var(--space-3xl) var(--container-padding-x) var(--space-2xl);
   margin-inline: auto;
   width: 100%;
   display: flex;
@@ -36,33 +43,45 @@
 }
 
 .hero-hybrid__content {
-  max-width: 840px;
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
+  max-width: min(760px, 85%);
 }
 
 .hero-hybrid__eyebrow {
   color: rgba(255, 255, 255, 0.55);
   font-size: var(--text-xs);
   letter-spacing: 0.14em;
+  margin: 0;
 }
 
+/* Primary headline — Space Grotesk geometric, rebalanced scale */
 .hero-hybrid__content .hero-headline {
-  font-size: var(--text-display-xl);
-  line-height: var(--leading-display);
+  font-family: var(--font-body);
+  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: var(--color-text-white);
 }
 
-/* The outline segment uses a faint violet-tinted stroke */
+/* The outlined segment keeps its Barlow Condensed editorial feel
+   but must not dominate all available vertical space */
 .hero-hybrid__content .hero-headline__segment--outline {
-  -webkit-text-stroke-color: rgba(168, 85, 247, 0.6);
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  -webkit-text-stroke-color: rgba(168, 85, 247, 0.55);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
 }
 
 .hero-hybrid__body {
   color: rgba(255, 255, 255, 0.75);
-  max-width: 500px;
+  font-size: var(--text-lead);
   line-height: var(--leading-body);
+  max-width: 480px;
+  margin: 0;
 }
 
 .hero-hybrid__ctas {
@@ -72,20 +91,40 @@
   flex-wrap: wrap;
 }
 
+/* Scroll indicator — in flow */
 .hero-hybrid__scroll {
-  position: absolute;
-  bottom: var(--space-xl);
-  left: var(--container-padding-x);
+  position: relative;
+  padding: var(--space-lg) var(--container-padding-x) var(--space-xl);
+  display: flex;
+  align-items: center;
+  margin-inline: auto;
+  width: 100%;
   color: rgba(255, 255, 255, 0.5);
 }
 
+/* ── Responsive ────────────────────────────────────────── */
+
 @media (max-width: 768px) {
   .hero-hybrid__inner {
-    padding: var(--space-2xl) var(--container-padding-x);
-    padding-bottom: var(--space-3xl);
+    padding: var(--space-2xl) var(--container-padding-x) var(--space-xl);
   }
 
-  .hero-hybrid__scroll {
-    bottom: var(--space-lg);
+  .hero-hybrid__content .hero-headline {
+    font-size: clamp(2rem, 8vw, 3.25rem);
+  }
+
+  .hero-hybrid__content {
+    max-width: 100%;
+  }
+
+  .hero-hybrid__ctas {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-hybrid__content .hero-headline {
+    font-size: clamp(1.875rem, 9vw, 2.75rem);
   }
 }

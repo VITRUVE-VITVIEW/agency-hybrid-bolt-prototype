@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import type { HeroData } from '../../types'
 import HeroHeadline from './HeroHeadline'
 import ScrollIndicator from '../ScrollIndicator/ScrollIndicator'
+import VerticalRail from '../VerticalRail/VerticalRail'
 import './HeroDarkEditorial.css'
 
 interface HeroDarkEditorialProps {
@@ -10,19 +11,19 @@ interface HeroDarkEditorialProps {
   isDemo?: boolean
   accessibleLabel?: string
   scrollTargetId: string
+  /** Show VerticalRail in demo mode */
+  showRail?: boolean
+  sectionLabel?: string
 }
 
-/**
- * Esprit 01 dark editorial hero.
- * Display font: Barlow Condensed via 'editorial' and 'outline' headline segments.
- * Features vertical grid lines, asymmetric composition, minimal white CTAs.
- */
 export default function HeroDarkEditorial({
   data,
   headingLevel = 2,
   isDemo = false,
   accessibleLabel = 'Héros éditorial sombre',
   scrollTargetId,
+  showRail = false,
+  sectionLabel = 'Accueil',
 }: HeroDarkEditorialProps) {
   return (
     <section
@@ -36,6 +37,8 @@ export default function HeroDarkEditorial({
           ))}
         </div>
       )}
+
+      {showRail && <VerticalRail sectionLabel={sectionLabel} demoMode={isDemo} />}
 
       <div className="hero-dark__inner container--wide">
         <div className="hero-dark__content">
@@ -57,7 +60,7 @@ export default function HeroDarkEditorial({
           </div>
         </div>
 
-        <div className="hero-dark__number-marker label" aria-hidden="true">
+        <div className="hero-dark__number-marker" aria-hidden="true">
           01
         </div>
       </div>

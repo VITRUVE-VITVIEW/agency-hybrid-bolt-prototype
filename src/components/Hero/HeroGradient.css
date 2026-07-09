@@ -1,21 +1,26 @@
+/* ──────────────────────────────────────────────────────────
+   Esprit 02 — Gradient Hero
+   Space Grotesk geometric headline. Content always in flow.
+   No rigid height. Plays with visible CTAs and play button.
+────────────────────────────────────────────────────────── */
+
 .hero-gradient {
   position: relative;
-  min-height: 100vh;
+  min-height: min(100vh, 860px);
   background: var(--gradient-ia);
   color: var(--color-text-white);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
 }
 
 .hero-gradient--demo {
-  min-height: 600px;
+  min-height: 0;
 }
 
 .hero-gradient__inner {
   position: relative;
-  padding: var(--space-3xl) var(--container-padding-x);
+  flex: 1;
+  padding: var(--space-3xl) var(--container-padding-x) var(--space-2xl);
   margin-inline: auto;
   width: 100%;
   display: flex;
@@ -23,28 +28,36 @@
 }
 
 .hero-gradient__content {
-  max-width: 760px;
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
+  /* Controlled width — hero, not poster */
+  max-width: min(680px, 85%);
 }
 
 .hero-gradient__eyebrow {
   color: rgba(255, 255, 255, 0.7);
   font-size: var(--text-xs);
   letter-spacing: 0.14em;
+  margin: 0;
 }
 
+/* Headline — geometric, capped so body + CTAs stay visible */
 .hero-gradient__content .hero-headline {
-  font-size: var(--text-display-xl);
-  line-height: var(--leading-display);
+  font-family: var(--font-body);
+  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: var(--color-text-white);
 }
 
 .hero-gradient__body {
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 520px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: var(--text-lead);
   line-height: var(--leading-body);
+  max-width: 500px;
+  margin: 0;
 }
 
 .hero-gradient__ctas {
@@ -54,20 +67,40 @@
   flex-wrap: wrap;
 }
 
+/* Scroll indicator — in flow below content */
 .hero-gradient__scroll {
-  position: absolute;
-  bottom: var(--space-xl);
-  left: var(--container-padding-x);
+  position: relative;
+  padding: var(--space-lg) var(--container-padding-x) var(--space-xl);
+  display: flex;
+  align-items: center;
+  margin-inline: auto;
+  width: 100%;
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* ── Responsive ────────────────────────────────────────── */
+
 @media (max-width: 768px) {
   .hero-gradient__inner {
-    padding: var(--space-2xl) var(--container-padding-x);
-    padding-bottom: var(--space-3xl);
+    padding: var(--space-2xl) var(--container-padding-x) var(--space-xl);
   }
 
-  .hero-gradient__scroll {
-    bottom: var(--space-lg);
+  .hero-gradient__content .hero-headline {
+    font-size: clamp(2rem, 8vw, 3.25rem);
+  }
+
+  .hero-gradient__content {
+    max-width: 100%;
+  }
+
+  .hero-gradient__ctas {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-gradient__content .hero-headline {
+    font-size: clamp(1.875rem, 9vw, 2.75rem);
   }
 }

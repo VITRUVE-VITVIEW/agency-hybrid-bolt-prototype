@@ -12,7 +12,7 @@
     border-color var(--duration-medium) var(--easing-standard);
 }
 
-/* Demo mode: resolve against DemoFrame, not the viewport */
+/* Demo mode: resolve against DemoFrame */
 .site-header--demo {
   position: absolute;
   top: 0;
@@ -42,7 +42,6 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-lg);
   padding-inline: var(--container-padding-x);
   max-width: var(--container-wide);
@@ -80,7 +79,43 @@
   border-radius: 2px;
 }
 
-/* Nav */
+/* ── Minimal header actions (contact + burger) ── */
+.site-header__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.site-header__contact-link {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  transition: color var(--duration-short) var(--easing-standard);
+}
+
+.site-header__contact-link:hover {
+  color: var(--color-text-white);
+}
+
+.site-header__contact-link--dark {
+  color: var(--color-text-body);
+}
+
+.site-header__contact-link--dark:hover {
+  color: var(--color-text-navy);
+}
+
+.site-header__contact-link:focus-visible {
+  outline: 2px solid var(--color-cta-blue);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ── HeaderNavigation — horizontal nav ── */
+
+/* Desktop nav — shown by default, hidden below collapse */
 .site-header__nav {
   flex: 1;
   display: flex;
@@ -102,6 +137,7 @@
   transition: color var(--duration-short) var(--easing-standard);
   font-size: var(--text-xs);
   letter-spacing: 0.1em;
+  white-space: nowrap;
 }
 
 .site-header__nav-link:hover,
@@ -131,13 +167,48 @@
   border-radius: 2px;
 }
 
-/* Mobile — hide nav links below 768px */
-@media (max-width: 768px) {
+/* Desktop contact CTA — right of nav */
+.site-header__desktop-cta {
+  flex-shrink: 0;
+}
+
+/* Scale down the CTA button to fit the header */
+.site-header__contact-btn {
+  padding: 10px var(--space-md) !important;
+  font-size: var(--text-xs) !important;
+}
+
+/* Burger — hidden on desktop when full nav is present */
+.site-header--with-nav .site-header__burger {
+  display: none;
+}
+
+/* ── Collapse breakpoint ── */
+@media (max-width: 1024px) {
   .site-header {
     height: var(--header-height-mobile);
   }
 
+  /* Hide the full horizontal nav */
   .site-header__nav {
     display: none;
+  }
+
+  /* Hide desktop contact CTA */
+  .site-header__desktop-cta {
+    display: none;
+  }
+
+  /* Show the burger on nav variant */
+  .site-header--with-nav .site-header__burger {
+    display: inline-flex;
+    margin-left: auto;
+  }
+}
+
+/* Prevent nav overflow on 1024-1200px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .site-header__nav-list {
+    gap: var(--space-md);
   }
 }

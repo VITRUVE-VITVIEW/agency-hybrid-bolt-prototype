@@ -2,6 +2,7 @@
   background-color: var(--color-bg-charcoal);
   color: var(--color-text-white);
   min-height: 100vh;
+  /* No overflow-x: hidden here — horizontal overflow is fixed at source */
 }
 
 .style-lab__header {
@@ -35,6 +36,39 @@
   font-size: var(--text-body);
   line-height: var(--leading-body);
   max-width: 560px;
+  margin-bottom: var(--space-lg);
+}
+
+/* Internal TOC */
+.style-lab__toc {
+  margin-top: var(--space-md);
+}
+
+.style-lab__toc-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.style-lab__toc-link {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  transition: color var(--duration-short) var(--easing-standard);
+}
+
+.style-lab__toc-link:hover {
+  color: var(--color-ia-violet-light);
+}
+
+.style-lab__toc-link:focus-visible {
+  outline: 2px solid var(--color-cta-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 .style-lab__main {
@@ -66,7 +100,7 @@
 .style-lab__section-body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
 }
 
 .style-lab__slot {
@@ -90,7 +124,8 @@
   font-size: var(--text-sm);
 }
 
-/* Demo utilities — used inside DemoFrame viewports */
+/* ── Demo utilities ──────────────────────────────────────── */
+
 .style-lab__demo-pad {
   padding: var(--space-xl);
 }
@@ -107,6 +142,64 @@
   margin-bottom: var(--space-md);
 }
 
+.style-lab__demo-hint-light {
+  color: var(--color-text-body);
+  margin-bottom: var(--space-lg);
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  max-width: 440px;
+}
+
+/* ── Phone preview frame ────────────────────────────────── */
+
+.style-lab__phone-frame {
+  width: 320px;
+  min-height: 480px;
+  max-width: 100%;
+  background-color: var(--color-bg-white);
+  border: 2px solid var(--color-border-light);
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  position: relative;
+}
+
+.style-lab__phone-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-md);
+  height: var(--header-height-mobile);
+  border-bottom: 1px solid var(--color-border-light);
+  background-color: var(--color-bg-white);
+  flex-shrink: 0;
+}
+
+.style-lab__phone-logo {
+  color: var(--color-text-navy);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+}
+
+.style-lab__phone-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  background-color: var(--color-bg-light);
+}
+
+.style-lab__phone-placeholder {
+  color: var(--color-text-muted);
+  text-align: center;
+  font-size: var(--text-sm);
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+
 @media (max-width: 768px) {
   .style-lab__header {
     padding: var(--space-xl) var(--container-padding-x);
@@ -115,5 +208,31 @@
   .style-lab__main {
     padding: var(--space-xl) var(--container-padding-x);
     gap: var(--space-2xl);
+  }
+
+  .style-lab__toc-list {
+    gap: var(--space-sm);
+  }
+
+  .style-lab__phone-frame {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 16px;
+  }
+
+  .style-lab__demo-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Prevent outlined text overflow at narrow widths */
+@media (max-width: 390px) {
+  .style-lab__main {
+    padding-inline: var(--space-md);
+  }
+
+  .style-lab__slot-placeholder {
+    padding: var(--space-xl) var(--space-md);
   }
 }

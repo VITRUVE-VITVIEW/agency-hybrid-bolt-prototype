@@ -3,7 +3,14 @@ import type { HeroData } from '../../types'
 import HeroHeadline from './HeroHeadline'
 import ScrollIndicator from '../ScrollIndicator/ScrollIndicator'
 import IconButton from '../Button/IconButton'
+import VerticalRail from '../VerticalRail/VerticalRail'
+import SocialRail from '../SocialRail/SocialRail'
 import './HeroGradient.css'
+
+interface SocialEntry {
+  platform: 'linkedin' | 'instagram' | 'twitter'
+  url: string
+}
 
 interface HeroGradientProps {
   data: HeroData
@@ -11,26 +18,29 @@ interface HeroGradientProps {
   isDemo?: boolean
   accessibleLabel?: string
   scrollTargetId: string
+  showRail?: boolean
+  sectionLabel?: string
+  socialEntries?: SocialEntry[]
 }
 
-/**
- * Esprit 02 gradient hero.
- * Display font: Space Grotesk via 'geometric' headline segments.
- * Uses the IA gradient (magenta → violet) approved for this hero.
- * Large negative space, geometric bold headline, horizontal split layout.
- */
 export default function HeroGradient({
   data,
   headingLevel = 2,
   isDemo = false,
   accessibleLabel = 'Héros dégradé',
   scrollTargetId,
+  showRail = false,
+  sectionLabel = 'Accueil',
+  socialEntries = [],
 }: HeroGradientProps) {
   return (
     <section
       className={`hero-gradient${isDemo ? ' hero-gradient--demo' : ''}`}
       aria-label={isDemo ? accessibleLabel : undefined}
     >
+      {showRail && <VerticalRail sectionLabel={sectionLabel} demoMode={isDemo} />}
+      {socialEntries.length > 0 && <SocialRail entries={socialEntries} demoMode={isDemo} />}
+
       <div className="hero-gradient__inner container--wide">
         <div className="hero-gradient__content">
           <p className="hero-gradient__eyebrow label">{data.eyebrow}</p>

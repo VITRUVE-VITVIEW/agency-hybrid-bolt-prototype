@@ -2,30 +2,28 @@ import { Link } from 'react-router-dom'
 import IconButton from '../Button/IconButton'
 import './Header.css'
 
-interface HeaderProps {
-  /** Agency wordmark text */
+interface HeaderMinimalProps {
   logoText: string
-  /** Open the fullscreen navigation menu */
   onMenuOpen: () => void
-  /** transparent variant floats over a hero; solid shows opaque bar */
+  /** Contact link text — shown as a discreet inline action to the right of the logo */
+  contactLabel?: string
+  /** Contact page path */
+  contactPath?: string
   variant?: 'transparent' | 'solid-dark' | 'solid-light'
-  /**
-   * Demo mode: renders position:absolute relative to the DemoFrame
-   * rather than position:sticky on the viewport.
-   */
   demoMode?: boolean
 }
 
 /**
- * Variant A — minimal header: logo left, menu trigger right.
- * No horizontal navigation links.
+ * Variant A — minimal header: logo left, optional contact link, menu trigger right.
  */
 export default function HeaderMinimal({
   logoText,
   onMenuOpen,
+  contactLabel = 'Contact',
+  contactPath = '/contact',
   variant = 'solid-dark',
   demoMode = false,
-}: HeaderProps) {
+}: HeaderMinimalProps) {
   return (
     <header
       className={[
@@ -41,16 +39,27 @@ export default function HeaderMinimal({
           <span className="site-header__logo-text">{logoText}</span>
         </Link>
 
-        <IconButton
-          variant="menu"
-          label="Ouvrir la navigation"
-          tone={variant === 'solid-light' ? 'dark' : 'light'}
-          onClick={onMenuOpen}
-        >
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-        </IconButton>
+        <div className="site-header__actions">
+          {contactLabel && contactPath && (
+            <Link
+              to={contactPath}
+              className={`site-header__contact-link label${variant === 'solid-light' ? ' site-header__contact-link--dark' : ''}`}
+            >
+              {contactLabel}
+            </Link>
+          )}
+
+          <IconButton
+            variant="menu"
+            label="Ouvrir la navigation"
+            tone={variant === 'solid-light' ? 'dark' : 'light'}
+            onClick={onMenuOpen}
+          >
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </IconButton>
+        </div>
       </div>
     </header>
   )

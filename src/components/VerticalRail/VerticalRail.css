@@ -19,8 +19,8 @@
 
 .vertical-rail__line {
   width: 1px;
-  height: 64px;
-  background-color: var(--color-border-dark);
+  height: 48px;
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .vertical-rail__label {
@@ -31,6 +31,7 @@
   font-size: var(--text-xs);
   letter-spacing: 0.14em;
   user-select: none;
+  white-space: nowrap;
 }
 
 @media (max-width: 1024px) {

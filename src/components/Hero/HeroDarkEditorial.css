@@ -1,76 +1,92 @@
+/* ──────────────────────────────────────────────────────────
+   Esprit 01 — Dark Editorial Hero
+   Content-safe layout: headline never clips, CTA group always visible.
+   Decorative grid lines are the ONLY layer that may clip.
+────────────────────────────────────────────────────────── */
+
 .hero-dark {
   position: relative;
-  min-height: 100vh;
+  min-height: min(100vh, 900px);
   background-color: var(--color-bg-dark);
   color: var(--color-text-white);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
 }
 
 .hero-dark--demo {
-  min-height: 600px;
+  min-height: 0;
 }
 
-/* Decorative vertical grid lines */
+/* Decorative vertical grid lines — clipped to the section, never the text */
 .hero-dark__grid {
   position: absolute;
   inset: 0;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   pointer-events: none;
+  /* Clip only this decorative layer */
+  overflow: hidden;
 }
 
 .hero-dark__grid-line {
   border-left: 1px solid var(--color-border-dark);
 }
 
+/* Inner — content in normal flow, expands with content */
 .hero-dark__inner {
   position: relative;
-  padding: var(--space-3xl) var(--container-padding-x);
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  flex: 1;
+  padding: var(--space-3xl) var(--container-padding-x) var(--space-2xl);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
   gap: var(--space-xl);
   margin-inline: auto;
   width: 100%;
 }
 
 .hero-dark__content {
-  max-width: 800px;
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
+  /* Keep headline from stretching full container width */
+  max-width: min(720px, 80%);
 }
 
 .hero-dark__eyebrow {
   color: var(--color-text-muted);
   font-size: var(--text-xs);
   letter-spacing: 0.14em;
+  margin: 0;
 }
 
+/* Headline — rebalanced fluid scale: dramatic but never taller than the frame */
 .hero-dark__content .hero-headline {
-  font-size: var(--text-display-xl);
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 6vw, 6rem);
   line-height: var(--leading-display);
   color: var(--color-text-white);
 }
 
 .hero-dark__body {
   color: var(--color-text-muted);
-  max-width: 480px;
+  font-size: var(--text-lead);
+  line-height: var(--leading-body);
+  max-width: 460px;
+  margin: 0;
 }
 
 .hero-dark__ctas {
   display: flex;
   align-items: center;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   flex-wrap: wrap;
 }
 
+/* Large decorative ordinal number — right column */
 .hero-dark__number-marker {
-  color: var(--color-border-dark);
-  font-size: clamp(4rem, 12vw, 14rem);
+  color: rgba(255, 255, 255, 0.04);
+  font-size: clamp(5rem, 10vw, 11rem);
   line-height: 1;
   font-family: var(--font-display);
   font-weight: var(--weight-bold);
@@ -78,27 +94,54 @@
   user-select: none;
   align-self: flex-end;
   flex-shrink: 0;
+  /* Decorative only — clip if it overflows its column */
+  overflow: hidden;
+  max-width: 1.5ch;
 }
 
+/* Scroll indicator — below content, inside flow so it never clips */
 .hero-dark__scroll {
-  position: absolute;
-  bottom: var(--space-xl);
-  left: var(--container-padding-x);
+  position: relative;
+  padding: var(--space-lg) var(--container-padding-x) var(--space-xl);
+  display: flex;
+  align-items: center;
+  margin-inline: auto;
+  width: 100%;
 }
+
+/* ── Responsive ────────────────────────────────────────── */
 
 @media (max-width: 1024px) {
   .hero-dark__number-marker {
     display: none;
   }
+
+  .hero-dark__inner {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
   .hero-dark__inner {
-    padding: var(--space-2xl) var(--container-padding-x);
-    padding-bottom: var(--space-3xl);
+    padding: var(--space-2xl) var(--container-padding-x) var(--space-xl);
   }
 
-  .hero-dark__scroll {
-    bottom: var(--space-lg);
+  .hero-dark__content .hero-headline {
+    font-size: clamp(2.25rem, 9vw, 3.5rem);
+  }
+
+  .hero-dark__ctas {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-dark__content .hero-headline {
+    font-size: clamp(2rem, 10vw, 2.75rem);
+  }
+
+  .hero-dark__content {
+    max-width: 100%;
   }
 }

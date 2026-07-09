@@ -1,5 +1,6 @@
 .hero-headline {
   margin: 0;
+  /* Font-size is set by the parent hero component — do not override here */
 }
 
 .hero-headline__visual {
@@ -10,12 +11,7 @@
   display: inline;
 }
 
-.hero-headline__segment--geometric {
-  font-family: var(--font-body);
-  font-weight: var(--weight-bold);
-  letter-spacing: -0.02em;
-}
-
+/* Editorial segment — Barlow Condensed uppercase */
 .hero-headline__segment--editorial {
   font-family: var(--font-display);
   font-weight: var(--weight-bold);
@@ -23,6 +19,14 @@
   text-transform: uppercase;
 }
 
+/* Geometric segment — Space Grotesk bold */
+.hero-headline__segment--geometric {
+  font-family: var(--font-body);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+}
+
+/* Outline segment — Barlow Condensed, stroke only, no fill */
 .hero-headline__segment--outline {
   font-family: var(--font-display);
   font-weight: var(--weight-bold);
@@ -32,8 +36,12 @@
   -webkit-text-stroke: var(--stroke-width) currentColor;
 }
 
+/* Accent segment — Space Grotesk medium, smaller visual weight */
 .hero-headline__segment--accent {
   font-family: var(--font-body);
   font-weight: var(--weight-medium);
   letter-spacing: 0.04em;
+  /* Optically smaller within a large headline */
+  font-size: 0.55em;
+  vertical-align: middle;
 }

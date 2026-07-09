@@ -19,41 +19,46 @@
 
 .social-rail__line {
   width: 1px;
-  height: 64px;
-  background-color: var(--color-border-dark);
+  height: 48px;
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .social-rail__list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  align-items: center;
+  gap: var(--space-xs);
   padding: 0;
   margin: 0;
 }
 
+/* Icon links — 44x44 minimum touch target */
 .social-rail__link {
-  display: block;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  color: var(--color-text-muted);
-  font-size: var(--text-xs);
-  letter-spacing: 0.14em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: rgba(255, 255, 255, 0.45);
   text-decoration: none;
+  border-radius: var(--radius-sm);
   transition: color var(--duration-short) var(--easing-standard);
-  user-select: none;
 }
 
-.social-rail__link:hover,
-.social-rail__link:focus-visible {
+.social-rail__link:hover {
   color: var(--color-rail-accent);
 }
 
 .social-rail__link:focus-visible {
   outline: 2px solid var(--color-rail-accent);
-  outline-offset: 3px;
-  border-radius: 2px;
+  outline-offset: 2px;
+  color: var(--color-rail-accent);
+}
+
+.social-rail__link svg {
+  display: block;
+  flex-shrink: 0;
 }
 
 @media (max-width: 1024px) {
