@@ -32,9 +32,40 @@
   border-bottom: 1px solid var(--color-border-light);
 }
 
+/* Transparent variant — works over dark and gradient surfaces.
+   All text must be white with hover/focus states. */
 .site-header--transparent {
   background-color: transparent;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.site-header--transparent .site-header__logo-text {
+  color: var(--color-text-white);
+}
+
+.site-header--transparent .site-header__nav-link {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.site-header--transparent .site-header__nav-link:hover,
+.site-header--transparent .site-header__nav-link:focus-visible {
+  color: var(--color-text-white);
+}
+
+.site-header--transparent .site-header__nav-link--active {
+  color: var(--color-text-white);
+}
+
+/* Contact CTA on transparent header — white outlined button for contrast */
+.site-header--transparent .site-header__contact-btn {
+  background-color: transparent !important;
+  color: var(--color-text-white) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.site-header--transparent .site-header__contact-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border-color: var(--color-text-white) !important;
 }
 
 /* Inner layout */

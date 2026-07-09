@@ -26,14 +26,14 @@
   letter-spacing: -0.02em;
 }
 
-/* Outline segment — Barlow Condensed, stroke only, no fill */
+/* Outline segment — applied via `.text-outline` global utility.
+   Only font-family and letter-spacing are set here; colour and stroke
+   are handled by .text-outline so they remain consistent across all heroes. */
 .hero-headline__segment--outline {
   font-family: var(--font-display);
   font-weight: var(--weight-bold);
   letter-spacing: -0.01em;
   text-transform: uppercase;
-  color: transparent;
-  -webkit-text-stroke: var(--stroke-width) currentColor;
 }
 
 /* Accent segment — Space Grotesk medium, smaller visual weight */

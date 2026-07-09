@@ -64,19 +64,20 @@
   color: var(--color-bg-dark);
 }
 
-/* Dark — black filled */
+/* Dark — dark filled, 1px visible contrasting boundary */
 .btn--dark {
   background-color: var(--color-bg-dark);
   color: var(--color-text-white);
-  border-color: var(--color-bg-dark);
+  /* Visible boundary: medium-grey border so the button reads against any surface */
+  border-color: #444444;
 }
 
 .btn--dark:hover {
   background-color: var(--color-bg-charcoal);
-  border-color: var(--color-bg-charcoal);
+  border-color: #666666;
 }
 
-/* Editorial — no border, white text, dark context */
+/* Editorial — typographic action, underline on hover, arrow indicator */
 .btn--editorial {
   background-color: transparent;
   color: var(--color-text-white);
@@ -84,21 +85,22 @@
   padding-inline: 0;
   letter-spacing: 0.1em;
   position: relative;
+  /* Visible underline at rest — reduced opacity for subtlety */
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.25);
+  text-underline-offset: 4px;
 }
 
-.btn--editorial::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--duration-medium) var(--easing-editorial);
+.btn--editorial:hover {
+  text-decoration-color: rgba(255, 255, 255, 0.9);
 }
 
-.btn--editorial:hover::after {
-  transform: scaleX(1);
+.btn--editorial:active {
+  opacity: 0.75;
+}
+
+.btn--editorial:focus-visible {
+  outline: 2px solid var(--color-cta-blue);
+  outline-offset: 3px;
+  text-decoration-color: transparent;
 }

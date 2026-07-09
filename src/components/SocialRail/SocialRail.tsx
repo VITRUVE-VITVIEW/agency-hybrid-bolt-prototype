@@ -35,8 +35,11 @@ function InstagramIcon() {
 function TwitterIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-      <path d="M4 4l16 16M4 20 20 4" stroke="currentColor" strokeWidth="0.1" opacity="0" />
-      <path d="M3 5h4l3.5 5L14 5h4l-6 7.5L19 19h-4l-4-5.5L7.5 19H4l6.5-8L3 5z" fill="currentColor" />
+      {/* X / Twitter logotype shape */}
+      <path
+        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L2.25 2.25h6.945l4.262 5.633L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"
+        fill="currentColor"
+      />
     </svg>
   )
 }
@@ -60,9 +63,12 @@ const LABELS: Record<SocialEntry['platform'], string> = {
  * Production: position fixed. Demo mode: position absolute inside DemoFrame.
  */
 export default function SocialRail({ entries, demoMode = false }: SocialRailProps) {
-  const validEntries = entries.filter(
-    entry => entry.url && entry.url.trim().length > 0 && entry.url !== '#',
-  )
+  const validEntries = entries.filter(entry => {
+    if (!entry.url || entry.url.trim().length === 0 || entry.url === '#') return false
+    // Omit bare-domain placeholders that point nowhere meaningful
+    const PLACEHOLDER_PATTERN = /^https?:\/\/(www\.)?(linkedin|instagram|twitter|x)\.com\/?$/
+    return !PLACEHOLDER_PATTERN.test(entry.url.trim())
+  })
 
   if (validEntries.length === 0) return null
 

@@ -91,10 +91,14 @@ p {
   line-height: var(--leading-body);
 }
 
-/* Utility — outlined display text */
+/* Utility — outlined display text.
+   `color: transparent` hides the fill; the stroke must be an explicit colour
+   so it is visible rather than inheriting transparent. */
 .text-outline {
   color: transparent;
-  -webkit-text-stroke: var(--stroke-width) currentColor;
+  -webkit-text-stroke: var(--stroke-width) var(--color-text-white);
+  /* Standard text-stroke for Firefox */
+  paint-order: stroke fill;
 }
 
 /* Utility — label style */
