@@ -111,6 +111,10 @@
   --color-cta-blue:    #0057ff;
   --color-rail-accent: #ff3366;
 
+  /* Button — dark variant contrasting border */
+  --color-btn-dark-border:       #444444;
+  --color-btn-dark-border-hover: #666666;
+
   /* Semantic feedback */
   --color-success:  #16a34a;
   --color-warning:  #d97706;

@@ -68,13 +68,12 @@
 .btn--dark {
   background-color: var(--color-bg-dark);
   color: var(--color-text-white);
-  /* Visible boundary: medium-grey border so the button reads against any surface */
-  border-color: #444444;
+  border-color: var(--color-btn-dark-border);
 }
 
 .btn--dark:hover {
   background-color: var(--color-bg-charcoal);
-  border-color: #666666;
+  border-color: var(--color-btn-dark-border-hover);
 }
 
 /* Editorial — typographic action, underline on hover, arrow indicator */
