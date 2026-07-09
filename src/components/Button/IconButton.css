@@ -1,0 +1,78 @@
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  background-color: transparent;
+  transition:
+    background-color var(--duration-short) var(--easing-standard),
+    opacity var(--duration-short) var(--easing-standard);
+  flex-shrink: 0;
+}
+
+.icon-btn:focus-visible {
+  outline: 2px solid var(--color-cta-blue);
+  outline-offset: 2px;
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Light tone — used on dark backgrounds */
+.icon-btn--light {
+  color: var(--color-text-white);
+}
+
+.icon-btn--light:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark tone — used on light backgrounds */
+.icon-btn--dark {
+  color: var(--color-text-body);
+}
+
+.icon-btn--dark:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Play variant — circular */
+.icon-btn--play {
+  border-radius: var(--radius-full);
+  width: 56px;
+  height: 56px;
+  border: 1px solid currentColor;
+}
+
+.icon-btn--play svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Scroll variant — rectangular with border */
+.icon-btn--scroll {
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+}
+
+/* Previous / Next — slightly larger for slider controls */
+.icon-btn--previous,
+.icon-btn--next {
+  width: 48px;
+  height: 48px;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-full);
+}
+
+.icon-btn--previous svg,
+.icon-btn--next svg {
+  width: 18px;
+  height: 18px;
+}

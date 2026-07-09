@@ -1,0 +1,91 @@
+.hero-hybrid {
+  position: relative;
+  min-height: 100vh;
+  background: var(--gradient-hybrid);
+  color: var(--color-text-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-hybrid--demo {
+  min-height: 600px;
+}
+
+/* Subtle grid — lighter than Esprit 01 */
+.hero-hybrid__grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  pointer-events: none;
+}
+
+.hero-hybrid__grid-line {
+  border-left: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.hero-hybrid__inner {
+  position: relative;
+  padding: var(--space-3xl) var(--container-padding-x);
+  margin-inline: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.hero-hybrid__content {
+  max-width: 840px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.hero-hybrid__eyebrow {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+}
+
+.hero-hybrid__content .hero-headline {
+  font-size: var(--text-display-xl);
+  line-height: var(--leading-display);
+  color: var(--color-text-white);
+}
+
+/* The outline segment uses a faint violet-tinted stroke */
+.hero-hybrid__content .hero-headline__segment--outline {
+  -webkit-text-stroke-color: rgba(168, 85, 247, 0.6);
+}
+
+.hero-hybrid__body {
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 500px;
+  line-height: var(--leading-body);
+}
+
+.hero-hybrid__ctas {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.hero-hybrid__scroll {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: var(--container-padding-x);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .hero-hybrid__inner {
+    padding: var(--space-2xl) var(--container-padding-x);
+    padding-bottom: var(--space-3xl);
+  }
+
+  .hero-hybrid__scroll {
+    bottom: var(--space-lg);
+  }
+}

@@ -90,6 +90,23 @@
   font-size: var(--text-sm);
 }
 
+/* Demo utilities — used inside DemoFrame viewports */
+.style-lab__demo-pad {
+  padding: var(--space-xl);
+}
+
+.style-lab__demo-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.style-lab__demo-hint {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+}
+
 @media (max-width: 768px) {
   .style-lab__header {
     padding: var(--space-xl) var(--container-padding-x);

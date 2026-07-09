@@ -1,0 +1,63 @@
+.scroll-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  padding: 0;
+  transition: color var(--duration-short) var(--easing-standard);
+}
+
+.scroll-indicator:hover {
+  color: var(--color-text-white);
+}
+
+.scroll-indicator:focus-visible {
+  outline: 2px solid var(--color-cta-blue);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.scroll-indicator__label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+}
+
+.scroll-indicator__track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1px;
+  height: 40px;
+  background-color: currentColor;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-indicator__dot {
+  position: absolute;
+  top: -6px;
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background-color: currentColor;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scroll-dot 1.6s ease-in-out infinite;
+}
+
+@keyframes scroll-dot {
+  0%   { top: -6px; opacity: 1; }
+  80%  { top: 42px; opacity: 1; }
+  100% { top: 42px; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-indicator__dot {
+    animation: none;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

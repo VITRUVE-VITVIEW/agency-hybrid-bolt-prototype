@@ -1,0 +1,40 @@
+.vertical-rail {
+  position: fixed;
+  left: var(--space-lg);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  z-index: var(--z-raised);
+}
+
+.vertical-rail--demo {
+  position: absolute;
+  left: var(--space-lg);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.vertical-rail__line {
+  width: 1px;
+  height: 64px;
+  background-color: var(--color-border-dark);
+}
+
+.vertical-rail__label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  user-select: none;
+}
+
+@media (max-width: 1024px) {
+  .vertical-rail:not(.vertical-rail--demo) {
+    display: none;
+  }
+}

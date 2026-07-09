@@ -105,3 +105,36 @@ p {
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+
+/* ----------------------------------------
+   DISPLAY UTILITY CLASSES
+   Assign per visual direction — do not mix
+---------------------------------------- */
+
+/* Esprit 01: Barlow Condensed oversized editorial display.
+   Used for HeroDarkEditorial headlines and the outlined accent word in HeroHybrid. */
+.display-editorial {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-display);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+/* Esprit 02: Space Grotesk geometric bold display.
+   Used for HeroGradient headlines and the primary readable headline in HeroHybrid. */
+.display-geometric {
+  font-family: var(--font-body);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-display);
+  letter-spacing: -0.02em;
+}
+
+/* Shared accent — eyebrow, sequence numbers, pillar badges.
+   Space Grotesk medium across both directions. */
+.display-accent {
+  font-family: var(--font-body);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-heading);
+  letter-spacing: 0.04em;
+}

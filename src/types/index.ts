@@ -4,8 +4,57 @@
  */
 
 /* ----------------------------------------
-   AGENCY CONFIGURATION
+   HERO — Headline segment model
 ---------------------------------------- */
+
+/**
+ * Visual treatment applied to one headline segment.
+ * geometric  — Space Grotesk bold, solid fill (Esprit 02, Hybrid primary)
+ * editorial  — Barlow Condensed bold, solid fill (Esprit 01, Hybrid outlined accent)
+ * outline    — Barlow Condensed bold, text-stroke no fill
+ * accent     — Space Grotesk medium, solid fill, smaller or colored
+ */
+export type HeroHeadlineTreatment = 'geometric' | 'editorial' | 'outline' | 'accent'
+
+export interface HeroHeadlineSegment {
+  text: string
+  treatment: HeroHeadlineTreatment
+  /** Insert a <br> after this segment */
+  lineBreakAfter?: boolean
+  /** Marks the segment as decorative; it will be wrapped in aria-hidden */
+  decorative?: boolean
+}
+
+/** CTA button data used inside hero sections */
+export interface HeroCTA {
+  label: string
+  path: string
+}
+
+/**
+ * Shared content model for all three hero variants.
+ * WordPress equivalent: ACF flexible content block 'hero'
+ */
+export interface HeroData {
+  /** Complete readable French headline for screen readers — ACF: hero_accessible_headline */
+  accessibleHeadline: string
+  /** Ordered headline segments driving visual typography treatment — ACF: hero_headline (repeater) */
+  headline: HeroHeadlineSegment[]
+  /** Short eyebrow label shown above the headline — ACF: hero_eyebrow */
+  eyebrow: string
+  /** Body copy paragraph — ACF: hero_body */
+  body: string
+  /** Primary call-to-action — ACF: hero_cta_primary */
+  ctaPrimary: HeroCTA
+  /** Optional secondary call-to-action — ACF: hero_cta_secondary */
+  ctaSecondary?: HeroCTA
+  /** Label for the optional video play button — ACF: hero_play_label */
+  playButtonLabel?: string
+  /** Show decorative vertical grid lines (Esprit 01 style) — ACF: hero_grid_lines */
+  gridLines?: boolean
+}
+
+
 
 /** WordPress equivalent: ACF options page — global site settings */
 export interface AgencyConfig {

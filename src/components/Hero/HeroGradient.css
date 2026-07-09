@@ -1,0 +1,73 @@
+.hero-gradient {
+  position: relative;
+  min-height: 100vh;
+  background: var(--gradient-ia);
+  color: var(--color-text-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-gradient--demo {
+  min-height: 600px;
+}
+
+.hero-gradient__inner {
+  position: relative;
+  padding: var(--space-3xl) var(--container-padding-x);
+  margin-inline: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.hero-gradient__content {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.hero-gradient__eyebrow {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+}
+
+.hero-gradient__content .hero-headline {
+  font-size: var(--text-display-xl);
+  line-height: var(--leading-display);
+  color: var(--color-text-white);
+}
+
+.hero-gradient__body {
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 520px;
+  line-height: var(--leading-body);
+}
+
+.hero-gradient__ctas {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.hero-gradient__scroll {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: var(--container-padding-x);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 768px) {
+  .hero-gradient__inner {
+    padding: var(--space-2xl) var(--container-padding-x);
+    padding-bottom: var(--space-3xl);
+  }
+
+  .hero-gradient__scroll {
+    bottom: var(--space-lg);
+  }
+}

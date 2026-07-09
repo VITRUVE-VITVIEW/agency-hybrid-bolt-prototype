@@ -97,6 +97,14 @@
 
 
   /* ----------------------------------------
+     COLOR — Hybrid hero
+  ---------------------------------------- */
+
+  --color-hybrid-void:         #0a0508;
+  --color-hybrid-violet-deep:  #1a0828;
+
+
+  /* ----------------------------------------
      COLOR — Shared accents and functional
   ---------------------------------------- */
 
@@ -164,6 +172,24 @@
   --duration-long:   600ms;
   --easing-editorial: cubic-bezier(0.25, 0.0, 0.0, 1.0);
   --easing-standard:  cubic-bezier(0.4, 0.0, 0.2, 1.0);
+
+
+  /* ----------------------------------------
+     GRADIENTS
+  ---------------------------------------- */
+
+  --gradient-ia:     linear-gradient(135deg, var(--color-ia-magenta), var(--color-ia-violet));
+  --gradient-hybrid: linear-gradient(160deg, var(--color-hybrid-void) 0%, var(--color-hybrid-violet-deep) 100%);
+
+
+  /* ----------------------------------------
+     LAYOUT UTILITIES
+  ---------------------------------------- */
+
+  --header-height:        72px;
+  --header-height-mobile: 56px;
+  --rail-width:           48px;
+  --rail-gap:             32px;
 
 
   /* ----------------------------------------

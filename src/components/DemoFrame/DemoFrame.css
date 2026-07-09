@@ -1,0 +1,27 @@
+.demo-frame {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.demo-frame__label {
+  color: var(--color-text-muted);
+}
+
+.demo-frame__viewport {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-dark);
+  min-height: 60px;
+}
+
+.demo-frame__viewport--dark {
+  background-color: var(--color-bg-dark);
+}
+
+.demo-frame__viewport--light {
+  background-color: var(--color-bg-white);
+}
+
+.demo-frame__viewport--transparent {
+  background-color: transparent;
+}

@@ -1,0 +1,39 @@
+.hero-headline {
+  margin: 0;
+}
+
+.hero-headline__visual {
+  display: block;
+}
+
+.hero-headline__segment {
+  display: inline;
+}
+
+.hero-headline__segment--geometric {
+  font-family: var(--font-body);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+}
+
+.hero-headline__segment--editorial {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.hero-headline__segment--outline {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: var(--stroke-width) currentColor;
+}
+
+.hero-headline__segment--accent {
+  font-family: var(--font-body);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+}
