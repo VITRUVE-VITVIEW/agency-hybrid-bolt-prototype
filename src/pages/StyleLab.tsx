@@ -16,29 +16,26 @@ import Modal from '../components/Modal/Modal'
 import HeroDarkEditorial from '../components/Hero/HeroDarkEditorial'
 import HeroGradient from '../components/Hero/HeroGradient'
 import HeroHybrid from '../components/Hero/HeroHybrid'
+import StyleLabProjectsSection from './style-lab/StyleLabProjectsSection'
 
 import navigation from '../data/navigation'
 import agencyConfig from '../config/agency.config'
 import { heroDarkEditorialData, heroGradientData, heroHybridData } from '../data/heroData'
 
-/* Top-level nav items without deep children — for header nav demo */
 const primaryNavItems = navigation.map(item => ({ path: item.path, label: item.label }))
 
-/* Social entries typed for the hero */
 const socialEntries = [
   { platform: 'linkedin' as const, url: agencyConfig.social.linkedin },
   { platform: 'instagram' as const, url: agencyConfig.social.instagram },
   { platform: 'twitter' as const, url: agencyConfig.social.twitter },
 ]
 
-/* Flat nav for fullscreen menu */
 const fullscreenNavItems = navigation.map(item => ({
   path: item.path,
   label: item.label,
   pillar: item.pillar,
 }))
 
-/* Nested nav for mobile menu */
 const mobileNavItems = navigation.map(item => ({
   path: item.path,
   label: item.label,
@@ -70,19 +67,22 @@ export default function StyleLab() {
 
       <header className="style-lab__header">
         <div className="style-lab__header-inner">
-          <p className="label style-lab__badge">Usage interne — Phase 2</p>
+          <p className="label style-lab__badge">Usage interne — Phase 3</p>
           <h1 id="style-lab-title" className="style-lab__title" tabIndex={-1}>Style Lab</h1>
           <p className="style-lab__subtitle">
-            Surface de comparaison et de validation des composants globaux et des héros.
-            Navigation disponible ci-dessous.
+            Surface de comparaison et de validation des composants globaux, héros, projets et contenus éditoriaux.
           </p>
           <nav className="style-lab__toc" aria-label="Navigation Style Lab">
             <ul className="style-lab__toc-list" role="list">
-              {['section-global', 'section-heros', 'section-projets', 'section-contenu', 'section-expertises', 'section-composants'].map(id => (
+              {[
+                { id: 'section-global',     label: 'Global' },
+                { id: 'section-heros',      label: 'Héros' },
+                { id: 'section-projets',    label: 'Projets & contenus' },
+                { id: 'section-expertises', label: 'Expertises' },
+                { id: 'section-composants', label: 'Composants d\'appui' },
+              ].map(({ id, label }) => (
                 <li key={id}>
-                  <a href={`#${id}`} className="style-lab__toc-link label">
-                    {id.replace('section-', '').charAt(0).toUpperCase() + id.replace('section-', '').slice(1)}
-                  </a>
+                  <a href={`#${id}`} className="style-lab__toc-link label">{label}</a>
                 </li>
               ))}
             </ul>
@@ -92,12 +92,11 @@ export default function StyleLab() {
 
       <main className="style-lab__main">
 
-        {/* ── GLOBAL ─────────────────────────────────────────── */}
+        {/* ── GLOBAL ──────────────────────────────────────────── */}
         <section className="style-lab__section" id="section-global">
           <h2 className="style-lab__section-title">Global</h2>
           <div className="style-lab__section-body">
 
-            {/* Header Variant A — minimal */}
             <DemoFrame label="En-tête — Variante A (minimale, recommandée)" height="72px" background="dark" clip>
               <HeaderMinimal
                 logoText={agencyConfig.logoText}
@@ -109,7 +108,6 @@ export default function StyleLab() {
               />
             </DemoFrame>
 
-            {/* Header Variant B — horizontal nav */}
             <DemoFrame label="En-tête — Variante B (navigation horizontale + CTA contact)" height="72px" background="dark" clip>
               <HeaderNavigation
                 logoText={agencyConfig.logoText}
@@ -122,7 +120,6 @@ export default function StyleLab() {
               />
             </DemoFrame>
 
-            {/* Header transparent — on a gradient surface so contrast is real */}
             <DemoFrame label="En-tête transparent — sur surface dégradée (Esprit 02)" height="72px" background="gradient-ia" clip>
               <HeaderNavigation
                 logoText={agencyConfig.logoText}
@@ -135,7 +132,6 @@ export default function StyleLab() {
               />
             </DemoFrame>
 
-            {/* Fullscreen menu */}
             <DemoFrame label="Menu plein écran éditorial — cliquer pour ouvrir" background="dark">
               <div className="style-lab__demo-pad">
                 <p className="style-lab__demo-hint text-sm">
@@ -155,7 +151,6 @@ export default function StyleLab() {
               </div>
             </DemoFrame>
 
-            {/* Mobile menu — phone preview */}
             <DemoFrame label="Menu mobile — aperçu dans un cadre téléphone" background="light">
               <div className="style-lab__demo-pad">
                 <p className="style-lab__demo-hint-light text-sm">
@@ -164,7 +159,6 @@ export default function StyleLab() {
                   Navigation clavier + touche Échap fonctionnelles.
                 </p>
                 <div className="style-lab__phone-frame">
-                  {/* Simulated phone header */}
                   <div className="style-lab__phone-header">
                     <span className="label style-lab__phone-logo">{agencyConfig.logoText}</span>
                     <IconButton
@@ -188,24 +182,20 @@ export default function StyleLab() {
               </div>
             </DemoFrame>
 
-            {/* Vertical rail */}
             <DemoFrame label="Rail vertical — indicateur de section (demo mode)" height="200px" background="dark" clip>
               <VerticalRail sectionLabel="Accueil" demoMode />
             </DemoFrame>
 
-            {/* Social rail */}
             <DemoFrame label="Rail social — icônes SVG internes, cibles 44×44 px" height="200px" background="dark" clip>
               <SocialRail entries={socialEntries} demoMode />
             </DemoFrame>
 
-            {/* Scroll indicator */}
             <DemoFrame label="Indicateur de défilement" background="dark">
               <div className="style-lab__demo-pad">
                 <ScrollIndicator targetId="section-heros" label="Découvrir" />
               </div>
             </DemoFrame>
 
-            {/* BackToTop note */}
             <DemoFrame label="Retour en haut — apparaît après 400 px de défilement (bouton en bas à droite)" background="dark">
               <div className="style-lab__demo-pad">
                 <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
@@ -215,7 +205,6 @@ export default function StyleLab() {
               </div>
             </DemoFrame>
 
-            {/* Buttons */}
             <DemoFrame label="Variantes de boutons — primaire, secondaire, light, dark, éditorial" background="dark">
               <div className="style-lab__demo-pad style-lab__demo-row">
                 <Button variant="primary">Primaire</Button>
@@ -226,14 +215,9 @@ export default function StyleLab() {
               </div>
             </DemoFrame>
 
-            {/* Modal */}
             <DemoFrame label="Modale accessible — focus trap, Échap, restauration du focus" background="light">
               <div className="style-lab__demo-pad">
-                <button
-                  ref={modalTriggerRef}
-                  className="btn btn--primary"
-                  onClick={openModal}
-                >
+                <button ref={modalTriggerRef} className="btn btn--primary" onClick={openModal}>
                   Ouvrir la modale
                 </button>
               </div>
@@ -242,12 +226,11 @@ export default function StyleLab() {
           </div>
         </section>
 
-        {/* ── HÉROS ──────────────────────────────────────────── */}
+        {/* ── HÉROS ───────────────────────────────────────────── */}
         <section className="style-lab__section" id="section-heros">
           <h2 className="style-lab__section-title">Héros</h2>
           <div className="style-lab__section-body">
 
-            {/* Hero Dark Editorial */}
             <DemoFrame label="Héros éditorial sombre — Esprit 01 (Barlow Condensed, contour, grille)">
               <HeroDarkEditorial
                 data={heroDarkEditorialData}
@@ -260,21 +243,19 @@ export default function StyleLab() {
               />
             </DemoFrame>
 
-            {/* Hero Gradient */}
             <DemoFrame label="Héros dégradé — Esprit 02 (Space Grotesk, rail vertical + social, play)">
               <HeroGradient
                 data={heroGradientData}
                 headingLevel={2}
                 isDemo
                 accessibleLabel="Démonstration : Héros dégradé Esprit 02"
-                scrollTargetId="section-contenu"
+                scrollTargetId="section-projets"
                 showRail
                 sectionLabel="Accueil"
                 socialEntries={socialEntries}
               />
             </DemoFrame>
 
-            {/* Hero Hybrid */}
             <DemoFrame label="Héros hybride recommandé (Space Grotesk + segment contour Barlow, gradient violet)">
               <HeroHybrid
                 data={heroHybridData}
@@ -290,33 +271,10 @@ export default function StyleLab() {
           </div>
         </section>
 
-        {/* ── PROJETS ────────────────────────────────────────── */}
-        <section className="style-lab__section" id="section-projets">
-          <h2 className="style-lab__section-title">Projets</h2>
-          <div className="style-lab__section-body">
-            <StyleLabSlot label="Composition projet sombre — contenu à gauche" />
-            <StyleLabSlot label="Composition projet sombre — contenu à droite" />
-            <StyleLabSlot label="Titre géant en contour seul" />
-            <StyleLabSlot label="Titre mixte contour et plein" />
-            <StyleLabSlot label="Carrousel horizontal de cas clients" />
-            <StyleLabSlot label="Grille portfolio éditorial" />
-            <StyleLabSlot label="États de survol des cartes projets" />
-          </div>
-        </section>
+        {/* ── PROJETS & CONTENUS ÉDITORIAUX ───────────────────── */}
+        <StyleLabProjectsSection />
 
-        {/* ── CONTENU ────────────────────────────────────────── */}
-        <section className="style-lab__section" id="section-contenu">
-          <h2 className="style-lab__section-title">Contenu</h2>
-          <div className="style-lab__section-body">
-            <StyleLabSlot label="Introduction éditoriale minimale — fond blanc" />
-            <StyleLabSlot label="Introduction éditoriale — fond sombre" />
-            <StyleLabSlot label="Grande déclaration" />
-            <StyleLabSlot label="Section éditoriale numérotée" />
-            <StyleLabSlot label="Image et texte en split" />
-          </div>
-        </section>
-
-        {/* ── EXPERTISES ─────────────────────────────────────── */}
+        {/* ── EXPERTISES ──────────────────────────────────────── */}
         <section className="style-lab__section" id="section-expertises">
           <h2 className="style-lab__section-title">Expertises</h2>
           <div className="style-lab__section-body">
@@ -330,7 +288,7 @@ export default function StyleLab() {
           </div>
         </section>
 
-        {/* ── COMPOSANTS D'APPUI ─────────────────────────────── */}
+        {/* ── COMPOSANTS D'APPUI ──────────────────────────────── */}
         <section className="style-lab__section" id="section-composants">
           <h2 className="style-lab__section-title">Composants d'appui</h2>
           <div className="style-lab__section-body">
@@ -347,10 +305,8 @@ export default function StyleLab() {
 
       </main>
 
-      {/* Single BackToTop instance */}
       <BackToTop topAnchorId="style-lab-title" />
 
-      {/* Overlays */}
       <FullscreenMenu
         isOpen={fullscreenOpen}
         onClose={closeFullscreen}
@@ -389,7 +345,7 @@ function StyleLabSlot({ label }: { label: string }) {
     <div className="style-lab__slot">
       <p className="style-lab__slot-label label">{label}</p>
       <div className="style-lab__slot-placeholder">
-        <span>Composant à construire en Phase 3</span>
+        <span>Composant à construire en Phase 3B+</span>
       </div>
     </div>
   )

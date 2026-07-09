@@ -31,31 +31,46 @@ src/
 ├── config/
 │   └── agency.config.ts       Objet de configuration centralisé de l'agence
 ├── components/
-│   ├── layout/                En-têtes, pieds de page, menus, rails
-│   ├── sections/              Sections de page réutilisables
-│   ├── ui/                    Atomes UI (boutons, cartes, accordéons…)
-│   └── icons/                 Composants SVG
+│   ├── media/                 Composants de média (MediaPlaceholder)
+│   ├── projects/              Compositions de projets et carrousel (Phase 3A)
+│   ├── editorial/             Sections éditoriales réutilisables (Phase 3A)
+│   ├── Hero/                  Trois variantes de héros (Phase 2)
+│   ├── Header/                En-têtes (Phase 2)
+│   ├── Button/                Boutons et IconButton (Phase 2)
+│   ├── FullscreenMenu/        Menu plein écran (Phase 2)
+│   ├── MobileMenu/            Menu mobile (Phase 2)
+│   ├── Modal/                 Modale accessible (Phase 2)
+│   ├── VerticalRail/          Rail vertical de section (Phase 2)
+│   ├── SocialRail/            Rail social (Phase 2)
+│   ├── ScrollIndicator/       Indicateur de défilement (Phase 2)
+│   ├── BackToTop/             Bouton retour en haut (Phase 2)
+│   └── DemoFrame/             Cadre de démonstration Style Lab (Phase 2)
 ├── data/
 │   ├── routes.ts              Registre complet des 27 routes (source de vérité)
 │   ├── navigation.ts          Arborescence de navigation publique uniquement
+│   ├── heroData.ts            Données des héros (Phase 2)
+│   ├── projects.ts            4 cas clients avec médias (Phase 3A)
+│   ├── portfolio.ts           6 projets portfolio avec médias (Phase 3A)
+│   ├── editorialSections.ts   Données des sections éditoriales (Phase 3A)
 │   ├── expertises.ts          Données des pages d'expertise (Phase 5+)
-│   ├── caseStudies.ts         Données des cas clients (Phase 9+)
-│   ├── portfolioItems.ts      Données du portfolio (Phase 9+)
 │   ├── articles.ts            Données des articles de blog (Phase 11+)
 │   ├── processSteps.ts        Étapes de la méthode (Phase 8+)
 │   └── team.ts                Membres de l'équipe (Phase 10+)
 ├── pages/
+│   ├── style-lab/
+│   │   └── StyleLabProjectsSection.tsx   Chapitre projets/éditorial du Style Lab (Phase 3A)
 │   ├── RoutePlaceholder.tsx   Rendu temporaire pour toutes les routes non construites
 │   ├── NotFound.tsx           Rendu exclusif de la route wildcard (URL inconnues)
-│   ├── StyleLab.tsx           Surface de revue interne privée (/style-lab)
-│   └── [PageName].tsx         Un fichier par route publique construite
+│   └── StyleLab.tsx           Surface de revue interne privée (/style-lab)
 ├── styles/
 │   ├── reset.css              Normalisation des styles par défaut du navigateur
 │   ├── tokens.css             Toutes les variables CSS de design
 │   ├── typography.css         Chargement des polices, styles des éléments de base
 │   └── global.css             Point d'entrée — importe reset, tokens, typography
-└── types/
-    └── index.ts               14 interfaces TypeScript avec annotations WordPress
+├── types/
+│   └── index.ts               Types TypeScript avec annotations WordPress (AccentTheme, MediaVariant, MediaRatio, ProjectMedia, ProjectCategory + modèles Phase 1-2)
+└── utils/
+    └── accentTheme.ts         Résolution AccentTheme → tokens CSS centralisée
 ```
 
 ---
@@ -129,17 +144,18 @@ Pas de CSS-in-JS. Pas de Tailwind. Pas de bibliothèques de composants lourdes.
 
 ## Index des phases
 
-| Phase | Périmètre |
-|---|---|
-| 1 | Fondation, tokens, routing, documentation, shell Style Lab |
-| 2 | Composants globaux partagés, variantes de navigation, trois variantes de héros |
-| 3 | Style Lab complet |
-| 4 | Page d'accueil |
-| 5 | Hub Expertises, trois hubs de catégories, template d'expertise réutilisable |
-| 6 | 5 pages d'expertise prioritaires |
-| 7 | 6 pages d'expertise restantes |
-| 8 | Méthode |
-| 9 | Réalisations, Cas clients, Portfolio, templates détail |
-| 10 | Agence |
-| 11 | Blog, template article, Contact |
-| 12 | Revue responsive globale, accessibilité, performance, documentation, handoff Elementor |
+| Phase | Périmètre | Statut |
+|---|---|---|
+| 1 | Fondation, tokens, routing, documentation, shell Style Lab | Terminé |
+| 2 | Composants globaux partagés, variantes de navigation, trois variantes de héros | Terminé |
+| 3A | Style Lab étendu — projets, carrousel, portfolio, contenu éditorial | Terminé |
+| 3B | Style Lab — expertises, toolkit, insights, process, footer | À venir |
+| 4 | Page d'accueil | À venir |
+| 5 | Hub Expertises, trois hubs de catégories, template d'expertise réutilisable | À venir |
+| 6 | 5 pages d'expertise prioritaires | À venir |
+| 7 | 6 pages d'expertise restantes | À venir |
+| 8 | Méthode | À venir |
+| 9 | Réalisations, Cas clients, Portfolio, templates détail | À venir |
+| 10 | Agence | À venir |
+| 11 | Blog, template article, Contact | À venir |
+| 12 | Revue responsive globale, accessibilité, performance, documentation, handoff Elementor | À venir |

@@ -78,6 +78,20 @@ _(Les lignes sont peuplées au fur et à mesure que les composants sont construi
 | `FAQAccordion` | 3 | — | Moyenne | Widget Toggle natif Elementor |
 | `ContactForm` | 3 | — | Faible | Plugin Contact Form 7 ou WPForms |
 | `UtilityFooter` | 3 | — | Faible | Template de pied de page Elementor |
+| `ProjectEditorialSplit` (2 variantes) | 3A | Style Lab | Élevée | CSS Grid + text-stroke + grid lines — JS non requis |
+| `ProjectTypographyFeature` | 3A | Style Lab | Élevée | CSS text-stroke, `clamp()` — classe `.text-outline` requise |
+| `CaseStudyCarousel` | 3A | Style Lab | Élevée | scroll-snap natif + JS sync activeIndex — plugin ou widget custom en WordPress |
+| `CaseStudySlide` | 3A | Style Lab | Élevée | Composant interne du carrousel |
+| `CarouselControls` | 3A | Style Lab | Élevée | Boutons prev/next avec `disabled` natif |
+| `CarouselPagination` | 3A | Style Lab | Élevée | Dots de pagination accessibles |
+| `PortfolioGrid` | 3A | Style Lab | Moyenne | CSS Grid 3 colonnes + loop Elementor Pro ou CPT |
+| `PortfolioCard` | 3A | Style Lab | Moyenne | Hover overlay — widget Image + Texte + Custom CSS |
+| `MinimalEditorialIntro` | 3A | Style Lab | Faible | Widget Texte + Titre, padding généreux |
+| `DarkEditorialIntro` | 3A | Style Lab | Faible | Section deux colonnes, fond sombre |
+| `StatementSection` (dark / light / color) | 3A | Style Lab | Faible | Section pleine largeur — 3 variants de fond |
+| `NumberedEditorialSection` | 3A | Style Lab | Moyenne | Numéro décoratif via CSS, grille deux colonnes |
+| `ImageTextSplit` (left / right / ratios) | 3A | Style Lab | Moyenne | Conteneur deux colonnes Elementor, ordre inversé via classes |
+| `MediaPlaceholder` | 3A | Style Lab | Faible | Non utilisé en production — remplacé par widget Image natif |
 
 ---
 
@@ -139,18 +153,22 @@ Les éléments suivants nécessiteront du JavaScript personnalisé dans WordPres
 
 **Menu mobile** : même comportement que le menu plein écran avec, en plus, fermeture par clic sur le backdrop. Nécessite un overlay `position: fixed` au-dessus du contenu.
 
-**Carrousel de cas clients** : scroll-snap natif CSS + boutons prev/next. Peut être remplacé par un plugin JavaScript en WordPress tout en préservant la structure HTML documentée.
+**Carrousel de cas clients** (`CaseStudyCarousel`) : scroll-snap natif CSS + synchronisation activeIndex via `getBoundingClientRect` + `requestAnimationFrame`. Aucune dépendance. `ResizeObserver` re-aligne sur le slide actif après redimensionnement. En WordPress, remplacer par Smart Slider 3 ou un carousel plugin tout en préservant la structure HTML des slides.
 
-**Filtres de contenu** (Réalisations, Blog) : déclenchés en JavaScript côté client dans le prototype. En WordPress, géré par JetSmartFilters ou un filtrage AJAX personnalisé.
+**Synchronisation activeIndex** : la position réelle de chaque slide est calculée via `slide.getBoundingClientRect().left - container.getBoundingClientRect().left + container.scrollLeft`. Cette approche est correcte en présence de `gap`, `padding` et de largeurs relatives au conteneur.
 
-**Titres en contour** (`-webkit-text-stroke`) : propriété CSS standard, applicable via une classe personnalisée dans l'éditeur Elementor. Compatible avec tous les navigateurs modernes. La valeur de stroke est toujours `var(--color-text-white)` — ne pas utiliser `currentColor` qui hériterait de `color: transparent` et rendrait le texte invisible.
+**Composants `ProjectEditorialSplit` et `ProjectTypographyFeature`** : les titres surdimensionnés utilisent `-webkit-text-stroke` pour les mots en contour. La propriété est supportée par tous les navigateurs modernes. Appliquer via classe `.text-outline` dans Elementor.
 
-**Sections split avec maquettes débordantes** : `overflow: visible` sur le conteneur avec une valeur de `z-index` documentée. Reproduisible dans Elementor avec un positionnement absolu sur un widget Image.
+**`MediaPlaceholder`** : utilisé uniquement dans le prototype comme substitut aux images de projet réelles. En production WordPress, remplacer par le widget Image natif Elementor avec le champ ACF correspondant.
 
-**Rail social** (`SocialRail`) : les URLs doivent être des URLs de profils complets (ex. `https://linkedin.com/company/mon-agence`) — les URLs de domaine nu (`https://linkedin.com`) sont filtrées par le composant et ne génèrent aucun rendu.
+**`AccentTheme`** (prop sémantique) : les composants de Phase 3A reçoivent un `AccentTheme` typé (`'digital' | 'ia' | 'conseil' | 'neutral' | 'blue' | 'magenta' | 'coral'`). La résolution vers un token CSS est centralisée dans `src/utils/accentTheme.ts`. En Elementor, sélectionner la couleur globale correspondante dans l'interface.
 
 ---
 
 ## État Phase 2 — APPROUVÉ 2026-07-09
 
 Tous les composants listés comme Phase 2 dans le registre ci-dessus sont construits, corrigés et approuvés par le responsable du projet. Les tokens, classes CSS et comportements d'interaction sont stables pour la Phase 3.
+
+## État Phase 3A — Style Lab en production 2026-07-09
+
+Tous les composants listés comme Phase 3A dans le registre ci-dessus sont construits et disponibles dans le Style Lab (`/style-lab` → section Projets & contenus éditoriaux). Les données de démonstration utilisent des contenus français provisoires. Les tokens, types et utilitaires de Phase 3A sont stables pour la Phase 3B.

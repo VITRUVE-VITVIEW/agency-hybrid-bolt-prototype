@@ -1,0 +1,105 @@
+.cs-carousel {
+  background-color: var(--color-bg-navy);
+  color: var(--color-text-white);
+  padding: var(--space-2xl) 0;
+  overflow: visible;
+}
+
+/* ── Header ─────────────────────────── */
+
+.cs-carousel__header {
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.cs-carousel__eyebrow {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.cs-carousel__headline {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  line-height: var(--leading-display);
+  color: rgba(255, 255, 255, 0.08);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.cs-carousel__header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-shrink: 0;
+}
+
+/* ── Track ──────────────────────────── */
+
+.cs-carousel__track {
+  display: flex;
+  gap: var(--space-lg);
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-inline: var(--container-padding-x);
+  padding-inline-end: calc(var(--container-padding-x) + var(--space-lg));
+  padding-bottom: var(--space-sm);
+  outline: none;
+}
+
+.cs-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.cs-carousel__track:focus-visible {
+  outline: 2px solid var(--color-cta-blue);
+  outline-offset: 4px;
+}
+
+/* ── Footer ─────────────────────────── */
+
+.cs-carousel__footer {
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.cs-carousel__counter {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  margin: 0;
+  margin-left: auto;
+}
+
+/* ── Responsive ─────────────────────── */
+
+@media (max-width: 768px) {
+  .cs-carousel__header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: var(--space-lg);
+  }
+
+  .cs-carousel__header-actions {
+    flex-wrap: wrap;
+  }
+
+  .cs-carousel__headline {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+}

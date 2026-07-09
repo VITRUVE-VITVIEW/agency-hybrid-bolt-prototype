@@ -1,0 +1,95 @@
+.statement {
+  padding: var(--space-3xl) var(--container-padding-x);
+  color: var(--color-text-white);
+}
+
+.statement__inner {
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.statement__eyebrow {
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0;
+  opacity: 0.7;
+}
+
+.statement__text {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 6rem);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  line-height: var(--leading-display);
+  letter-spacing: -0.02em;
+  margin: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.statement__cta {
+  align-self: flex-start;
+}
+
+/* ── Dark variant ───────────────────── */
+
+.statement--dark {
+  background-color: var(--color-bg-dark);
+}
+
+.statement--dark .statement__eyebrow {
+  color: var(--color-text-muted);
+}
+
+.statement--dark .statement__text {
+  color: var(--color-text-white);
+}
+
+/* ── Light variant ──────────────────── */
+
+.statement--light {
+  background-color: var(--color-bg-white);
+  color: var(--color-text-navy);
+}
+
+.statement--light .statement__eyebrow {
+  color: var(--color-text-muted);
+}
+
+.statement--light .statement__text {
+  color: var(--color-text-navy);
+}
+
+.statement--light .statement__cta {
+  /* btn--light is white on dark; use primary on light surfaces */
+  color: var(--color-cta-blue);
+  border-color: var(--color-cta-blue);
+}
+
+/* ── Color variant ──────────────────── */
+
+.statement--color {
+  background-color: var(--statement-accent, var(--color-cta-blue));
+}
+
+.statement--color .statement__text {
+  color: var(--color-text-white);
+}
+
+/* ── Responsive ─────────────────────── */
+
+@media (max-width: 768px) {
+  .statement__text {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+}
+
+@media (max-width: 390px) {
+  .statement__text {
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
+    letter-spacing: -0.01em;
+  }
+}

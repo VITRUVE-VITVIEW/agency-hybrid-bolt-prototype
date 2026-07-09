@@ -4,6 +4,68 @@
  */
 
 /* ----------------------------------------
+   ACCENT THEME — semantic color identity
+---------------------------------------- */
+
+/**
+ * Semantic accent theme used across project and editorial components.
+ * Resolved to centralized CSS tokens internally — never passed as raw color values.
+ */
+export type AccentTheme =
+  | 'digital'
+  | 'ia'
+  | 'conseil'
+  | 'neutral'
+  | 'blue'
+  | 'magenta'
+  | 'coral'
+
+/* ----------------------------------------
+   MEDIA PLACEHOLDER
+---------------------------------------- */
+
+/** Visual variant for abstract CSS media placeholders */
+export type MediaVariant =
+  | 'gradient-digital'
+  | 'gradient-ia'
+  | 'gradient-conseil'
+  | 'gradient-neutral'
+  | 'device-frame'
+  | 'print-frame'
+  | 'abstract-grid'
+
+/** Aspect ratio for media placeholders */
+export type MediaRatio = '16/9' | '4/3' | '3/4' | '1/1' | 'cinema'
+
+/** WordPress equivalent: ACF image field with fallback placeholder metadata */
+export interface ProjectMedia {
+  /** Visual variant to use for the CSS placeholder */
+  variant: MediaVariant
+  /** Aspect ratio */
+  ratio: MediaRatio
+  /** Accessible label — used as figcaption */
+  label: string
+  /** Accent theme tinting the placeholder gradient — ACF: media_accent */
+  accent?: AccentTheme
+}
+
+/* ----------------------------------------
+   PROJECT CATEGORY
+---------------------------------------- */
+
+/** WordPress equivalent: custom taxonomy 'pillar' term */
+export interface ProjectCategory {
+  /** URL slug — taxonomy slug */
+  slug: string
+  /** French display label */
+  label: string
+  /** Associated pillar */
+  pillar: 'digital' | 'ia' | 'conseil'
+  /** Accent theme */
+  accent: AccentTheme
+}
+
+/* ----------------------------------------
    HERO — Headline segment model
 ---------------------------------------- */
 

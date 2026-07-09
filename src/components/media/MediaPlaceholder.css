@@ -1,0 +1,114 @@
+.media-placeholder {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.media-placeholder::before {
+  content: '';
+  display: block;
+  padding-top: var(--media-ratio, 75%);
+}
+
+.media-placeholder__visual {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Base gradient layer */
+.media-placeholder__layer--bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--media-accent-secondary, var(--color-bg-charcoal)) 0%,
+    var(--media-accent, var(--color-text-muted)) 100%
+  );
+  opacity: 0.9;
+}
+
+/* Pattern layer — varies by variant */
+.media-placeholder__layer--pattern {
+  position: absolute;
+  inset: 0;
+}
+
+/* ── Gradient variants ──────────────────── */
+
+.media-placeholder--gradient-digital .media-placeholder__layer--bg {
+  background: linear-gradient(135deg, var(--color-digital-navy) 0%, var(--color-digital-blue) 100%);
+}
+
+.media-placeholder--gradient-ia .media-placeholder__layer--bg {
+  background: linear-gradient(135deg, var(--color-hybrid-void) 0%, var(--color-ia-violet) 60%, var(--color-ia-magenta) 100%);
+}
+
+.media-placeholder--gradient-conseil .media-placeholder__layer--bg {
+  background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-conseil-red) 70%, var(--color-conseil-coral) 100%);
+}
+
+.media-placeholder--gradient-neutral .media-placeholder__layer--bg {
+  background: linear-gradient(135deg, var(--color-bg-charcoal) 0%, #2a2a2a 100%);
+}
+
+/* Abstract grid pattern */
+.media-placeholder--abstract-grid .media-placeholder__layer--pattern {
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 0px,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px,
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.04) 0px,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px,
+      transparent 40px
+    );
+}
+
+/* Device frame */
+.media-placeholder--device-frame .media-placeholder__layer--bg {
+  background: linear-gradient(160deg, var(--color-bg-charcoal) 0%, #1a1a2e 100%);
+}
+
+.media-placeholder--device-frame .media-placeholder__frame-outline {
+  position: absolute;
+  inset: 12% 20%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Print frame */
+.media-placeholder--print-frame .media-placeholder__layer--bg {
+  background: linear-gradient(160deg, #1a1410 0%, #2d1f0e 100%);
+}
+
+.media-placeholder--print-frame .media-placeholder__frame-outline {
+  position: absolute;
+  inset: 8% 12%;
+  border: 1px solid rgba(212, 184, 150, 0.3);
+  background: rgba(212, 184, 150, 0.06);
+}
+
+/* Caption */
+.media-placeholder__caption {
+  position: absolute;
+  bottom: var(--space-sm);
+  left: var(--space-sm);
+  right: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.35);
+  line-height: var(--leading-tight);
+  pointer-events: none;
+}

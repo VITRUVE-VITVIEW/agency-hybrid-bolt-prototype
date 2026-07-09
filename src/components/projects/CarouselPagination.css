@@ -1,0 +1,47 @@
+.carousel-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.carousel-pagination__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  padding: 0;
+  /* Enlarge click target without growing the visual dot */
+  position: relative;
+  transition: background-color var(--duration-short) var(--easing-standard),
+              transform var(--duration-short) var(--easing-standard);
+}
+
+/* Ensure 44px tap target */
+.carousel-pagination__dot::before {
+  content: '';
+  position: absolute;
+  inset: -18px;
+}
+
+.carousel-pagination__dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.carousel-pagination__dot--active {
+  background: var(--color-text-white);
+  transform: scale(1.4);
+}
+
+.carousel-pagination__dot:focus-visible {
+  outline: 2px solid var(--color-cta-blue);
+  outline-offset: 3px;
+  border-radius: var(--radius-full);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-pagination__dot {
+    transition: none;
+  }
+}
