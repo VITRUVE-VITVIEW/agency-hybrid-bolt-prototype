@@ -1,15 +1,42 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
+@import './reset.css';
+@import './tokens.css';
+@import './typography.css';
+
+/* Container utility */
+.container {
+  width: 100%;
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.container--reading {
+  max-width: var(--container-reading);
+}
+
+.container--wide {
+  max-width: var(--container-wide);
+}
+
+/* Visually hidden — accessible off-screen content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
   padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-:root {
-  font-family: sans-serif;
-  line-height: 1.5;
-  color-scheme: light dark;
-}
-
-body {
-  min-height: 100vh;
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

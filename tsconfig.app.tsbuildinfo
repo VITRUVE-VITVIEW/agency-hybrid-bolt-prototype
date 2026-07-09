@@ -1,1 +1,1 @@
-{"root":["./src/App.tsx","./src/main.tsx"],"version":"5.9.3"}
+{"root":["./src/App.tsx","./src/main.tsx","./src/config/agency.config.ts","./src/data/navigation.ts","./src/data/routes.ts","./src/pages/NotFound.tsx","./src/pages/RoutePlaceholder.tsx","./src/pages/StyleLab.tsx","./src/types/index.ts"],"version":"5.9.3"}

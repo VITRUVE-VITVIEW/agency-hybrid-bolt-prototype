@@ -1,0 +1,180 @@
+/* Design tokens — all reusable design values are declared here.
+   Component CSS files must reference these variables, never hardcode values. */
+
+:root {
+
+  /* ----------------------------------------
+     TYPOGRAPHY
+  ---------------------------------------- */
+
+  /* Font families — declared in typography.css, referenced here as tokens */
+  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+
+  /* Display scale — used with clamp() for responsive editorial headings */
+  --text-display-xl: clamp(4rem, 10vw, 10rem);
+  --text-display-lg: clamp(3rem, 7vw, 7rem);
+  --text-display-md: clamp(2rem, 4.5vw, 4.5rem);
+  --text-display-sm: clamp(1.5rem, 3vw, 3rem);
+
+  /* Body scale — fixed for readability */
+  --text-lead:    1.25rem;  /* Lead paragraphs */
+  --text-body:    1rem;     /* Default body copy */
+  --text-sm:      0.875rem; /* Labels, metadata, captions */
+  --text-xs:      0.75rem;  /* Legal, micro labels */
+
+  /* Line heights */
+  --leading-display: 1.05;
+  --leading-heading: 1.2;
+  --leading-body:    1.7;
+  --leading-tight:   1.0;
+
+  /* Font weights */
+  --weight-regular:    400;
+  --weight-medium:     500;
+  --weight-bold:       700;
+
+  /* Text stroke — for outlined display headings */
+  --stroke-width: 0.03em;
+
+
+  /* ----------------------------------------
+     COLOR — Dark palette (Esprit 01)
+  ---------------------------------------- */
+
+  --color-bg-dark:      #0a0a0a;
+  --color-bg-charcoal:  #111111;
+  --color-bg-navy:      #0d1421;
+  --color-text-white:   #ffffff;
+  --color-text-muted:   #888888;
+  --color-border-dark:  #222222;
+
+
+  /* ----------------------------------------
+     COLOR — Light palette (Esprit 02)
+  ---------------------------------------- */
+
+  --color-bg-white:   #ffffff;
+  --color-bg-light:   #f6f6f4;
+  --color-text-navy:  #0d1421;
+  --color-text-body:  #2a2a2a;
+  --color-border-light: #e0e0dc;
+
+
+  /* ----------------------------------------
+     COLOR — Digital pillar (electric blue / deep navy)
+  ---------------------------------------- */
+
+  --color-digital-blue:       #0057ff;
+  --color-digital-blue-light: #3378ff;
+  --color-digital-blue-dark:  #0040cc;
+  --color-digital-navy:       #0d1421;
+  --color-digital-navy-light: #1a2a45;
+
+
+  /* ----------------------------------------
+     COLOR — IA pillar (violet / purple / magenta)
+  ---------------------------------------- */
+
+  --color-ia-violet:        #6b21d4;
+  --color-ia-violet-light:  #8b47e8;
+  --color-ia-purple:        #9333ea;
+  --color-ia-purple-light:  #a855f7;
+  --color-ia-magenta:       #c026d3;
+  --color-ia-magenta-light: #d946ef;
+
+
+  /* ----------------------------------------
+     COLOR — Conseil pillar (coral / warm red / warm beige)
+  ---------------------------------------- */
+
+  --color-conseil-coral:       #ff5c3a;
+  --color-conseil-coral-light: #ff7a5c;
+  --color-conseil-red:         #dc2626;
+  --color-conseil-red-light:   #ef4444;
+  --color-conseil-beige:       #d4b896;
+  --color-conseil-beige-light: #e8d4bc;
+
+
+  /* ----------------------------------------
+     COLOR — Shared accents and functional
+  ---------------------------------------- */
+
+  --color-cta-blue:    #0057ff;
+  --color-rail-accent: #ff3366;
+
+  /* Semantic feedback */
+  --color-success:  #16a34a;
+  --color-warning:  #d97706;
+  --color-error:    #dc2626;
+  --color-info:     #0057ff;
+
+
+  /* ----------------------------------------
+     SPACING — 8px base scale
+  ---------------------------------------- */
+
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  32px;
+  --space-xl:  64px;
+  --space-2xl: 96px;
+  --space-3xl: 128px;
+
+
+  /* ----------------------------------------
+     LAYOUT — Container widths (provisional, confirmed after Style Lab review)
+  ---------------------------------------- */
+
+  --container-reading:  720px;   /* Long-form editorial text columns */
+  --container-content:  1240px;  /* Standard page content */
+  --container-wide:     1560px;  /* Full editorial layouts with side rails */
+
+  --container-padding-x: clamp(var(--space-md), 5vw, var(--space-2xl));
+
+
+  /* ----------------------------------------
+     GRID
+  ---------------------------------------- */
+
+  --grid-columns-desktop: 12;
+  --grid-columns-mobile:  4;
+  --grid-gap:             24px;
+  --grid-gap-mobile:      16px;
+
+
+  /* ----------------------------------------
+     BORDERS AND RADIUS
+  ---------------------------------------- */
+
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-full: 9999px;
+  --border-thin: 1px solid var(--color-border-dark);
+
+
+  /* ----------------------------------------
+     MOTION
+  ---------------------------------------- */
+
+  --duration-short:  150ms;
+  --duration-medium: 300ms;
+  --duration-long:   600ms;
+  --easing-editorial: cubic-bezier(0.25, 0.0, 0.0, 1.0);
+  --easing-standard:  cubic-bezier(0.4, 0.0, 0.2, 1.0);
+
+
+  /* ----------------------------------------
+     Z-INDEX scale
+  ---------------------------------------- */
+
+  --z-base:     0;
+  --z-raised:   10;
+  --z-overlay:  100;
+  --z-menu:     200;
+  --z-modal:    300;
+  --z-toast:    400;
+
+}

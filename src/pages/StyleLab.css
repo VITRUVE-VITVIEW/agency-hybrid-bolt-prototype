@@ -1,0 +1,102 @@
+.style-lab {
+  background-color: var(--color-bg-charcoal);
+  color: var(--color-text-white);
+  min-height: 100vh;
+}
+
+.style-lab__header {
+  background-color: var(--color-bg-dark);
+  border-bottom: 1px solid var(--color-border-dark);
+  padding: var(--space-2xl) var(--container-padding-x);
+}
+
+.style-lab__header-inner {
+  max-width: var(--container-content);
+  margin-inline: auto;
+}
+
+.style-lab__badge {
+  color: var(--color-ia-violet);
+  margin-bottom: var(--space-md);
+}
+
+.style-lab__title {
+  font-family: var(--font-display);
+  font-size: var(--text-display-lg);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  line-height: var(--leading-display);
+  color: var(--color-text-white);
+  margin-bottom: var(--space-md);
+}
+
+.style-lab__subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  max-width: 560px;
+}
+
+.style-lab__main {
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding: var(--space-2xl) var(--container-padding-x);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xl);
+}
+
+.style-lab__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.style-lab__section-title {
+  font-family: var(--font-display);
+  font-size: var(--text-display-sm);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  line-height: var(--leading-display);
+  color: var(--color-text-white);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border-dark);
+}
+
+.style-lab__section-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.style-lab__slot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.style-lab__slot-label {
+  color: var(--color-text-muted);
+}
+
+.style-lab__slot-placeholder {
+  border: 1px dashed var(--color-border-dark);
+  border-radius: var(--radius-md);
+  padding: var(--space-2xl) var(--space-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-border-dark);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 768px) {
+  .style-lab__header {
+    padding: var(--space-xl) var(--container-padding-x);
+  }
+
+  .style-lab__main {
+    padding: var(--space-xl) var(--container-padding-x);
+    gap: var(--space-2xl);
+  }
+}
