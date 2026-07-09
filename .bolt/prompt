@@ -1,0 +1,139 @@
+PROJECT NAME
+Hybrid Creative Agency Website Prototype
+
+PROJECT PURPOSE
+Build a high-fidelity, responsive frontend prototype for a French digital, AI and consulting agency. The final production website will later be rebuilt in WordPress with Elementor. The Bolt project must therefore serve as both a functional prototype and a precise implementation reference.
+
+CORE WORKING METHOD
+- Work in controlled phases.
+- Do not attempt to build the entire website in one generation.
+- First create the foundations and a private Style Lab.
+- Then build one page family at a time.
+- Preserve approved components and avoid redesigning them during later tasks.
+- Before making broad architectural changes, explain their impact.
+- Never remove an approved section unless explicitly requested.
+- Never replace a detailed reference with a generic template.
+
+REFERENCE IMAGE RULES
+- Treat every file in /public/references/ as a visual reference.
+- Do not display the screenshots themselves as webpage backgrounds.
+- Do not flatten a section into an image.
+- Rebuild every visible element as real semantic HTML, CSS and functional JavaScript.
+- Use the screenshots to infer layout, hierarchy, proportions, spacing, typography, layering, color usage and interaction patterns.
+- Do not copy German or English reference content into the final pages.
+- Interface copy and placeholder content must be written in French.
+- Third-party logos and reference brands are visual placeholders only.
+
+DESIGN DIRECTION
+Create a controlled hybrid between two visual systems.
+
+ESPRIT 01:
+- Dark editorial art direction.
+- Black and charcoal backgrounds.
+- Visible vertical grid lines.
+- Oversized condensed typography.
+- Large outlined words using text stroke.
+- Asymmetric project compositions.
+- Images overlapping titles.
+- Vertical numbering and side markers.
+- Minimal white buttons.
+- Premium creative-studio feeling.
+- Magazine-inspired About page layouts.
+
+ESPRIT 02:
+- White and vivid colored sections.
+- Geometric bold typography.
+- Large amounts of negative space.
+- Full-height or near-full-height sections.
+- Split layouts with editorial text and large product imagery.
+- Horizontal case-study slider.
+- Persistent vertical side label.
+- Persistent social rail.
+- Bright blue, purple, magenta, red and green backgrounds.
+- Modular service presentation.
+- Editorial Insights grid.
+- Large process call-to-action sections.
+
+HYBRIDIZATION RULES
+- Do not randomly mix styles inside the same component.
+- Each component must have a clearly defined visual variant.
+- Reuse one consistent spacing, typography and layout system across both directions.
+- Preserve dark and light variants in the Style Lab so a human can compare and select them.
+- Use color strategically, not decoratively.
+- Maintain a premium, confident and editorial identity.
+
+TECHNICAL DIRECTION
+- Use React, TypeScript and Vite.
+- Use React Router for pages.
+- Use semantic HTML5.
+- Use reusable React components.
+- Use plain CSS, CSS Modules or well-organized SCSS.
+- Use CSS custom properties for all design tokens.
+- Do not use Tailwind.
+- Do not use a heavy UI component library.
+- Do not add a backend or database.
+- Store placeholder content in typed data files rather than scattering it through components.
+- Prefer CSS Grid and Flexbox.
+- Use absolute positioning only for deliberate editorial overlays.
+- Avoid WebGL, canvas-based layouts and effects that will be difficult to reproduce in Elementor.
+- Use lightweight native interactions and IntersectionObserver where needed.
+- Avoid large animation dependencies unless strictly necessary.
+
+WORDPRESS AND ELEMENTOR CONSTRAINTS
+- The final site will be rebuilt using WordPress and Elementor.
+- Keep section structures understandable and transferable to Elementor containers.
+- Use consistent max-width containers.
+- Use a limited spacing scale.
+- Use global color and typography tokens.
+- Make recurring sections reusable.
+- Clearly identify content that should later become WordPress dynamic content.
+- Projects, case studies, portfolio entries, expertise pages and blog articles must be modeled as reusable data-driven templates.
+- Produce an ELEMENTOR_HANDOFF.md document.
+- Do not generate WordPress or Elementor code unless explicitly requested.
+
+RESPONSIVE REQUIREMENTS
+The website is a responsive website, not a native mobile application.
+
+Required reference widths:
+- 1920px
+- 1440px
+- 1024px
+- 768px
+- 390px
+
+Desktop screenshots are the visual source of truth.
+No mobile screenshots are available, so create a coherent mobile interpretation that preserves hierarchy and identity.
+
+FUNCTIONAL REQUIREMENTS
+- Every button and link must be clickable from the first build.
+- Navigation must work.
+- The desktop and mobile menus must work.
+- Sliders must work with buttons, drag or touch, keyboard access and pagination.
+- Scroll arrows must move to the intended section.
+- Back-to-top buttons must work.
+- Filters and tabs must work.
+- Contact forms must validate and display a simulated success state.
+- Modal elements must open and close correctly.
+- All interactive elements need hover, focus and active states.
+- External social links may temporarily use safe placeholder URLs.
+
+ACCESSIBILITY
+- Semantic heading structure.
+- Keyboard-accessible navigation and interactions.
+- Visible focus states.
+- Descriptive image alt text.
+- Touch targets of at least 44 by 44 pixels.
+- Sufficient text contrast.
+- Respect prefers-reduced-motion.
+- Do not rely on color alone to communicate meaning.
+
+PERFORMANCE
+- Lazy-load non-critical images.
+- Prevent avoidable layout shifts.
+- Use responsive images.
+- Keep dependencies minimal.
+- Avoid autoplaying heavy media.
+- Use placeholder assets without generating unnecessary AI images.
+
+QUALITY RULE
+The result must feel intentionally art-directed, not like a generic SaaS template.
