@@ -21,6 +21,8 @@ Les tokens CSS du prototype correspondent aux paramètres de design global d'Ele
 | `--color-ia-magenta` | Accent IA (magenta) | Site Settings → Global Colors |
 | `--color-conseil-coral` | Accent Conseil | Site Settings → Global Colors |
 | `--color-cta-blue` | Fond section CTA | Site Settings → Global Colors |
+| `--color-btn-dark-border` | Bordure bouton dark (#444444) | Custom CSS global ou classe `.btn--dark` |
+| `--color-btn-dark-border-hover` | Bordure bouton dark survol (#666666) | Custom CSS global ou classe `.btn--dark:hover` |
 
 ### Typographie
 
@@ -55,21 +57,27 @@ Les tokens CSS du prototype correspondent aux paramètres de design global d'Ele
 
 _(Les lignes sont peuplées au fur et à mesure que les composants sont construits et approuvés)_
 
-| Composant | Phase | Difficulté Elementor | Notes |
-|---|---|---|---|
-| `SiteHeader` Variante A | 2 | Élevée | Menu plein écran — JS personnalisé requis |
-| `SiteHeader` Variante B | 2 | Moyenne | Navigation horizontale native Elementor |
-| `FullscreenMenu` | 2 | Élevée | Overlay JS — pas de widget natif Elementor |
-| `PrimaryButton` | 2 | Faible | Widget Button natif Elementor |
-| `DarkEditorialHero` | 2 | Élevée | CSS text-stroke — classe CSS personnalisée requise |
-| `GradientHero` | 2 | Moyenne | Section pleine hauteur avec fond dégradé |
-| `HorizontalCaseStudyCarousel` | 3 | Élevée | Plugin carousel ou widget personnalisé requis |
-| `ExpertiseSplitSection` | 3 | Moyenne | Conteneur deux colonnes Elementor |
-| `ToolkitGrid` | 3 | Faible | Grille de widgets Image + Texte |
-| `InsightsGrid` | 3 | Moyenne | Archive dynamique ou loop Elementor Pro |
-| `FAQAccordion` | 3 | Moyenne | Widget Toggle natif Elementor |
-| `ContactForm` | 3 | Faible | Plugin Contact Form 7 ou WPForms |
-| `UtilityFooter` | 3 | Faible | Template de pied de page Elementor |
+| Composant | Phase | Statut | Difficulté Elementor | Notes |
+|---|---|---|---|---|
+| `SiteHeader` Variante A (`HeaderMinimal`) | 2 | Approuvé | Élevée | Menu plein écran — JS personnalisé requis |
+| `SiteHeader` Variante B (`HeaderNavigation`) | 2 | Approuvé | Moyenne | Navigation horizontale native Elementor |
+| `FullscreenMenu` | 2 | Approuvé | Élevée | Overlay JS — pas de widget natif Elementor |
+| `MobileMenu` | 2 | Approuvé | Élevée | Fermeture backdrop + gestion focus — JS personnalisé |
+| `Button` (5 variantes) | 2 | Approuvé | Faible | Widget Button natif — appliquer classes `.btn--*` via Custom CSS |
+| `DarkEditorialHero` | 2 | Approuvé | Élevée | CSS text-stroke — classe CSS personnalisée requise (voir ci-dessous) |
+| `GradientHero` | 2 | Approuvé | Moyenne | Section pleine hauteur avec fond dégradé |
+| `HybridHero` | 2 | Approuvé | Élevée | Mix deux esprits — nécessite classes `.text-outline` + `.display-editorial` |
+| `SocialRail` | 2 | Approuvé | Faible | Rail fixe latéral — positionné via CSS ou widget HTML personnalisé |
+| `VerticalRail` | 2 | Approuvé | Faible | Label vertical rotatif — CSS `writing-mode` |
+| `ScrollIndicator` | 2 | Approuvé | Faible | Widget HTML + CSS animation |
+| `BackToTop` | 2 | Approuvé | Faible | Bouton flottant — widget Elementor Go To Top ou JS minimal |
+| `HorizontalCaseStudyCarousel` | 3 | — | Élevée | Plugin carousel ou widget personnalisé requis |
+| `ExpertiseSplitSection` | 3 | — | Moyenne | Conteneur deux colonnes Elementor |
+| `ToolkitGrid` | 3 | — | Faible | Grille de widgets Image + Texte |
+| `InsightsGrid` | 3 | — | Moyenne | Archive dynamique ou loop Elementor Pro |
+| `FAQAccordion` | 3 | — | Moyenne | Widget Toggle natif Elementor |
+| `ContactForm` | 3 | — | Faible | Plugin Contact Form 7 ou WPForms |
+| `UtilityFooter` | 3 | — | Faible | Template de pied de page Elementor |
 
 ---
 
@@ -91,10 +99,20 @@ _(Peuplé au fur et à mesure des composants construits)_
 
 | Classe CSS | Composant | Description |
 |---|---|---|
-| `.text-outline` | Titres éditoriaux | Texte en contour via `-webkit-text-stroke` |
+| `.text-outline` | Titres éditoriaux Esprit 01 | Texte en contour via `-webkit-text-stroke: var(--stroke-width) var(--color-text-white)` — stroke blanc explicite |
+| `.display-editorial` | Segments headlines Esprit 01 | Barlow Condensed bold uppercase, `line-height: 1.05` |
+| `.display-geometric` | Segments headlines Esprit 02 | Space Grotesk bold, `letter-spacing: -0.02em` |
+| `.display-accent` | Badges, eyebrows, labels | Space Grotesk medium, `letter-spacing: 0.04em` |
+| `.btn` | Boutons | Base commune — inline-flex, min-height 44px, transitions |
+| `.btn--primary` | Bouton principal | Fond `--color-cta-blue`, texte blanc |
+| `.btn--secondary` | Bouton secondaire | Transparent, bordure bleue |
+| `.btn--light` | Bouton clair | Transparent, bordure blanche — contextes sombres |
+| `.btn--dark` | Bouton sombre | Fond noir, bordure `--color-btn-dark-border` |
+| `.btn--editorial` | Bouton typographique | Transparent, soulignement `text-decoration`, contextes sombres |
 | `.container` | Tous | Largeur max + padding horizontal responsif |
 | `.container--reading` | Sections éditoriales | Largeur limitée à `--container-reading` |
 | `.container--wide` | Sections avec rails | Largeur étendue `--container-wide` |
+| `.site-header--transparent` | En-têtes sur fonds sombres | Liens et logo blancs, bordure basse semi-transparente |
 
 ---
 
@@ -119,10 +137,20 @@ Les éléments suivants nécessiteront du JavaScript personnalisé dans WordPres
 
 **Menu plein écran** : gestion du focus, verrouillage du scroll, fermeture par Escape, restauration du focus. Structure HTML et classes CSS documentées précisément dans le composant `FullscreenMenu`.
 
+**Menu mobile** : même comportement que le menu plein écran avec, en plus, fermeture par clic sur le backdrop. Nécessite un overlay `position: fixed` au-dessus du contenu.
+
 **Carrousel de cas clients** : scroll-snap natif CSS + boutons prev/next. Peut être remplacé par un plugin JavaScript en WordPress tout en préservant la structure HTML documentée.
 
 **Filtres de contenu** (Réalisations, Blog) : déclenchés en JavaScript côté client dans le prototype. En WordPress, géré par JetSmartFilters ou un filtrage AJAX personnalisé.
 
-**Titres en contour** (`-webkit-text-stroke`) : propriété CSS standard, applicable via une classe personnalisée dans l'éditeur Elementor. Compatible avec tous les navigateurs modernes.
+**Titres en contour** (`-webkit-text-stroke`) : propriété CSS standard, applicable via une classe personnalisée dans l'éditeur Elementor. Compatible avec tous les navigateurs modernes. La valeur de stroke est toujours `var(--color-text-white)` — ne pas utiliser `currentColor` qui hériterait de `color: transparent` et rendrait le texte invisible.
 
 **Sections split avec maquettes débordantes** : `overflow: visible` sur le conteneur avec une valeur de `z-index` documentée. Reproduisible dans Elementor avec un positionnement absolu sur un widget Image.
+
+**Rail social** (`SocialRail`) : les URLs doivent être des URLs de profils complets (ex. `https://linkedin.com/company/mon-agence`) — les URLs de domaine nu (`https://linkedin.com`) sont filtrées par le composant et ne génèrent aucun rendu.
+
+---
+
+## État Phase 2 — APPROUVÉ 2026-07-09
+
+Tous les composants listés comme Phase 2 dans le registre ci-dessus sont construits, corrigés et approuvés par le responsable du projet. Les tokens, classes CSS et comportements d'interaction sont stables pour la Phase 3.

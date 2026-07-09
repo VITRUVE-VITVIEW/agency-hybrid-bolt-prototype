@@ -100,16 +100,67 @@ Ces critères s'appliquent en permanence à toute page ou composant livré :
 
 ## Phase 2 — Composants globaux, navigation, héros
 
-_(Critères à compléter en début de Phase 2)_
+**Statut : TERMINÉ ET APPROUVÉ — 2026-07-09**
 
-- [ ] Variante A de navigation (`SiteHeader` minimal + `FullscreenMenu`) fonctionnelle aux 5 largeurs
-- [ ] Variante B de navigation (horizontale) fonctionnelle aux 5 largeurs
-- [ ] Menu mobile fonctionnel — fermeture par bouton, Escape, lien, backdrop
-- [ ] Gestion du focus dans les menus : ouverture, cycle Tab, fermeture avec restauration
-- [ ] Verrouillage du scroll lors de l'ouverture d'un menu
-- [ ] Trois variantes de héros rendues dans le Style Lab
-- [ ] Tous les boutons et liens textuels rendus dans le Style Lab
-- [ ] Pas de composant de Phase 1 modifié sans nouveau point de revue
+Tous les critères ci-dessous ont été validés manuellement par le responsable du projet aux cinq largeurs de référence (390px, 768px, 1024px, 1440px, 1920px).
+
+### En-têtes
+
+- [x] `HeaderNavigation` — variante horizontale complète, logo, liens de navigation, bouton CTA Contact
+- [x] `HeaderMinimal` — variante minimale pour contextes d'entrée immersive
+- [x] Variante transparente (`site-header--transparent`) : logo et liens blancs / off-white, contraste suffisant sur fonds sombres et dégradés
+- [x] Variante transparente : hover et focus-visible distincts sur les liens de navigation
+- [x] Bouton Contact : distinct du reste de la navigation dans toutes les variantes (bordure blanche sur fond transparent)
+- [x] `FullscreenMenu` : ouverture, fermeture par bouton, Escape et lien — confirmés
+- [x] `MobileMenu` : ouverture, fermeture par bouton, Escape, lien et backdrop — confirmés
+- [x] Gestion du focus — ouverture, cycle Tab, fermeture avec restauration du focus déclencheur
+- [x] Verrouillage du scroll lors de l'ouverture d'un menu (hook `useBodyScrollLock`)
+- [x] Comportement fonctionnel aux 5 largeurs de test
+
+### Héros
+
+- [x] **`HeroDarkEditorial`** (Esprit 01) : fond quasi-noir, grilles verticales visibles, segment `'Hybride'` en `treatment: 'outline'` avec `-webkit-text-stroke` blanc — un seul segment outline dans les données
+- [x] `accessibleHeadline` intégral préservé dans `heroDarkEditorialData` (`'Agence hybride — Digital, Intelligence Artificielle, Conseil'`)
+- [x] Aucun débordement horizontal à 390px sur le segment outline
+- [x] **`HeroGradient`** (Esprit 02) : section pleine hauteur, fond dégradé, titres géométriques Space Grotesk
+- [x] **`HeroHybrid`** : variante recommandée de production, mix Esprit 01 + Esprit 02
+- [x] Les trois variantes s'affichent dans le Style Lab sans collision de style
+- [x] Le segment outline de `HeroHybrid` utilise lui aussi `treatment: 'outline'` — géré par la même utilitaire `.text-outline` — indépendant de celui de `HeroDarkEditorial`
+
+### Boutons
+
+- [x] **Primary** : fond bleu électrique (`--color-cta-blue`), texte blanc — confirmé
+- [x] **Secondary** : transparent, bordure bleue, texte bleu ; remplissage bleu au survol — confirmé
+- [x] **Light** : transparent, bordure blanche, texte blanc — pour contextes sombres — confirmé
+- [x] **Dark** : fond noir (`--color-bg-dark`), texte blanc, bordure grise (`--color-btn-dark-border`) visible sur toute surface — confirmé
+- [x] **Editorial** : typographique, pas de fond, décoration de soulignement via `text-decoration`; opacité réduite à l'état actif — confirmé
+- [x] Focus-visible : outline bleu `var(--color-cta-blue)` sur toutes les variantes — confirmé
+- [x] États de survol, focus et actif : tous distincts et visibles
+- [x] État désactivé (`:disabled`) : opacité réduite, curseur `not-allowed`
+- [x] Aucune couleur hexadécimale codée en dur dans `Button.css` — toutes les valeurs référencent des tokens
+
+### Icône sociale X / Twitter
+
+- [x] `SocialRail` utilise un chemin SVG réel pour l'icône X (logotype officiel X/Twitter — `path d="M18.244 2.25…"`)
+- [x] Aucun caractère texte `X` brut n'est rendu en lieu et place d'une icône
+- [x] Les URL plateau (`https://twitter.com`, `https://linkedin.com`, etc.) sont filtrées — aucun lien social placeholder ne s'affiche
+
+### Tokens et règles CSS
+
+- [x] `--color-btn-dark-border: #444444` et `--color-btn-dark-border-hover: #666666` déclarés dans `tokens.css`
+- [x] `.text-outline` dans `typography.css` utilise `-webkit-text-stroke: var(--stroke-width) var(--color-text-white)` — stroke blanc explicite, non dépendant de `currentColor`
+- [x] Aucune couleur hexadécimale réutilisable hors de `tokens.css` dans les fichiers CSS de composants
+
+### Vérification technique
+
+- [x] `tsc --noEmit` : 0 erreur
+- [x] `npm run build` : build de production clean (78 modules, 0 erreur)
+
+### Limitations connues
+
+- Le `SocialRail` ne rend aucun lien tant que toutes les URLs restent des placeholders de domaine. Les icônes LinkedIn et Instagram s'afficheront dès que des URLs de profils réels seront configurées dans `agency.config.ts`.
+- La variante `btn--editorial` est conçue exclusivement pour des contextes de fond sombre (texte blanc). Pour une utilisation sur fond clair, une variante `btn--editorial-dark` devra être ajoutée en Phase 3.
+- `paint-order: stroke fill` sur `.text-outline` est reconnu par les navigateurs modernes (Chrome 35+, Firefox 60+, Safari 12.1+) ; l'effet visuel est cependant identique sans cette déclaration sur les navigateurs qui ne le supportent pas.
 
 ---
 

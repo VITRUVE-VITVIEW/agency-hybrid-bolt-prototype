@@ -128,6 +128,8 @@ Toutes les valeurs sont provisoires. Elles seront validées et verrouillées lor
 |---|---|---|
 | `--color-cta-blue` | #0057ff | Sections CTA pleine hauteur |
 | `--color-rail-accent` | #ff3366 | Détails du rail vertical |
+| `--color-btn-dark-border` | #444444 | Bordure du bouton dark au repos |
+| `--color-btn-dark-border-hover` | #666666 | Bordure du bouton dark au survol |
 | `--color-success` | #16a34a | Validation de formulaire |
 | `--color-warning` | #d97706 | Avertissements |
 | `--color-error` | #dc2626 | Erreurs de formulaire |
@@ -202,8 +204,64 @@ Les valeurs CSS structurelles intrinsèquement locales — comme `100%`, les rè
 
 ---
 
+## Composants globaux — Phase 2
+
+### En-têtes
+
+Deux variantes implémentées et approuvées :
+
+| Composant | Fichier | Usage |
+|---|---|---|
+| `HeaderNavigation` | `src/components/Header/HeaderNavigation.tsx` | Navigation horizontale standard — Esprit 02 |
+| `HeaderMinimal` | `src/components/Header/HeaderMinimal.tsx` | En-tête minimal pour contextes immersifs — Esprit 01 |
+
+**Modificateur transparent** : la classe `.site-header--transparent` force logo et liens en blanc (`--color-text-white`) et affiche une bordure basse `rgba(255,255,255,0.1)`. Le bouton Contact est rendu avec une bordure blanche et fond transparent sur les surfaces sombres ou dégradées.
+
+### Menus
+
+| Composant | Fichier | Fermeture |
+|---|---|---|
+| `FullscreenMenu` | `src/components/FullscreenMenu/FullscreenMenu.tsx` | Bouton, Escape, lien |
+| `MobileMenu` | `src/components/MobileMenu/MobileMenu.tsx` | Bouton, Escape, lien, backdrop |
+
+Les deux menus utilisent `useBodyScrollLock`, `useEscapeKey` et `useFocusTrap`. Le focus est restauré sur l'élément déclencheur à la fermeture.
+
+### Héros — trois variantes
+
+| Variante | Fichier données | Description |
+|---|---|---|
+| `HeroDarkEditorial` | `heroDarkEditorialData` | Esprit 01 — fond quasi-noir, grilles verticales, segment outline blanc |
+| `HeroGradient` | `heroGradientData` | Esprit 02 — fond dégradé, typographie géométrique |
+| `HeroHybrid` | `heroHybridData` | Variante recommandée de production — mix des deux esprits |
+
+**Règle outline Esprit 01** : `heroDarkEditorialData` contient exactement un segment avec `treatment: 'outline'` — le mot `'Hybride'`. Cette configuration est centralisée dans `src/data/heroData.ts`. Le composant `HeroDarkEditorial` ne contient aucun texte codé en dur. La classe `.text-outline` applique `-webkit-text-stroke: var(--stroke-width) var(--color-text-white)` avec un stroke blanc explicite — non dérivé de `currentColor`.
+
+### Boutons — cinq variantes
+
+Toutes les variantes sont implémentées dans `src/components/Button/Button.tsx` et `Button.css`. Aucune valeur hexadécimale n'est codée en dur dans `Button.css`.
+
+| Variante | Fond | Couleur | Bordure |
+|---|---|---|---|
+| `primary` | `--color-cta-blue` | Blanc | `--color-cta-blue` |
+| `secondary` | Transparent | `--color-cta-blue` | `--color-cta-blue` |
+| `light` | Transparent | `--color-text-white` | `--color-text-white` |
+| `dark` | `--color-bg-dark` | Blanc | `--color-btn-dark-border` |
+| `editorial` | Transparent | `--color-text-white` | Aucune — soulignement `text-decoration` |
+
+Tous les états focus-visible utilisent `outline: 2px solid var(--color-cta-blue)`. Les états désactivés appliquent `opacity: 0.4` et `cursor: not-allowed`.
+
+### Rail social
+
+`SocialRail` (`src/components/SocialRail/SocialRail.tsx`) filtre les URL plateaux de domaine nu (`https://twitter.com`, `https://linkedin.com`, etc.) — aucune icône n'est affichée pour les entrées non configurées. L'icône X utilise le chemin SVG officiel du logotype X/Twitter.
+
+---
+
 ## Verrouillage des tokens
 
 - **Après Phase 1** : Les noms et l'architecture des tokens sont stabilisés.
-- **Après Phase 3 (revue Style Lab)** : Les valeurs visuelles des tokens sont verrouillées.
+- **Après Phase 2 (approuvé)** : Les tokens suivants sont verrouillés — toute modification requiert une revue explicite :
+  - Tous les tokens de couleur existants
+  - `--color-btn-dark-border` et `--color-btn-dark-border-hover` (ajoutés Phase 2)
+  - La valeur de stroke de `.text-outline` (`var(--color-text-white)`)
+- **Après Phase 3 (revue Style Lab)** : L'ensemble des valeurs visuelles des tokens est verrouillé.
 - Les APIs de composants sont verrouillées uniquement après approbation visuelle du composant correspondant.
