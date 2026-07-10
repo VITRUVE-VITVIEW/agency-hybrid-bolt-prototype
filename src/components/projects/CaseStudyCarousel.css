@@ -1,7 +1,7 @@
 .cs-carousel {
   background-color: var(--color-bg-navy);
   color: var(--color-text-white);
-  padding: var(--space-2xl) 0;
+  padding: var(--space-xl) 0 var(--space-2xl);
   overflow: visible;
 }
 
@@ -14,26 +14,37 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: var(--space-lg);
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-lg);
 }
 
 .cs-carousel__eyebrow {
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.4);
   font-size: var(--text-xs);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  margin: 0 0 var(--space-sm) 0;
+  margin: 0 0 var(--space-xs) 0;
 }
 
+/*
+ * "NOS PROJETS" — visible but not dominant.
+ * Uses bold display weight at a scale that reads clearly at arm's length
+ * without competing with the slide title below.
+ */
 .cs-carousel__headline {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 4rem);
+  font-size: clamp(2.25rem, 4.5vw, 5.5rem);
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   line-height: var(--leading-display);
-  color: rgba(255, 255, 255, 0.08);
-  letter-spacing: -0.02em;
+  /* Muted white — present but secondary to the active slide copy */
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: -0.025em;
   margin: 0;
+}
+
+.cs-carousel__header-text {
+  flex: 1;
+  min-width: 0;
 }
 
 .cs-carousel__header-actions {
@@ -45,6 +56,11 @@
 
 /* ── Track ──────────────────────────── */
 
+/*
+ * Slides are container-relative (82% of the visible width on desktop).
+ * A right-edge gap creates a natural partial peek of the next slide.
+ * scroll-snap-type: x mandatory keeps native scrolling crisp.
+ */
 .cs-carousel__track {
   display: flex;
   gap: var(--space-lg);
@@ -53,7 +69,8 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding-inline: var(--container-padding-x);
-  padding-inline-end: calc(var(--container-padding-x) + var(--space-lg));
+  /* Right padding creates the partial-peek gap */
+  padding-inline-end: calc(var(--container-padding-x) + 12%);
   padding-bottom: var(--space-sm);
   outline: none;
 }
@@ -75,31 +92,46 @@
   display: flex;
   align-items: center;
   gap: var(--space-lg);
-  margin-top: var(--space-xl);
+  margin-top: var(--space-lg);
 }
 
 .cs-carousel__counter {
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.35);
   font-size: var(--text-xs);
   letter-spacing: 0.1em;
+  font-family: var(--font-display);
   margin: 0;
   margin-left: auto;
 }
 
 /* ── Responsive ─────────────────────── */
 
+@media (max-width: 1024px) {
+  .cs-carousel__headline {
+    font-size: clamp(2rem, 5vw, 4rem);
+  }
+}
+
 @media (max-width: 768px) {
   .cs-carousel__header {
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
+    gap: var(--space-md);
   }
 
   .cs-carousel__header-actions {
     flex-wrap: wrap;
+    gap: var(--space-sm);
   }
 
   .cs-carousel__headline {
     font-size: clamp(1.75rem, 6vw, 2.5rem);
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* On mobile the partial peek is smaller — just enough to hint */
+  .cs-carousel__track {
+    padding-inline-end: calc(var(--container-padding-x) + 6%);
   }
 }

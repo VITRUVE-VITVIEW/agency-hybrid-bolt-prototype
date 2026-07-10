@@ -1,20 +1,30 @@
+/*
+ * CaseStudySlide — individual slide inside CaseStudyCarousel.
+ * flex: 0 0 82% keeps the slide container-relative and creates a natural
+ * partial peek of the following slide.
+ */
 .cs-slide {
-  flex: 0 0 min(82%, 960px);
+  flex: 0 0 82%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-xl);
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-lg);
   align-items: center;
   scroll-snap-align: start;
-  padding: var(--space-xl);
-  background-color: rgba(255, 255, 255, 0.03);
+  padding: var(--space-lg);
+  background-color: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--color-border-dark);
   border-radius: var(--radius-md);
   transition: border-color var(--duration-short) var(--easing-standard);
+  min-width: 0;
 }
 
+/* Active slide gets a slightly more visible border */
 .cs-slide--active {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.12);
+  background-color: rgba(255, 255, 255, 0.04);
 }
+
+/* ── Media ──────────────────────────── */
 
 .cs-slide__media {
   align-self: stretch;
@@ -24,6 +34,8 @@
 
 .cs-slide__media .media-placeholder {
   width: 100%;
+  /* Override radius to match slide corner */
+  border-radius: var(--radius-sm);
 }
 
 /* ── Content ────────────────────────── */
@@ -32,6 +44,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+  padding: var(--space-sm) 0;
 }
 
 .cs-slide__meta {
@@ -40,24 +53,26 @@
   gap: var(--space-md);
 }
 
+/* Large faded index — decorative */
 .cs-slide__index {
   font-family: var(--font-display);
-  font-size: var(--text-display-sm);
+  font-size: clamp(2.5rem, 4vw, 4rem);
   font-weight: var(--weight-bold);
-  color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.1);
   line-height: 1;
-  min-width: 2.5ch;
+  min-width: 2ch;
+  letter-spacing: -0.02em;
 }
 
 .cs-slide__category {
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.4);
   font-size: var(--text-xs);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .cs-slide__year {
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.3);
   font-size: var(--text-xs);
   letter-spacing: 0.06em;
   margin-left: auto;
@@ -65,21 +80,21 @@
 
 .cs-slide__title {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+  font-size: clamp(1.75rem, 2.5vw, 3rem);
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   line-height: var(--leading-heading);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   color: var(--color-text-white);
   margin: 0;
 }
 
 .cs-slide__description {
-  font-size: var(--text-body);
+  font-size: var(--text-sm);
   line-height: var(--leading-body);
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.6);
   margin: 0;
-  max-width: 44ch;
+  max-width: 46ch;
 }
 
 .cs-slide__result {
@@ -94,7 +109,7 @@
 .cs-slide__result-label {
   display: block;
   font-size: var(--text-xs);
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.35);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: var(--space-xs);
@@ -102,25 +117,50 @@
 
 .cs-slide__cta {
   align-self: flex-start;
-  margin-top: var(--space-sm);
+  margin-top: var(--space-xs);
 }
 
 /* ── Responsive ─────────────────────── */
+
+@media (max-width: 1024px) {
+  .cs-slide {
+    flex: 0 0 86%;
+    grid-template-columns: 1fr 0.9fr;
+  }
+
+  .cs-slide__title {
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  }
+}
 
 @media (max-width: 768px) {
   .cs-slide {
     flex: 0 0 88%;
     grid-template-columns: 1fr;
-    gap: var(--space-lg);
-    padding: var(--space-lg);
+    gap: var(--space-md);
+    padding: var(--space-md);
   }
 
+  /* Stack: media above copy */
+  .cs-slide__media { order: 1; }
+  .cs-slide__content { order: 2; }
+
   .cs-slide__index {
-    font-size: var(--text-display-sm);
+    font-size: clamp(2rem, 8vw, 3rem);
   }
 
   .cs-slide__title {
     font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+}
+
+@media (max-width: 440px) {
+  .cs-slide {
+    flex: 0 0 92%;
+  }
+
+  .cs-slide__description {
+    max-width: 100%;
   }
 }
 

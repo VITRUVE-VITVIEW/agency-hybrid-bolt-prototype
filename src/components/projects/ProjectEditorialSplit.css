@@ -2,7 +2,7 @@
   position: relative;
   background-color: var(--color-bg-dark);
   color: var(--color-text-white);
-  padding: var(--space-3xl) 0;
+  padding: var(--space-2xl) 0;
   overflow: visible;
 }
 
@@ -34,24 +34,38 @@
   margin-inline: auto;
   padding-inline: var(--container-padding-x);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr;
-  gap: var(--space-xl);
+  /*
+   * Content-left: ~57% content, ~43% media.
+   * A deliberate asymmetry gives the editorial text enough width to breathe
+   * while the media is large enough to act as a visual counterweight.
+   */
+  grid-template-columns: 57fr 43fr;
+  gap: var(--space-xl) clamp(var(--space-lg), 4vw, var(--space-xl));
   align-items: center;
 }
 
+/* ── Decorative year number ─────────── */
+
 .project-split__number {
   position: absolute;
-  top: 0;
-  right: var(--container-padding-x);
+  top: -0.15em;
   font-family: var(--font-display);
-  font-size: clamp(6rem, 12vw, 14rem);
+  font-size: clamp(8rem, 14vw, 18rem);
   font-weight: var(--weight-bold);
   line-height: 1;
   color: rgba(255, 255, 255, 0.04);
   user-select: none;
   pointer-events: none;
   letter-spacing: -0.04em;
+  /* Position shifts depending on layout direction */
+}
+
+.project-split--content-left .project-split__number {
+  right: calc(var(--container-padding-x) - 0.05em);
+}
+
+.project-split--content-right .project-split__number {
+  left: calc(var(--container-padding-x) - 0.05em);
 }
 
 /* ── Content-left variant ───────────── */
@@ -84,7 +98,6 @@
 
 .project-split__media-col .media-placeholder {
   width: 100%;
-  border-radius: var(--radius-md);
 }
 
 /* ── Content column ─────────────────── */
@@ -94,6 +107,8 @@
   flex-direction: column;
   gap: var(--space-lg);
   align-self: center;
+  /* Hard cap so long briefDescriptions don't push the title to many short lines */
+  max-width: 100%;
 }
 
 .project-split__meta {
@@ -119,13 +134,19 @@
 
 .project-split__title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 5.5rem);
+  /*
+   * Wide enough to keep 3-4 word titles on 2 lines maximum.
+   * clamp lower bound is large enough to remain editorial.
+   */
+  font-size: clamp(2.75rem, 4.5vw, 6rem);
   font-weight: var(--weight-bold);
   line-height: var(--leading-display);
   text-transform: uppercase;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   max-width: 100%;
   overflow-wrap: break-word;
+  /* Limit max-ch so very long titles wrap at a readable width, not character by character */
+  word-break: normal;
   margin: 0;
 }
 
@@ -155,7 +176,7 @@
   font-size: var(--text-body);
   line-height: var(--leading-body);
   color: rgba(255, 255, 255, 0.7);
-  max-width: 44ch;
+  max-width: 52ch;
   margin: 0;
 }
 
@@ -166,18 +187,20 @@
   margin: 0;
   padding: 0;
   display: flex;
-  gap: var(--space-xl);
+  gap: clamp(var(--space-lg), 4vw, var(--space-xl));
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border-dark);
 }
 
 .project-split__metric {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .project-split__metric-value {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
   color: var(--project-accent, var(--color-text-white));
@@ -187,7 +210,8 @@
   font-size: var(--text-xs);
   color: var(--color-text-muted);
   letter-spacing: 0.04em;
-  max-width: 14ch;
+  max-width: 16ch;
+  line-height: var(--leading-body);
 }
 
 /* ── CTA ────────────────────────────── */
@@ -196,34 +220,36 @@
   align-self: flex-start;
 }
 
-/* ── Responsive ─────────────────────── */
+/* ── Tablet 1024px ──────────────────── */
 
 @media (max-width: 1024px) {
   .project-split__inner {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 55fr 45fr;
     gap: var(--space-lg);
   }
 
   .project-split__title {
-    font-size: clamp(2rem, 4vw, 4rem);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
   }
 
   .project-split__number {
-    font-size: clamp(5rem, 10vw, 10rem);
+    font-size: clamp(6rem, 12vw, 12rem);
   }
 }
 
+/* ── Tablet portrait 768px ──────────── */
+
 @media (max-width: 768px) {
   .project-split {
-    padding: var(--space-2xl) 0;
+    padding: var(--space-xl) 0;
   }
 
   .project-split__inner {
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    gap: var(--space-lg);
   }
 
-  /* Media always above copy on mobile */
+  /* Media always appears above copy */
   .project-split__media-col,
   .project-split--content-left .project-split__media-col,
   .project-split--content-right .project-split__media-col {
@@ -240,18 +266,30 @@
     display: none;
   }
 
+  .project-split__title {
+    font-size: clamp(2.5rem, 7vw, 3.5rem);
+  }
+
   .project-split__metrics {
     gap: var(--space-lg);
   }
 }
 
-@media (max-width: 390px) {
+/* ── Mobile 390px ───────────────────── */
+
+@media (max-width: 440px) {
   .project-split__title {
-    font-size: clamp(2rem, 9vw, 2.5rem);
-    letter-spacing: -0.01em;
+    font-size: clamp(2rem, 8vw, 2.75rem);
+    letter-spacing: -0.015em;
   }
 
   .project-split__word--outline {
     -webkit-text-stroke-width: 0.025em;
+  }
+
+  .project-split__metrics {
+    flex-direction: column;
+    gap: var(--space-md);
+    padding-top: var(--space-sm);
   }
 }

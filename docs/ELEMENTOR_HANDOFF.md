@@ -169,6 +169,8 @@ Les éléments suivants nécessiteront du JavaScript personnalisé dans WordPres
 
 Tous les composants listés comme Phase 2 dans le registre ci-dessus sont construits, corrigés et approuvés par le responsable du projet. Les tokens, classes CSS et comportements d'interaction sont stables pour la Phase 3.
 
-## État Phase 3A — Style Lab en production 2026-07-09
+## État Phase 3A — QA code terminé 2026-07-10
 
-Tous les composants listés comme Phase 3A dans le registre ci-dessus sont construits et disponibles dans le Style Lab (`/style-lab` → section Projets & contenus éditoriaux). Les données de démonstration utilisent des contenus français provisoires. Les tokens, types et utilitaires de Phase 3A sont stables pour la Phase 3B.
+Tous les composants listés comme Phase 3A dans le registre ci-dessus sont construits, passent `tsc --noEmit` (0 erreur) et `npm run build` (production clean, 111 modules). Les données de démonstration utilisent des contenus français provisoires. Les tokens, types et utilitaires de Phase 3A sont stables pour la Phase 3B.
+
+**Validation humaine restante** : vérification visuelle à 1440px/1920px, test du défilement trackpad sur le carrousel, confirmation du peek partiel du slide suivant.

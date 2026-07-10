@@ -164,6 +164,71 @@ Tous les critères ci-dessous ont été validés manuellement par le responsable
 
 ---
 
+## Phase 3A — Style Lab : projets, carrousel, portfolio, contenu éditorial
+
+**Statut : QA CODE TERMINÉ — 2026-07-10**
+
+Les critères ci-dessous documentent le résultat de la passe QA de code Phase 3A. Les items marqués [x] ont été validés par analyse de code, vérification de routing et tests de build. Les items marqués [~] désignent des comportements dont la validation visuelle complète nécessite une revue humaine dans le navigateur — ils ne sont pas considérés comme bloquants mais doivent être confirmés avant Phase 4.
+
+### Typecheck et build
+
+- [x] `tsc --noEmit` : 0 erreur
+- [x] `npm run build` : build de production clean (111 modules, 64.96 kB CSS gzip, 0 erreur)
+
+### Routing — CTAs
+
+- [x] `/realisations/cas-clients` — route enregistrée dans `App.tsx` (ligne 43)
+- [x] `/realisations/cas-clients/:slug` — route enregistrée dans `App.tsx` (ligne 47)
+- [x] `/realisations/portfolio` — route enregistrée dans `App.tsx` (ligne 44)
+- [x] `/realisations/portfolio/:slug` — route enregistrée dans `App.tsx` (ligne 48)
+- [x] `/methode` — route enregistrée (ligne 13)
+- [x] `/expertises/digital` — route enregistrée (ligne 21)
+- [x] `/expertises/ia` — route enregistrée (ligne 22)
+- [x] `/contact` — route enregistrée (ligne 16)
+- [x] Tous ces CTAs atteignent un `RoutePlaceholder` fonctionnel (titre de page correct en français)
+
+### Accessibilité carrousel
+
+- [x] `CaseStudyCarousel` — `tabIndex={0}` sur la track, `focus-visible` avec outline `--color-cta-blue`
+- [x] Boutons prev/next — `aria-label` descriptif, `disabled` natif à la borne 0 et `slides.length - 1`
+- [x] Pagination — `aria-label` sur chaque dot, `aria-pressed` reflète l'état actif
+- [x] Pas de focus trap — la navigation Tab sort librement du carrousel
+- [x] `aria-live="polite"` + `aria-atomic="true"` sur le compteur de slides pour les lecteurs d'écran
+
+### Carrousel — synchronisation native scroll
+
+- [x] `activeIndex` calculé via `getBoundingClientRect().left - container.getBoundingClientRect().left + container.scrollLeft` — correct en présence de gap, padding et largeurs relatives
+- [x] Gestion `requestAnimationFrame` — une seule requête en file, annulée et replanifiée si le scroll continue
+- [x] `ResizeObserver` — ré-aligne sur le slide actif avec `behavior: 'auto'` après redimensionnement
+- [x] Support slide unique — loop `slides.length <= 1` protégé dans le handler de scroll
+- [x] `prefers-reduced-motion` — `prefersReducedMotion()` vérifié dans `scrollToSlide`, passe à `'auto'`
+- [x] Nettoyage — `removeEventListener`, `ro.disconnect()`, `cancelAnimationFrame` dans le return du useEffect
+
+### Légendes MediaPlaceholder
+
+- [x] Bandeau translucide `rgba(0,0,0,0.72→0)` à la base de chaque placeholder — contraste estimé ≥ 4.5:1 pour le texte `rgba(255,255,255,0.85)`
+- [x] Mode `decorative={true}` — élément rendu sans `figcaption`, `aria-hidden="true"`
+- [x] Mode non-décoratif — élément `figure` avec `figcaption` visible et lisible
+
+### Responsive — analyse de code
+
+- [x] `ProjectEditorialSplit` : 57/43 à 1440px, 55/45 à 1024px, mono-colonne à 768px, media avant copy dans le DOM
+- [x] `ProjectTypographyFeature` : `clamp(3.5rem, 7.5vw, 10rem)` → safe-floor à 2.5rem à 390px
+- [x] `CaseStudySlide` : `flex: 0 0 82%` → `88%` à 768px → `92%` à 440px — container-relative
+- [x] `PortfolioGrid` : 3 colonnes → 2 → 1 selon breakpoints
+- [x] Sections éditoriales : toutes mono-colonne avec media avant texte à 768px
+- [x] Aucun composant n'utilise `overflow-x: hidden` sur html, body, #root ou `.style-lab`
+
+### Limitations connues et éléments à validation humaine
+
+- [~] La validation visuelle exacte du rapport 57/43 à 1440px et 1920px requiert une vérification dans le navigateur
+- [~] La visibilité du peek du slide suivant dans le carrousel dépend du rendu effectif des `gap` CSS — à valider dans le navigateur
+- [~] L'interaction de défilement natif au trackpad sur le carrousel doit être testée manuellement dans le navigateur
+- [~] Les dégradés des `MediaPlaceholder` doivent être vérifiés visuellement pour la distinction entre variantes
+- [~] L'affichage du Style Lab à 1920px doit être confirmé manuellement
+
+---
+
 ## Phase 3 — Style Lab complet
 
 _(Critères à compléter en début de Phase 3)_

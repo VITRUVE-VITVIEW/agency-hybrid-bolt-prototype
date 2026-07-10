@@ -256,6 +256,66 @@ Tous les états focus-visible utilisent `outline: 2px solid var(--color-cta-blue
 
 ---
 
+## Composants de projets — Phase 3A
+
+### Système de composition éditorial
+
+Phase 3A introduit deux familles de composants de projet approuvés, une grille de portfolio, un carrousel et cinq sections éditoriales.
+
+#### `ProjectEditorialSplit`
+
+Composition en deux colonnes avec rapport **57 % contenu / 43 % médias** à desktop (>1024px). La colonne de contenu accueille une métadonnée, un titre surdimensionné, un label client, un résumé descriptif, deux métriques quantifiées et un CTA.
+
+**Règles typographiques** :
+- Le titre utilise `font-family: var(--font-display)` à `clamp(2.75rem, 4.5vw, 6rem)`.
+- Un seul mot parmi les mots du titre de démonstration reçoit le traitement outline via `outlineWordIndex` (0-based).
+- La propriété `overflow-wrap: break-word` prévient tout débordement horizontal.
+- À 768px et en dessous, la grille devient mono-colonne ; le média s'affiche en premier dans le DOM.
+- Le chiffre décoratif (année sur 2 chiffres) est positionné à droite sur `content-left` et à gauche sur `content-right`.
+
+#### `ProjectTypographyFeature`
+
+Composition grid avec rapport **3fr / 2fr** (titre large / média). Trois modes de traitement typographique : `outline-only`, `solid-only`, `mixed`. La variante `mixed` démontre l'Esprit 01 : les premiers mots en contour, les suivants en couleur d'accent plein.
+
+**Règles typographiques** :
+- Taille : `clamp(3.5rem, 7.5vw, 10rem)` — intentionnellement ambitieux.
+- Le ratio 3/2 assure que le titre a toujours assez de place pour éviter un retour à la ligne par mot.
+
+#### Carrousel `CaseStudyCarousel` / `CaseStudySlide`
+
+- Chaque slide occupe **82 %** de la largeur du conteneur de défilement (container-relative, pas de `vw`).
+- Le `padding-inline-end` du track crée un peek partiel du slide suivant.
+- Navigation : `getBoundingClientRect` pour les positions cibles — robuste aux `gap`, `padding` et largeurs relatives.
+- `activeIndex` synchronisé par `requestAnimationFrame` + `ResizeObserver`.
+- Le titre de section "NOS PROJETS" est rendu à `rgba(255,255,255,0.55)` — lisible mais secondaire au contenu actif.
+
+#### `PortfolioGrid`
+
+Grille 3 colonnes à desktop avec décalage vertical sur les items centraux (`:nth-child(3n+2)` → `margin-top: var(--space-xl)`). Réduit à 2 colonnes à 768px, 1 colonne à 390px.
+
+### Sections éditoriales — Phase 3A
+
+| Composant | Fond | Esprit | Usage |
+|---|---|---|---|
+| `MinimalEditorialIntro` | Blanc | Esprit 02 | Introduction éditoriale légère |
+| `DarkEditorialIntro` | Sombre | Esprit 01 | Introduction éditoriale avec média |
+| `StatementSection` (dark) | Sombre | Esprit 01 | Grande déclaration éditoriale |
+| `StatementSection` (color) | Accent (`--statement-accent`) | Esprit 02 | Appel à l'action coloré |
+| `NumberedEditorialSection` | Sombre | Esprit 01/02 | Section de méthode numérotée |
+| `ImageTextSplit` | Blanc ou sombre | Esprit 02 | Split image / texte deux colonnes |
+
+### MediaPlaceholder — traitement de substitution
+
+`MediaPlaceholder` utilise uniquement CSS pour composer des surfaces de substitution visuellement distinctives. En production WordPress, il est remplacé par le widget Image natif d'Elementor.
+
+**Traitement des légendes** : un bandeau translucide `rgba(0,0,0,0.72→0)` en fondu à la base de la figure garantit un contraste ≥ 4.5:1 pour le texte de légende blanc (`rgba(255,255,255,0.85)`). Aucune légende ne disparaît dans le fond.
+
+### Résolution des thèmes d'accent
+
+Le type `AccentTheme` (`'digital' | 'ia' | 'conseil' | 'neutral' | 'blue' | 'magenta' | 'coral'`) est résolu vers les tokens CSS dans `src/utils/accentTheme.ts`. Aucun composant n'accepte de valeur hexadécimale directe pour les accents.
+
+---
+
 ## Verrouillage des tokens
 
 - **Après Phase 1** : Les noms et l'architecture des tokens sont stabilisés.
@@ -263,5 +323,5 @@ Tous les états focus-visible utilisent `outline: 2px solid var(--color-cta-blue
   - Tous les tokens de couleur existants
   - `--color-btn-dark-border` et `--color-btn-dark-border-hover` (ajoutés Phase 2)
   - La valeur de stroke de `.text-outline` (`var(--color-text-white)`)
-- **Après Phase 3 (revue Style Lab)** : L'ensemble des valeurs visuelles des tokens est verrouillé.
+- **Après Phase 3A (revue QA — 2026-07-10)** : Composition des splits approuvée. APIs des composants de projets stables. Les tokens de disposition (grid-template-columns, font-size clamp) des composants Phase 3A sont verrouillés. Les valeurs visuelles finales des tokens globaux seront verrouillées après Phase 3B.
 - Les APIs de composants sont verrouillées uniquement après approbation visuelle du composant correspondant.

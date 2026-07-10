@@ -16,9 +16,11 @@ Tout le contenu visible dans le prototype doit être un contenu français provis
 |---|---|---|
 | `src/data/routes.ts` | `RouteRecord` (interne) | Phase 1 |
 | `src/data/navigation.ts` | `NavigationItem` | Phase 1 |
+| `src/data/heroData.ts` | `HeroData` | Phase 2 |
+| `src/data/projects.ts` | `CaseStudy` (4 entrées) | Phase 3A |
+| `src/data/portfolio.ts` | `PortfolioItem` (6 entrées) | Phase 3A |
+| `src/data/editorialSections.ts` | Interfaces éditoriales locales | Phase 3A |
 | `src/data/expertises.ts` | `ExpertisePage` | Phase 5 |
-| `src/data/caseStudies.ts` | `CaseStudy` | Phase 9 |
-| `src/data/portfolioItems.ts` | `PortfolioItem` | Phase 9 |
 | `src/data/articles.ts` | `Article` | Phase 11 |
 | `src/data/processSteps.ts` | `ProcessStep` | Phase 8 |
 | `src/data/toolkit.ts` | `ToolkitItem` | Phase 8 |
@@ -29,6 +31,18 @@ Tout le contenu visible dans le prototype doit être un contenu français provis
 ## Interfaces TypeScript
 
 Toutes les interfaces sont déclarées dans `src/types/index.ts`.
+
+### Types Phase 3A
+
+Les types suivants ont été ajoutés en Phase 3A :
+
+| Type | Nature | Usage |
+|---|---|---|
+| `AccentTheme` | Type union | Thème sémantique de couleur d'accent — résolu dans `src/utils/accentTheme.ts` |
+| `MediaVariant` | Type union | Variant de surface de substitution CSS pour `MediaPlaceholder` |
+| `MediaRatio` | Type union | Ratio d'aspect du média (`'4/3'`, `'3/4'`, `'16/9'`, `'1/1'`, `'cinema'`) |
+| `ProjectMedia` | Interface | Configuration d'un `MediaPlaceholder` — remplacé par widget Image en production |
+| `ProjectCategory` | Interface | Terme de taxonomie pilier avec accent associé |
 
 ---
 

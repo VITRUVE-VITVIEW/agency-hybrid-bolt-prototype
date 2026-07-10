@@ -4,8 +4,16 @@
   gap: var(--space-sm);
 }
 
+/*
+ * Specimen label — visually secondary but clearly readable.
+ * Uses a slightly higher opacity than --color-text-muted to avoid
+ * labels disappearing against the charcoal Style Lab background.
+ */
 .demo-frame__label {
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  line-height: var(--leading-body);
 }
 
 .demo-frame__viewport {
