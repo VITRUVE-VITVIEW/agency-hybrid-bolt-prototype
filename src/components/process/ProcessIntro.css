@@ -1,0 +1,82 @@
+.process-intro {
+  padding: var(--space-2xl) var(--container-padding-x);
+}
+
+.process-intro__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.process-intro__eyebrow {
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.process-intro__title {
+  font-family: var(--font-body);
+  font-size: var(--text-display-md);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-heading);
+  margin: 0;
+}
+
+.process-intro__body {
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  line-height: var(--leading-body);
+  margin: 0;
+}
+
+.process-intro__cta {
+  align-self: flex-start;
+}
+
+/* ── Light variant ───────────────────────── */
+
+.process-intro--light {
+  background: var(--color-bg-white);
+}
+
+.process-intro--light .process-intro__eyebrow {
+  color: var(--color-text-muted);
+}
+
+.process-intro--light .process-intro__title {
+  color: var(--color-text-navy);
+}
+
+.process-intro--light .process-intro__body {
+  color: var(--color-text-body);
+}
+
+/* ── Dark variant ────────────────────────── */
+
+.process-intro--dark {
+  background: var(--color-bg-dark);
+}
+
+.process-intro--dark .process-intro__eyebrow {
+  color: var(--color-text-muted);
+}
+
+.process-intro--dark .process-intro__title {
+  color: var(--color-text-white);
+}
+
+.process-intro--dark .process-intro__body {
+  color: var(--color-text-muted);
+}
+
+/* ── Responsive ──────────────────────────── */
+
+@media (max-width: 767px) {
+  .process-intro {
+    padding: var(--space-xl) var(--container-padding-x);
+  }
+
+  .process-intro__title {
+    font-size: var(--text-display-sm);
+  }
+}

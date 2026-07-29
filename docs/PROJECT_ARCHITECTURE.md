@@ -34,6 +34,9 @@ src/
 │   ├── media/                 Composants de média (MediaPlaceholder)
 │   ├── projects/              Compositions de projets et carrousel (Phase 3A)
 │   ├── editorial/             Sections éditoriales réutilisables (Phase 3A)
+│   ├── expertise/             Cartes, sections et héros d'expertise (Phase 3B-1)
+│   ├── toolkit/               Grille d'outils et cartes (Phase 3B-1)
+│   ├── process/               Timeline, intro et section stratégie (Phase 3B-1)
 │   ├── Hero/                  Trois variantes de héros (Phase 2)
 │   ├── Header/                En-têtes (Phase 2)
 │   ├── Button/                Boutons et IconButton (Phase 2)
@@ -52,6 +55,10 @@ src/
 │   ├── projects.ts            4 cas clients avec médias (Phase 3A)
 │   ├── portfolio.ts           6 projets portfolio avec médias (Phase 3A)
 │   ├── editorialSections.ts   Données des sections éditoriales (Phase 3A)
+│   ├── expertiseCategories.ts 3 catégories de piliers avec routing et preuves (Phase 3B-1)
+│   ├── expertisePages.ts      11 pages d'expertise (5 prioritaires) (Phase 3B-1)
+│   ├── toolkit.ts             21 outils en 8 groupes avec statuts (Phase 3B-1)
+│   ├── process.ts             6 étapes de méthode avec livrables (Phase 3B-1)
 │   ├── expertises.ts          Données des pages d'expertise (Phase 5+)
 │   ├── articles.ts            Données des articles de blog (Phase 11+)
 │   ├── processSteps.ts        Étapes de la méthode (Phase 8+)
@@ -59,6 +66,7 @@ src/
 ├── pages/
 │   ├── style-lab/
 │   │   └── StyleLabProjectsSection.tsx   Chapitre projets/éditorial du Style Lab (Phase 3A)
+│   │   └── StyleLabExpertiseProcessSection.tsx   Chapitre expertises/outils/méthode du Style Lab (Phase 3B-1)
 │   ├── RoutePlaceholder.tsx   Rendu temporaire pour toutes les routes non construites
 │   ├── NotFound.tsx           Rendu exclusif de la route wildcard (URL inconnues)
 │   └── StyleLab.tsx           Surface de revue interne privée (/style-lab)
@@ -70,7 +78,8 @@ src/
 ├── types/
 │   └── index.ts               Types TypeScript avec annotations WordPress (AccentTheme, MediaVariant, MediaRatio, ProjectMedia, ProjectCategory + modèles Phase 1-2)
 └── utils/
-    └── accentTheme.ts         Résolution AccentTheme → tokens CSS centralisée
+    ├── accentTheme.ts         Résolution AccentTheme → tokens CSS centralisée
+    └── routeValidator.ts          Validation de chemins contre routes statiques et patterns :slug
 ```
 
 ---
@@ -149,6 +158,7 @@ Pas de CSS-in-JS. Pas de Tailwind. Pas de bibliothèques de composants lourdes.
 | 1 | Fondation, tokens, routing, documentation, shell Style Lab | Terminé |
 | 2 | Composants globaux partagés, variantes de navigation, trois variantes de héros | Terminé |
 | 3A | Style Lab étendu — projets, carrousel, portfolio, contenu éditorial | Terminé |
+| 3B-1 | Style Lab — expertises, toolkit, méthode | Implémenté techniquement — validation visuelle humaine en attente |
 | 3B | Style Lab — expertises, toolkit, insights, process, footer | À venir |
 | 4 | Page d'accueil | À venir |
 | 5 | Hub Expertises, trois hubs de catégories, template d'expertise réutilisable | À venir |

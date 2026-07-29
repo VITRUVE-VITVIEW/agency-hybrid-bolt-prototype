@@ -17,6 +17,7 @@ import HeroDarkEditorial from '../components/Hero/HeroDarkEditorial'
 import HeroGradient from '../components/Hero/HeroGradient'
 import HeroHybrid from '../components/Hero/HeroHybrid'
 import StyleLabProjectsSection from './style-lab/StyleLabProjectsSection'
+import StyleLabExpertiseProcessSection from './style-lab/StyleLabExpertiseProcessSection'
 
 import navigation from '../data/navigation'
 import agencyConfig from '../config/agency.config'
@@ -78,7 +79,7 @@ export default function StyleLab() {
                 { id: 'section-global',     label: 'Global' },
                 { id: 'section-heros',      label: 'Héros' },
                 { id: 'section-projets',    label: 'Projets & contenus' },
-                { id: 'section-expertises', label: 'Expertises' },
+                { id: 'section-expertises', label: 'Expertises, Outils & Méthode' },
                 { id: 'section-composants', label: 'Composants d\'appui' },
               ].map(({ id, label }) => (
                 <li key={id}>
@@ -274,26 +275,14 @@ export default function StyleLab() {
         {/* ── PROJETS & CONTENUS ÉDITORIAUX ───────────────────── */}
         <StyleLabProjectsSection />
 
-        {/* ── EXPERTISES ──────────────────────────────────────── */}
-        <section className="style-lab__section" id="section-expertises">
-          <h2 className="style-lab__section-title">Expertises</h2>
-          <div className="style-lab__section-body">
-            <StyleLabSlot label="Section split colorée — Digital (bleu électrique)" />
-            <StyleLabSlot label="Section split colorée — IA (violet / magenta)" />
-            <StyleLabSlot label="Section split colorée — Conseil (corail / rouge)" />
-            <StyleLabSlot label="Section service éditorial sombre" />
-            <StyleLabSlot label="Cartes de catégorie d'expertise" />
-            <StyleLabSlot label="Héros de page d'expertise détail" />
-            <StyleLabSlot label="Grille de boîte à outils" />
-          </div>
-        </section>
+        {/* ── EXPERTISES, OUTILS & MÉTHODE ────────────────────── */}
+        <StyleLabExpertiseProcessSection />
 
         {/* ── COMPOSANTS D'APPUI ──────────────────────────────── */}
         <section className="style-lab__section" id="section-composants">
           <h2 className="style-lab__section-title">Composants d'appui</h2>
           <div className="style-lab__section-body">
             <StyleLabSlot label="Grille Insights / Blog" />
-            <StyleLabSlot label="Section processus" />
             <StyleLabSlot label="Témoignage" />
             <StyleLabSlot label="Accordéon FAQ" />
             <StyleLabSlot label="Formulaire de contact" />

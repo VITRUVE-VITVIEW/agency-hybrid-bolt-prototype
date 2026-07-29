@@ -92,6 +92,20 @@ _(Les lignes sont peuplées au fur et à mesure que les composants sont construi
 | `NumberedEditorialSection` | 3A | Style Lab | Moyenne | Numéro décoratif via CSS, grille deux colonnes |
 | `ImageTextSplit` (left / right / ratios) | 3A | Style Lab | Moyenne | Conteneur deux colonnes Elementor, ordre inversé via classes |
 | `MediaPlaceholder` | 3A | Style Lab | Faible | Non utilisé en production — remplacé par widget Image natif |
+| `ExpertiseCategoryCard` (light) | 3B-1 | Impl. technique — à valider | Faible | Container Elementor + Text + Button. Custom CSS pour barre d'accent top |
+| `ExpertiseCategoryCard` (dark) | 3B-1 | Impl. technique — à valider | Moyenne | Fond charbon, `.display-editorial` + `.text-outline` pour index |
+| `ExpertiseCategoryCard` (hybrid) | 3B-1 | Impl. technique — à valider | Moyenne | Bordüre gauche accent 4px — CSS `border-left` |
+| `ExpertiseSplitSection` | 3B-1 | Impl. technique — à valider | Moyenne | Section deux colonnes. `overflow: hidden` sur le panneau coloré uniquement |
+| `DarkExpertiseSection` | 3B-1 | Impl. technique — à valider | Élevée | `.display-editorial` + `.text-outline`. Grille décorative via CSS |
+| `ExpertiseDetailHero` (light) | 3B-1 | Impl. technique — à valider | Faible | Section pleine hauteur, Heading + Text + Button natifs Elementor |
+| `ExpertiseDetailHero` (dark / priority) | 3B-1 | Impl. technique — à valider | Élevée | `.display-editorial` + `.text-outline`. Badge proof via Custom HTML |
+| `NumberedServiceIntro` | 3B-1 | Impl. technique — à valider | Faible | Heading + Divider + Text + Button. Numéro décoratif via Heading widget |
+| `ToolkitGrid` | 3B-1 | Impl. technique — à valider | Faible | Loop Grid Elementor Pro ou grille manuelle. Icônes → widget Image en prod. |
+| `ToolkitCard` | 3B-1 | Impl. technique — à valider | Faible | Container interne : Icon Box + Text. Statut → badge Custom CSS |
+| `ProcessIntro` | 3B-1 | Impl. technique — à valider | Faible | Heading + Text + Button. Light/dark via fond de section |
+| `ProcessTimeline` | 3B-1 | Impl. technique — à valider | Moyenne | `<ol>` Loop Grid 6 colonnes. Numéros via Heading widget avec couleur d'accent |
+| `ProcessStep` | 3B-1 | Impl. technique — à valider | Moyenne | Composant interne de la timeline. Bordüre top colorée via Custom CSS |
+| `StrategyFeatureSection` | 3B-1 | Impl. technique — à valider | Moyenne | Section pleine largeur fond sombre ou dégradé. `.display-editorial` + `.text-outline` |
 
 ---
 
@@ -174,3 +188,9 @@ Tous les composants listés comme Phase 2 dans le registre ci-dessus sont constr
 Tous les composants listés comme Phase 3A dans le registre ci-dessus sont construits, passent `tsc --noEmit` (0 erreur) et `npm run build` (production clean, 111 modules). Les données de démonstration utilisent des contenus français provisoires. Les tokens, types et utilitaires de Phase 3A sont stables pour la Phase 3B.
 
 **Validation humaine restante** : vérification visuelle à 1440px/1920px, test du défilement trackpad sur le carrousel, confirmation du peek partiel du slide suivant.
+
+## État Phase 3B-1 — Implémenté techniquement — 2026-07-29
+
+Tous les composants listés comme Phase 3B-1 dans le registre ci-dessus sont construits et passent `tsc --noEmit` (0 erreur) et `npm run build` (production clean, 142 modules). Les données d'expertise, d'outils et de processus utilisent des contenus français provisoires soignés. Les CTAs résolvent uniquement vers des routes enregistrées dans `routes.ts`.
+
+**Validation humaine requise** : vérification visuelle aux cinq largeurs de référence (390px, 768px, 1024px, 1440px, 1920px), test des hover states, confirmation des accents pilier, validation du comportement responsive de `ExpertiseSplitSection` et `ProcessTimeline`. Aucun composant Phase 3B-1 ne sera marqué « approuvé » avant cette revue.

@@ -1,0 +1,29 @@
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  padding: var(--space-xl) var(--container-padding-x);
+  max-width: var(--container-content);
+  margin: 0 auto;
+}
+
+/* ── Responsive ─────────────────────────── */
+
+@media (max-width: 1023px) {
+  .expertise-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 767px) {
+  .expertise-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 479px) {
+  .expertise-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,48 @@
+.toolkit-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  padding: var(--space-xl) var(--container-padding-x);
+  max-width: var(--container-wide);
+  margin: 0 auto;
+}
+
+.toolkit-grid__group-label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-lg);
+}
+
+.toolkit-grid__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Responsive ─────────────────────────── */
+
+@media (max-width: 1023px) {
+  .toolkit-grid__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .toolkit-grid__list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 389px) {
+  .toolkit-grid__list {
+    grid-template-columns: 1fr;
+  }
+}

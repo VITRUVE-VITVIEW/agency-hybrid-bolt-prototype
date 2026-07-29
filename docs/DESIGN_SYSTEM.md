@@ -325,3 +325,43 @@ Le type `AccentTheme` (`'digital' | 'ia' | 'conseil' | 'neutral' | 'blue' | 'mag
   - La valeur de stroke de `.text-outline` (`var(--color-text-white)`)
 - **Après Phase 3A (revue QA — 2026-07-10)** : Composition des splits approuvée. APIs des composants de projets stables. Les tokens de disposition (grid-template-columns, font-size clamp) des composants Phase 3A sont verrouillés. Les valeurs visuelles finales des tokens globaux seront verrouillées après Phase 3B.
 - Les APIs de composants sont verrouillées uniquement après approbation visuelle du composant correspondant.
+
+---
+
+## Composants d'expertise, toolkit et process — Phase 3B-1
+
+### Système de cartes de catégorie
+
+Trois variants (`ExpertiseCategoryCard`) partageant les mêmes tokens de typographie et d'espacement :
+
+- **Light (A)** : surface `--color-bg-white`, barre d'accent 3px en haut, titre `--font-body` bold, proof métrique colorée, CTA `btn--secondary`.
+- **Dark (B)** : surface `--color-bg-charcoal`, titre `--font-display` uppercase, index numéroté via `.text-outline`, accent pilier couleur.
+- **Hybrid (C, recommandé)** : bordure gauche 4px accent, titre `--font-display` + description `--font-body`. Hybridation contrôlée des deux esprits.
+
+L'accent est résolu par `resolveAccent(pillar)` → token CSS. Jamais de valeur hexadécimale dans les composants.
+
+### Section split colorée (`ExpertiseSplitSection`)
+
+Grille deux colonnes : colonne contenu blanc + panneau coloré pilier. Overlap contrôlé du média via `position: absolute` sur la zone médias — uniquement à l'intérieur du panneau coloré (`overflow: hidden`). À 768px et en dessous : colonne unique, contenu en premier dans le DOM, pas de positionnement absolu.
+
+### Section service éditorial sombre (`DarkExpertiseSection`)
+
+Distinct de `ProjectEditorialSplit` : ce composant communique une offre de service (ce que l'agence propose), pas un projet livré (ce que l'agence a réalisé). Barlow Condensed uppercase, grille verticale décorative optionnelle, mot en outline via `.text-outline`, proof métrique.
+
+### Héros d'expertise (`ExpertiseDetailHero`)
+
+- **Light** : fond blanc, Space Grotesk, accent pilier sur le label, CTA `btn--primary`.
+- **Dark** : fond `--color-bg-dark`, Barlow Condensed, deuxième ligne du titre en `.text-outline`.
+- **Priority** : étend Dark avec badge proof (fond semi-transparent), bordure top accent, CTA secondaire optionnel. Uniquement pour les pages marquées `priority: true` dans les données.
+
+### Grille d'outils (`ToolkitGrid`)
+
+Cartes groupées par `ToolkitCategory` (8 groupes). Icônes CSS par initiales ou marque géométrique — aucune ressource externe. Statuts : `actif` (vert), `beta` (orange), `partenaire` (bleu). 4 colonnes → 3 → 2 → 1 selon breakpoints.
+
+### Timeline de processus (`ProcessTimeline`)
+
+Structure sémantique `<ol>` + `<li>`. Horizontal 6 colonnes à ≥1280px, 3 colonnes à 1024px, vertical à 768px. Chaque étape reçoit un accent via `step.theme` résolu par `resolveAccent()`. Bordures de séparation horizontales sur desktop, bordures inférieures sur mobile.
+
+### Résolution des accents — règle CSS Phase 3B-1
+
+Tous les composants Phase 3B-1 suivent le pattern établi par `MediaPlaceholder` : variable CSS locale définie en inline style via `as React.CSSProperties`. Un seul cast TypeScript par composant, sur l'objet style. Aucune valeur hexadécimale dans les fichiers CSS de composants.

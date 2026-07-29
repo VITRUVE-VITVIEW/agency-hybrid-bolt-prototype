@@ -258,6 +258,57 @@ _(Critères à compléter en début de Phase 4)_
 
 _(Titres réservés — critères à compléter au début de chaque phase)_
 
+## Phase 3B-1 — Style Lab : expertises, outils, méthode
+
+_(Critères à valider par un humain lors de la revue visuelle)_
+
+### Spécimens du Style Lab
+
+- [ ] Les 17 spécimens du chapitre "Expertises, Outils & Méthode" sont présents et visibles à `/style-lab`
+- [ ] Les 3 variants de `ExpertiseCategoryCard` (light, dark, hybrid) sont visuellement distincts
+- [ ] Les accents pilier (bleu Digital, violet IA, corail Conseil) sont correctement appliqués dans les 3 variants
+- [ ] Les 3 sections split (`ExpertiseSplitSection`) affichent le bon panneau coloré par pilier
+- [ ] `DarkExpertiseSection` est visuellement distinct de `ProjectEditorialSplit` (service vs projet)
+- [ ] Les 3 variants de `ExpertiseDetailHero` (light, dark, priority) sont distincts
+- [ ] Le badge proof de `ExpertiseDetailHero priority` n'apparaît que pour les pages avec `proof` dans les données
+- [ ] `NumberedServiceIntro` light et dark sont visuellement corrects
+- [ ] `ToolkitGrid` affiche les 8 groupes avec titres de catégorie visibles
+- [ ] Les statuts Actif / Bêta / Partenaire des cartes Toolkit sont lisibles avec contraste suffisant
+- [ ] `ProcessTimeline` affiche 6 étapes en horizontal (≥1280px) et en vertical (≤767px)
+- [ ] `StrategyFeatureSection` — les deux variants (sombre / dégradé) sont distincts
+- [ ] Chaque specimen affiche une note "Implémenté techniquement — validation visuelle humaine en attente"
+- [ ] Le chapitre Phase 3A (Projets & contenus éditoriaux) est intact et inchangé
+
+### Responsive — vérifier aux 5 largeurs
+
+- [ ] 1920px : mise en page desktop complète, grilles 3+ colonnes, split sections bi-colonnes
+- [ ] 1440px : même qu'à 1920px
+- [ ] 1024px : grilles 3 colonnes, split sections bi-colonnes avec overlap réduit
+- [ ] 768px : `ExpertiseCategoryGrid` 2 colonnes, `ExpertiseSplitSection` colonne unique, `ProcessTimeline` 3 colonnes
+- [ ] 390px : tout en colonne unique, aucun débordement horizontal
+- [ ] Aucun composant ne produit de `overflow-x` sur `html`, `body`, `#root` ou `.style-lab`
+
+### Accessibilité
+
+- [ ] Hiérarchie de titres correcte : H1 unique dans Style Lab, H2 pour le chapitre, H3 pour les sous-sections, H4 pour les spécimens
+- [ ] `ExpertiseCategoryCard` : lien CTA accessible au clavier, `focus-visible` visible
+- [ ] `ToolkitCard` : icône `aria-hidden`, nom du tool lisible en texte
+- [ ] `ProcessTimeline` : structure `<ol>` + `<li>` confirmée dans le DOM
+- [ ] Toutes les couleurs d'accent sont accompagnées d'un label texte (pas de couleur seule)
+- [ ] Targets tactiles ≥ 44×44px sur les CTAs des cartes et des héros
+- [ ] `prefers-reduced-motion` : transitions supprimées
+
+### Technique
+
+- [ ] `tsc --noEmit` : 0 erreur
+- [ ] `npm run build` : 142 modules, 0 erreur
+- [ ] Tous les CTAs dans les données résolvent vers des routes enregistrées dans `routes.ts`
+- [ ] Aucun contenu français codé en dur dans les composants réutilisables
+- [ ] Aucune URL externe pour les icônes Toolkit
+- [ ] `gradient-dark` n'est pas utilisé comme `MediaVariant` (valeur invalide — utiliser `gradient-neutral`)
+
+---
+
 - Phase 5 : Système Expertises
 - Phase 6 : 5 pages d'expertise prioritaires
 - Phase 7 : 6 pages d'expertise restantes

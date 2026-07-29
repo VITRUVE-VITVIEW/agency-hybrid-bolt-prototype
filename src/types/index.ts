@@ -170,6 +170,32 @@ export interface ExpertiseCategory {
   accentColorToken: string
   /** Ordered list of child expertise page slugs — ACF: category_expertise_slugs */
   expertiseSlugs: string[]
+  /** Full registered route path for this category hub — ACF: category_route */
+  route: string
+  /** One-sentence category positioning statement — ACF: category_positioning */
+  positioning: string
+  /** Short description shown in category cards — ACF: category_description */
+  description: string
+  /** CTA button label for category cards — ACF: category_cta_label */
+  ctaLabel: string
+  /** Sequential display index (1-based) — ACF: category_index */
+  index: number
+  /** Optional proof metric for category card — ACF: category_proof */
+  proof?: ExpertiseProof
+}
+
+/* ----------------------------------------
+   EXPERTISE PROOF
+---------------------------------------- */
+
+/** Quantified proof metric — ACF: expertise_proof group */
+export interface ExpertiseProof {
+  /** Metric value string, e.g. "+40%" — ACF: proof_value */
+  value: string
+  /** Metric label, e.g. "taux de conversion moyen" — ACF: proof_label */
+  label: string
+  /** Optional source attribution — ACF: proof_source */
+  source?: string
 }
 
 /* ----------------------------------------
@@ -184,6 +210,10 @@ export interface ExpertisePage {
   pillar: 'digital' | 'ia' | 'conseil'
   /** French page title — post_title */
   title: string
+  /** Full registered route path for this expertise page — ACF: expertise_route */
+  route: string
+  /** One-sentence positioning statement for the hero — ACF: expertise_positioning */
+  positioning: string
   /** Large display headline shown in the hero — ACF: expertise_headline */
   headline: string
   /** Brief problem statement shown under the headline — ACF: expertise_problem_statement */
@@ -200,6 +230,10 @@ export interface ExpertisePage {
   relatedProjectSlugs: string[]
   /** SEO meta description — Yoast/SEOPress field */
   metaDescription: string
+  /** Marks this page as a priority — displayed with enhanced hero treatment */
+  priority?: boolean
+  /** Optional proof metric for the hero — ACF: expertise_proof */
+  proof?: ExpertiseProof
 }
 
 /* ----------------------------------------
@@ -292,7 +326,34 @@ export interface ProcessStep {
   title: string
   /** Step description — ACF: step_description */
   description: string
+  /** Optional list of concrete deliverables for this step — ACF: step_deliverables (text area, line-separated) */
+  deliverables?: string[]
+  /** Optional duration estimate label, e.g. "1–2 semaines" — ACF: step_duration_label */
+  durationLabel?: string
+  /** Optional accent theme for visual differentiation — ACF: step_theme */
+  theme?: AccentTheme
 }
+
+/* ----------------------------------------
+   TOOLKIT CATEGORY
+---------------------------------------- */
+
+/** Grouping label for toolkit items — ACF: toolkit_category */
+export type ToolkitCategory =
+  | 'Stratégie'
+  | 'Design'
+  | 'Développement'
+  | 'WordPress'
+  | 'Performance'
+  | 'Automatisation'
+  | 'Intelligence Artificielle'
+  | 'Collaboration'
+
+/** How the ToolkitIcon is rendered — determines the CSS class applied */
+export type ToolkitIconKind = 'initials' | 'css-mark'
+
+/** Lifecycle / availability status of a toolkit item — ACF: toolkit_status */
+export type ToolkitStatus = 'actif' | 'beta' | 'partenaire'
 
 /* ----------------------------------------
    TOOLKIT ITEM
@@ -306,7 +367,30 @@ export interface ToolkitItem {
   description: string
   /** Icon placeholder identifier — ACF: toolkit_icon */
   iconPlaceholder: string
+  /** Which rendering strategy the ToolkitIcon uses — ACF: toolkit_icon_kind */
+  iconKind?: ToolkitIconKind
+  /** Toolkit category for grouping — ACF: toolkit_category */
+  category?: ToolkitCategory
+  /** Short tag shown as a chip on the card — ACF: toolkit_label */
+  label?: string
+  /** Lifecycle status — ACF: toolkit_status */
+  status?: ToolkitStatus
+  /** Optional route or external URL for more information — ACF: toolkit_url */
+  url?: string
 }
+
+/* ----------------------------------------
+   COMPONENT VARIANT TYPES
+---------------------------------------- */
+
+/** Visual variant for ExpertiseCategoryCard */
+export type ExpertiseCardVariant = 'light' | 'dark' | 'hybrid'
+
+/** Visual variant for ExpertiseDetailHero */
+export type ExpertiseHeroVariant = 'light' | 'dark' | 'priority'
+
+/** Layout/visual variant for NumberedServiceIntro */
+export type ServiceIntroVariant = 'light' | 'dark' | 'compact' | 'wide'
 
 /* ----------------------------------------
    TEAM MEMBER

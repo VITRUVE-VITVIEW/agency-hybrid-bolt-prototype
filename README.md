@@ -100,11 +100,40 @@ project/
 
 ## Phase en cours
 
-**Phase 3B — Style Lab : expertises, processus, footer**
+**Phase 3B-2 — Style Lab : insights, témoignages, FAQ, contact, CTA, footer**
 
 ---
 
 ## Phases complétées
+
+### Phase 3B-1 — Style Lab : expertises, outils et méthode
+
+Statut : **Implémenté techniquement — build passant (142 modules) — validation visuelle humaine en attente**
+
+Composants livrés :
+
+- `ExpertiseCategoryCard` (3 variants : light, dark, hybrid) + `ExpertiseCategoryGrid`
+- `ExpertiseSplitSection` — section bi-colonnes colorée (pilier Digital / IA / Conseil)
+- `DarkExpertiseSection` — section service éditorial sombre Esprit 01
+- `ExpertiseDetailHero` (3 variants : light, dark, priority)
+- `NumberedServiceIntro` (4 variants : light, dark, compact, wide)
+- `ToolkitIcon`, `ToolkitCard`, `ToolkitGrid` — grille d'outils 8 groupes
+- `ProcessStep`, `ProcessIntro`, `ProcessTimeline` — frise 6 étapes sémantique `<ol>`
+- `StrategyFeatureSection` — champ saturé sombre ou dégradé
+- `StyleLabExpertiseProcessSection` — chapitre Style Lab avec 17 spécimens
+
+Données livrées :
+
+- `src/data/expertiseCategories.ts` — 3 piliers avec preuve métrique et routing
+- `src/data/expertisePages.ts` — 11 pages d'expertise (5 marquées priority)
+- `src/data/toolkit.ts` — 21 outils en 8 groupes avec statuts
+- `src/data/process.ts` — 6 étapes de méthode avec livrables
+
+Utilitaires : `src/utils/routeValidator.ts` — validation CTAs contre routes statiques et patterns dynamiques `:slug`
+
+Types ajoutés : `ExpertiseProof`, `ToolkitCategory`, `ToolkitIconKind`, `ToolkitStatus`, `ExpertiseCardVariant`, `ExpertiseHeroVariant`, `ServiceIntroVariant`
+
+Types étendus (champs optionnels) : `ExpertiseCategory`, `ExpertisePage`, `ProcessStep`, `ToolkitItem`
 
 ### Phase 3A — Style Lab : projets, carrousel, portfolio, contenu éditorial
 
@@ -162,7 +191,8 @@ Non accessible depuis la navigation publique.
 Sections disponibles :
 1. **Global** — en-têtes, menus, rails, boutons, modale
 2. **Héros** — trois variantes (Esprit 01, Esprit 02, Hybride)
-3. **Projets & contenus éditoriaux** — 13 spécimens (Phase 3A)
+3. **Expertises, Outils & Méthode** — 17 spécimens (Phase 3B-1)
+4. **Projets & contenus éditoriaux** — 13 spécimens (Phase 3A)
 4. **Expertises** — slots Phase 3B
 5. **Composants d'appui** — slots Phase 3B+
 

@@ -1,0 +1,152 @@
+.expertise-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 520px;
+  overflow: hidden;
+}
+
+/* Content column */
+.expertise-split__content {
+  background: var(--color-bg-white);
+  padding: var(--space-3xl) var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-lg);
+  position: relative;
+}
+
+/* Colored panel */
+.expertise-split__panel {
+  background: var(--split-accent, var(--color-digital-blue));
+  position: relative;
+  overflow: hidden;
+}
+
+/* Media sits inside the panel with a deliberate overflow effect */
+.expertise-split__media-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+}
+
+.expertise-split__media-wrap .media-placeholder {
+  width: 100%;
+  height: 100%;
+}
+
+/* Mirror layout */
+.expertise-split--media-left {
+  direction: rtl;
+}
+
+.expertise-split--media-left > * {
+  direction: ltr;
+}
+
+/* ── Number ──────────────────────────────── */
+
+.expertise-split__number {
+  font-family: var(--font-display);
+  font-size: var(--text-display-lg);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: var(--color-border-light);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── Eyebrow ─────────────────────────────── */
+
+.expertise-split__eyebrow {
+  font-size: var(--text-sm);
+  color: var(--split-accent, var(--color-digital-blue));
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Title ───────────────────────────────── */
+
+.expertise-split__title {
+  font-family: var(--font-body);
+  font-size: var(--text-display-md);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-navy);
+  line-height: var(--leading-heading);
+  margin: 0;
+}
+
+/* ── Body ────────────────────────────────── */
+
+.expertise-split__description {
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  color: var(--color-text-body);
+  line-height: var(--leading-body);
+  margin: 0;
+}
+
+.expertise-split__secondary {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--color-text-muted);
+  line-height: var(--leading-body);
+  margin: 0;
+}
+
+/* ── CTA ─────────────────────────────────── */
+
+.expertise-split__cta {
+  align-self: flex-start;
+  margin-top: var(--space-sm);
+}
+
+/* ── Responsive ──────────────────────────── */
+
+@media (max-width: 1023px) {
+  .expertise-split__content {
+    padding: var(--space-2xl) var(--space-xl);
+  }
+}
+
+@media (max-width: 767px) {
+  .expertise-split {
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+
+  /* On mobile: content on top, panel below — regardless of mediaAlign */
+  .expertise-split--media-left {
+    direction: ltr;
+  }
+
+  .expertise-split__content {
+    padding: var(--space-xl) var(--container-padding-x);
+    order: 1;
+  }
+
+  .expertise-split__panel {
+    order: 2;
+    min-height: 260px;
+  }
+
+  .expertise-split__media-wrap {
+    position: relative;
+    inset: unset;
+    min-height: 260px;
+    padding: var(--space-xl);
+  }
+}
+
+@media (max-width: 389px) {
+  .expertise-split__content {
+    gap: var(--space-md);
+  }
+
+  .expertise-split__title {
+    font-size: var(--text-display-sm);
+  }
+}

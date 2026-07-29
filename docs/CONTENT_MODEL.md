@@ -20,6 +20,10 @@ Tout le contenu visible dans le prototype doit être un contenu français provis
 | `src/data/projects.ts` | `CaseStudy` (4 entrées) | Phase 3A |
 | `src/data/portfolio.ts` | `PortfolioItem` (6 entrées) | Phase 3A |
 | `src/data/editorialSections.ts` | Interfaces éditoriales locales | Phase 3A |
+| `src/data/expertiseCategories.ts` | `ExpertiseCategory` (3 entrées) | Phase 3B-1 |
+| `src/data/expertisePages.ts` | `ExpertisePage` (11 entrées) | Phase 3B-1 |
+| `src/data/toolkit.ts` | `ToolkitItem` (21 entrées) | Phase 3B-1 |
+| `src/data/process.ts` | `ProcessStep` (6 entrées) | Phase 3B-1 |
 | `src/data/expertises.ts` | `ExpertisePage` | Phase 5 |
 | `src/data/articles.ts` | `Article` | Phase 11 |
 | `src/data/processSteps.ts` | `ProcessStep` | Phase 8 |
@@ -43,6 +47,29 @@ Les types suivants ont été ajoutés en Phase 3A :
 | `MediaRatio` | Type union | Ratio d'aspect du média (`'4/3'`, `'3/4'`, `'16/9'`, `'1/1'`, `'cinema'`) |
 | `ProjectMedia` | Interface | Configuration d'un `MediaPlaceholder` — remplacé par widget Image en production |
 | `ProjectCategory` | Interface | Terme de taxonomie pilier avec accent associé |
+
+---
+
+### Types Phase 3B-1
+
+Les types suivants ont été ajoutés ou étendus en Phase 3B-1 :
+
+| Type | Nature | Usage |
+|---|---|---|
+| `ExpertiseProof` | Interface | Métrique quantifiée — valeur, label, source optionnelle |
+| `ToolkitCategory` | Type union | 8 groupes de catégories outils |
+| `ToolkitIconKind` | Type union | Stratégie de rendu de l'icône (`'initials'` \| `'css-mark'`) |
+| `ToolkitStatus` | Type union | Statut de disponibilité de l'outil |
+| `ExpertiseCardVariant` | Type union | Variant visuel de `ExpertiseCategoryCard` |
+| `ExpertiseHeroVariant` | Type union | Variant visuel de `ExpertiseDetailHero` |
+| `ServiceIntroVariant` | Type union | Variant de mise en page de `NumberedServiceIntro` |
+
+Champs optionnels ajoutés aux interfaces existantes :
+
+- `ExpertiseCategory` : `route`, `positioning`, `description`, `ctaLabel`, `index`, `proof?`
+- `ExpertisePage` : `route`, `positioning`, `priority?`, `proof?`
+- `ProcessStep` : `deliverables?`, `durationLabel?`, `theme?`
+- `ToolkitItem` : `iconKind?`, `category?`, `label?`, `status?`, `url?`
 
 ---
 

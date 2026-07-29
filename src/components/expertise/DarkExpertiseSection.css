@@ -1,0 +1,182 @@
+.dark-expertise {
+  background: var(--color-bg-dark);
+  padding: var(--space-3xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Vertical grid lines — Esprit 01 ─────── */
+
+.dark-expertise--grid-lines .dark-expertise__grid-lines {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: var(--z-base);
+}
+
+.dark-expertise__grid-line {
+  width: 1px;
+  height: 100%;
+  background: var(--color-border-dark);
+  opacity: 0.5;
+}
+
+/* ── Inner layout ────────────────────────── */
+
+.dark-expertise__inner {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--space-2xl);
+  align-items: center;
+  position: relative;
+  z-index: var(--z-raised);
+  padding: 0 var(--container-padding-x);
+}
+
+.dark-expertise--media-left .dark-expertise__inner {
+  grid-template-columns: 2fr 3fr;
+}
+
+.dark-expertise--media-left .dark-expertise__content {
+  order: 2;
+}
+
+.dark-expertise--media-left .dark-expertise__media {
+  order: 1;
+}
+
+/* ── Sequence number ─────────────────────── */
+
+.dark-expertise__number {
+  font-size: var(--text-xs);
+  color: var(--dark-expert-accent, var(--color-digital-blue));
+  letter-spacing: 0.12em;
+}
+
+/* ── Category label ──────────────────────── */
+
+.dark-expertise__category {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: var(--space-sm);
+}
+
+/* ── Title — Esprit 01 ───────────────────── */
+
+.dark-expertise__title {
+  font-family: var(--font-display);
+  font-size: var(--text-display-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-white);
+  line-height: var(--leading-display);
+  text-transform: uppercase;
+  margin: var(--space-lg) 0;
+  overflow-wrap: break-word;
+}
+
+.dark-expertise__title-word {
+  color: var(--color-text-white);
+}
+
+/* Reuse the shared .text-outline class from typography.css for the outlined word */
+
+/* ── Body ────────────────────────────────── */
+
+.dark-expertise__body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--color-text-muted);
+  line-height: var(--leading-body);
+  margin: 0;
+  max-width: 540px;
+}
+
+/* ── Proof ───────────────────────────────── */
+
+.dark-expertise__proof {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.dark-expertise__proof-value {
+  font-family: var(--font-display);
+  font-size: var(--text-display-md);
+  font-weight: var(--weight-bold);
+  color: var(--dark-expert-accent, var(--color-digital-blue));
+  line-height: 1;
+}
+
+.dark-expertise__proof-label {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  max-width: 200px;
+}
+
+/* ── CTA ─────────────────────────────────── */
+
+.dark-expertise__cta {
+  margin-top: var(--space-lg);
+  align-self: flex-start;
+}
+
+/* ── Content column ──────────────────────── */
+
+.dark-expertise__content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Responsive ──────────────────────────── */
+
+@media (max-width: 1023px) {
+  .dark-expertise__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+
+  .dark-expertise--media-left .dark-expertise__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .dark-expertise__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .dark-expertise--media-left .dark-expertise__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .dark-expertise--media-left .dark-expertise__content {
+    order: 1;
+  }
+
+  .dark-expertise--media-left .dark-expertise__media {
+    order: 2;
+  }
+
+  .dark-expertise__title {
+    font-size: var(--text-display-md);
+  }
+
+  .dark-expertise__grid-lines {
+    display: none;
+  }
+}
+
+@media (max-width: 389px) {
+  .dark-expertise {
+    padding: var(--space-xl) 0;
+  }
+
+  .dark-expertise__title {
+    font-size: var(--text-display-sm);
+  }
+}

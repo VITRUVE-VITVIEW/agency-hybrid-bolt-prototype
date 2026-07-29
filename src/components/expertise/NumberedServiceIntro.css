@@ -1,0 +1,155 @@
+.numbered-intro {
+  padding: var(--space-2xl) var(--container-padding-x);
+}
+
+.numbered-intro__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.numbered-intro__number {
+  font-family: var(--font-display);
+  font-size: var(--text-display-lg);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+.numbered-intro__eyebrow {
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.numbered-intro__title {
+  font-family: var(--font-body);
+  font-size: var(--text-display-md);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-heading);
+  margin: 0;
+}
+
+.numbered-intro__body {
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  line-height: var(--leading-body);
+  margin: 0;
+}
+
+.numbered-intro__cta {
+  align-self: flex-start;
+}
+
+/* ── Light variant ───────────────────────── */
+
+.numbered-intro--light {
+  background: var(--color-bg-white);
+}
+
+.numbered-intro--light .numbered-intro__number {
+  color: var(--color-border-light);
+}
+
+.numbered-intro--light .numbered-intro__eyebrow {
+  color: var(--color-text-muted);
+}
+
+.numbered-intro--light .numbered-intro__title {
+  color: var(--color-text-navy);
+}
+
+.numbered-intro--light .numbered-intro__body {
+  color: var(--color-text-body);
+}
+
+/* ── Dark variant ────────────────────────── */
+
+.numbered-intro--dark {
+  background: var(--color-bg-dark);
+}
+
+.numbered-intro--dark .numbered-intro__number {
+  color: var(--color-border-dark);
+}
+
+.numbered-intro--dark .numbered-intro__eyebrow {
+  color: var(--color-text-muted);
+}
+
+.numbered-intro--dark .numbered-intro__title {
+  color: var(--color-text-white);
+}
+
+.numbered-intro--dark .numbered-intro__body {
+  color: var(--color-text-muted);
+}
+
+/* ── Compact variant ─────────────────────── */
+
+.numbered-intro--compact {
+  background: var(--color-bg-white);
+  padding: var(--space-xl) var(--container-padding-x);
+}
+
+.numbered-intro--compact .numbered-intro__number {
+  font-size: var(--text-display-sm);
+  color: var(--color-border-light);
+}
+
+.numbered-intro--compact .numbered-intro__title {
+  font-size: var(--text-display-sm);
+  color: var(--color-text-navy);
+}
+
+.numbered-intro--compact .numbered-intro__eyebrow {
+  color: var(--color-text-muted);
+}
+
+.numbered-intro--compact .numbered-intro__body {
+  font-size: var(--text-body);
+  color: var(--color-text-body);
+}
+
+/* ── Wide variant ────────────────────────── */
+
+.numbered-intro--wide {
+  background: var(--color-bg-light);
+  padding: var(--space-3xl) var(--container-padding-x);
+}
+
+.numbered-intro--wide .numbered-intro__inner {
+  max-width: var(--container-content);
+}
+
+.numbered-intro--wide .numbered-intro__number {
+  color: var(--color-border-light);
+}
+
+.numbered-intro--wide .numbered-intro__title {
+  font-size: var(--text-display-md);
+  color: var(--color-text-navy);
+}
+
+.numbered-intro--wide .numbered-intro__eyebrow {
+  color: var(--color-text-muted);
+}
+
+.numbered-intro--wide .numbered-intro__body {
+  color: var(--color-text-body);
+  max-width: 640px;
+}
+
+/* ── Responsive ──────────────────────────── */
+
+@media (max-width: 767px) {
+  .numbered-intro {
+    padding: var(--space-xl) var(--container-padding-x);
+  }
+
+  .numbered-intro__number {
+    font-size: var(--text-display-md);
+  }
+}
