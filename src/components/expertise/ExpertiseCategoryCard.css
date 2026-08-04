@@ -7,9 +7,16 @@
   padding: var(--space-xl) var(--space-lg);
   border-radius: var(--radius-md);
   position: relative;
-  overflow: hidden;
+  /* overflow: visible so absolutely-positioned index stays inside via explicit sizing,
+     and title text can never be clipped by this container */
+  overflow: visible;
   transition: transform var(--duration-short) var(--easing-editorial),
               box-shadow var(--duration-short) var(--easing-editorial);
+}
+
+/* clip only at the grid wrapper level so the index glyph doesn't bleed into adjacent cards */
+.expertise-grid {
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -28,10 +35,14 @@
 
 .expertise-card--light .expertise-card__title {
   font-family: var(--font-body);
-  font-size: var(--text-display-sm);
+  /* clamp: never smaller than 1.25rem at 390px, scales to 1.75rem at 1440px */
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
   font-weight: var(--weight-bold);
   color: var(--color-text-navy);
-  line-height: var(--leading-heading);
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .expertise-card--light .expertise-card__positioning {
@@ -47,15 +58,21 @@
 .expertise-card--dark {
   background: var(--color-bg-charcoal);
   border: 1px solid var(--color-border-dark);
+  overflow: hidden; /* re-apply on the dark card only — the index glyph lives here */
 }
 
 .expertise-card--dark .expertise-card__title {
   font-family: var(--font-display);
-  font-size: var(--text-display-md);
+  /* Barlow Condensed: tighter scale to handle long uppercase labels safely */
+  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
   font-weight: var(--weight-bold);
   color: var(--color-text-white);
-  line-height: var(--leading-display);
+  line-height: 1.1;
   text-transform: uppercase;
+  letter-spacing: 0.02em;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .expertise-card--dark .expertise-card__positioning {
@@ -65,14 +82,17 @@
   line-height: var(--leading-body);
 }
 
-/* Outlined index number — Esprit 01 */
+/* Outlined index number — Esprit 01
+   Kept secondary: smaller size, lower opacity, positioned bottom-right
+   so it never overlaps the title in the top-left reading area */
 .expertise-card__index {
   position: absolute;
-  top: var(--space-lg);
+  bottom: var(--space-lg);
   right: var(--space-lg);
-  font-size: var(--text-display-lg);
+  top: auto; /* override the original top placement */
+  font-size: clamp(3rem, 6vw, 5rem);
   line-height: 1;
-  opacity: 0.25;
+  opacity: 0.15;
   -webkit-text-stroke: var(--stroke-width) var(--card-accent, var(--color-text-white));
   color: transparent;
   pointer-events: none;
@@ -90,11 +110,16 @@
 
 .expertise-card--hybrid .expertise-card__title {
   font-family: var(--font-display);
-  font-size: var(--text-display-sm);
+  /* Same safe scale as dark — Barlow Condensed uppercase */
+  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
   font-weight: var(--weight-bold);
   color: var(--color-text-navy);
-  line-height: var(--leading-display);
+  line-height: 1.1;
   text-transform: uppercase;
+  letter-spacing: 0.02em;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .expertise-card--hybrid .expertise-card__positioning {
@@ -104,7 +129,7 @@
   line-height: var(--leading-body);
 }
 
-/* ── Accent bar (light and hybrid) ──────── */
+/* ── Accent bar (light only) ─────────────── */
 
 .expertise-card__accent-bar {
   height: 3px;
@@ -198,12 +223,39 @@
 
 /* ── Responsive ──────────────────────────── */
 
+@media (max-width: 1023px) {
+  /* At tablet widths the card columns are narrower — tighten letter-spacing further */
+  .expertise-card--dark .expertise-card__title,
+  .expertise-card--hybrid .expertise-card__title {
+    letter-spacing: 0.01em;
+  }
+}
+
 @media (max-width: 767px) {
   .expertise-card {
     padding: var(--space-lg);
   }
 
   .expertise-card__index {
-    font-size: var(--text-display-md);
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+    opacity: 0.12;
+  }
+
+  .expertise-card--dark .expertise-card__title,
+  .expertise-card--hybrid .expertise-card__title {
+    font-size: clamp(1.375rem, 5vw, 2rem);
+    letter-spacing: 0;
+  }
+
+  .expertise-card--light .expertise-card__title {
+    font-size: clamp(1.125rem, 4.5vw, 1.5rem);
+  }
+}
+
+@media (max-width: 479px) {
+  /* Single-column layout — card fills nearly full viewport width */
+  .expertise-card--dark .expertise-card__title,
+  .expertise-card--hybrid .expertise-card__title {
+    font-size: clamp(1.25rem, 6.5vw, 1.75rem);
   }
 }

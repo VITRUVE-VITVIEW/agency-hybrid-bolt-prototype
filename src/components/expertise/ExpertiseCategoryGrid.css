@@ -1,4 +1,6 @@
 .expertise-grid {
+  /* clips the absolute-positioned index glyphs of dark cards at the grid boundary */
+  overflow: hidden;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-lg);
