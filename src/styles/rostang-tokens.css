@@ -1,0 +1,106 @@
+/* ──────────────────────────────────────────────────────────────
+   ROSTANG design tokens — scoped under .rostang-site
+   These tokens are completely independent from the legacy Style Lab
+   tokens in tokens.css. Jost font only. No Barlow Condensed,
+   no Space Grotesk, no pillar accent colours on public pages.
+   ────────────────────────────────────────────────────────────── */
+
+.rostang-site {
+  /* ── Typography ─────────────────────────────────────────────── */
+
+  --rostang-font: 'Jost', Arial, sans-serif;
+
+  /* Display scale — responsive clamp */
+  --rostang-text-display-xl: clamp(2.25rem, 5vw, 3.5rem);
+  --rostang-text-display-lg: clamp(1.875rem, 4vw, 2.75rem);
+  --rostang-text-display-md: clamp(1.5rem, 3vw, 2.125rem);
+  --rostang-text-display-sm: clamp(1.25rem, 2.5vw, 1.625rem);
+
+  /* Body scale */
+  --rostang-text-lead: 1.25rem;
+  --rostang-text-body: 1rem;
+  --rostang-text-sm: 0.875rem;
+  --rostang-text-xs: 0.75rem;
+
+  /* Line heights */
+  --rostang-leading-display: 1.15;
+  --rostang-leading-heading: 1.3;
+  --rostang-leading-body: 1.7;
+
+  /* Font weights */
+  --rostang-weight-regular: 400;
+  --rostang-weight-medium: 500;
+  --rostang-weight-semibold: 600;
+  --rostang-weight-bold: 700;
+
+  /* ── Colour system ──────────────────────────────────────────── */
+
+  --rostang-navy: #1C1C33;
+  --rostang-blue-grey: #7C95A3;
+  --rostang-link: #49768E;
+  --rostang-white: #FFFFFF;
+  --rostang-bg-light: #F7F7F7;
+  --rostang-text-dark: #1C1C33;
+
+  /* Derived */
+  --rostang-border: rgba(28, 28, 51, 0.12);
+  --rostang-border-strong: rgba(28, 28, 51, 0.25);
+  --rostang-text-muted: rgba(28, 28, 51, 0.65);
+  --rostang-text-faint: rgba(28, 28, 51, 0.45);
+  --rostang-overlay: rgba(28, 28, 51, 0.92);
+
+  /* ── Layout ─────────────────────────────────────────────────── */
+
+  --rostang-container: 1200px;
+  --rostang-margin-desktop: 32px;
+  --rostang-margin-tablet: 24px;
+  --rostang-margin-mobile: 20px;
+
+  --rostang-section-gap-desktop: 96px;
+  --rostang-section-gap-tablet: 72px;
+  --rostang-section-gap-mobile: 56px;
+
+  --rostang-header-height: 72px;
+  --rostang-header-height-mobile: 60px;
+
+  /* Grid */
+  --rostang-grid-desktop: 12;
+  --rostang-grid-tablet: 8;
+  --rostang-grid-mobile: 4;
+  --rostang-grid-gap: 24px;
+  --rostang-grid-gap-mobile: 16px;
+
+  /* ── Spacing — 8px scale ────────────────────────────────────── */
+
+  --rostang-space-xs: 4px;
+  --rostang-space-sm: 8px;
+  --rostang-space-md: 16px;
+  --rostang-space-lg: 24px;
+  --rostang-space-xl: 32px;
+  --rostang-space-2xl: 48px;
+  --rostang-space-3xl: 64px;
+  --rostang-space-4xl: 96px;
+
+  /* ── Borders and radius ─────────────────────────────────────── */
+
+  --rostang-radius-sm: 4px;
+  --rostang-radius-md: 8px;
+  --rostang-radius-lg: 12px;
+  --rostang-radius-full: 9999px;
+
+  /* ── Motion ─────────────────────────────────────────────────── */
+
+  --rostang-duration-short: 150ms;
+  --rostang-duration-medium: 250ms;
+  --rostang-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Z-index ────────────────────────────────────────────────── */
+
+  --rostang-z-header: 100;
+  --rostang-z-menu: 200;
+  --rostang-z-overlay: 300;
+
+  /* ── Touch target ───────────────────────────────────────────── */
+
+  --rostang-touch-target: 44px;
+}

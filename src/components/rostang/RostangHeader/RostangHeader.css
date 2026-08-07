@@ -1,0 +1,417 @@
+/* ── Header bar ─────────────────────────────────────────────────── */
+
+.rostang-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--rostang-z-header);
+  background: var(--rostang-white);
+  border-bottom: 1px solid var(--rostang-border);
+  font-family: var(--rostang-font);
+}
+
+.rostang-header__inner {
+  max-width: var(--rostang-container);
+  margin-inline: auto;
+  padding-inline: var(--rostang-margin-desktop);
+  height: var(--rostang-header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--rostang-space-lg);
+}
+
+/* ── Logo ───────────────────────────────────────────────────────── */
+
+.rostang-header__logo {
+  font-family: var(--rostang-font);
+  font-size: 1.25rem;
+  font-weight: var(--rostang-weight-bold);
+  letter-spacing: 0.08em;
+  color: var(--rostang-navy);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.rostang-header__logo:hover {
+  color: var(--rostang-link);
+}
+
+.rostang-header__logo:focus-visible {
+  outline: 2px solid var(--rostang-link);
+  outline-offset: 4px;
+  border-radius: var(--rostang-radius-sm);
+}
+
+/* ── Desktop nav ────────────────────────────────────────────────── */
+
+.rostang-header__nav {
+  flex: 1;
+}
+
+.rostang-header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--rostang-space-xl);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rostang-header__nav-item {
+  position: relative;
+}
+
+.rostang-header__nav-link,
+.rostang-header__nav-trigger {
+  font-family: var(--rostang-font);
+  font-size: var(--rostang-text-sm);
+  font-weight: var(--rostang-weight-medium);
+  color: var(--rostang-navy);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--rostang-space-sm) 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rostang-space-xs);
+  min-height: var(--rostang-touch-target);
+  transition: color var(--rostang-duration-short) var(--rostang-easing);
+}
+
+.rostang-header__nav-link:hover,
+.rostang-header__nav-trigger:hover {
+  color: var(--rostang-link);
+}
+
+.rostang-header__nav-link:focus-visible,
+.rostang-header__nav-trigger:focus-visible {
+  outline: 2px solid var(--rostang-link);
+  outline-offset: 4px;
+  border-radius: var(--rostang-radius-sm);
+}
+
+.rostang-header__nav-caret {
+  font-size: 0.625rem;
+  opacity: 0.6;
+}
+
+/* ── Submenu (desktop dropdown) ─────────────────────────────────── */
+
+.rostang-header__submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: var(--rostang-white);
+  border: 1px solid var(--rostang-border);
+  border-radius: var(--rostang-radius-md);
+  box-shadow: 0 8px 24px rgba(28, 28, 51, 0.1);
+  list-style: none;
+  margin: 0;
+  padding: var(--rostang-space-sm);
+  z-index: var(--rostang-z-menu);
+}
+
+.rostang-header__submenu-link {
+  display: block;
+  padding: var(--rostang-space-sm) var(--rostang-space-md);
+  font-size: var(--rostang-text-sm);
+  color: var(--rostang-navy);
+  text-decoration: none;
+  border-radius: var(--rostang-radius-sm);
+  min-height: var(--rostang-touch-target);
+  display: flex;
+  align-items: center;
+  transition: background var(--rostang-duration-short) var(--rostang-easing),
+              color var(--rostang-duration-short) var(--rostang-easing);
+}
+
+.rostang-header__submenu-link:hover {
+  background: var(--rostang-bg-light);
+  color: var(--rostang-link);
+}
+
+.rostang-header__submenu-link:focus-visible {
+  outline: 2px solid var(--rostang-link);
+  outline-offset: -2px;
+}
+
+/* ── Actions ────────────────────────────────────────────────────── */
+
+.rostang-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--rostang-space-md);
+  flex-shrink: 0;
+}
+
+/* ── Buttons ────────────────────────────────────────────────────── */
+
+.rostang-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--rostang-font);
+  font-size: var(--rostang-text-sm);
+  font-weight: var(--rostang-weight-semibold);
+  text-decoration: none;
+  border-radius: var(--rostang-radius-sm);
+  min-height: var(--rostang-touch-target);
+  padding: 0 var(--rostang-space-lg);
+  cursor: pointer;
+  transition: background var(--rostang-duration-short) var(--rostang-easing),
+              color var(--rostang-duration-short) var(--rostang-easing),
+              border-color var(--rostang-duration-short) var(--rostang-easing);
+}
+
+.rostang-btn--primary {
+  background: var(--rostang-navy);
+  color: var(--rostang-white);
+  border: 1px solid var(--rostang-navy);
+}
+
+.rostang-btn--primary:hover {
+  background: var(--rostang-link);
+  border-color: var(--rostang-link);
+}
+
+.rostang-btn--primary:focus-visible {
+  outline: 2px solid var(--rostang-link);
+  outline-offset: 3px;
+}
+
+.rostang-btn--secondary {
+  background: transparent;
+  color: var(--rostang-navy);
+  border: 1px solid var(--rostang-border-strong);
+}
+
+.rostang-btn--secondary:hover {
+  border-color: var(--rostang-navy);
+  background: var(--rostang-bg-light);
+}
+
+.rostang-btn--secondary:focus-visible {
+  outline: 2px solid var(--rostang-link);
+  outline-offset: 3px;
+}
+
+.rostang-btn--block {
+  width: 100%;
+}
+
+/* ── Burger ─────────────────────────────────────────────────────── */
+
+.rostang-header__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: var(--rostang-touch-target);
+  height: var(--rostang-touch-target);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.rostang-header__burger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--rostang-navy);
+  border-radius: 1px;
+  transition: opacity var(--rostang-duration-short) var(--rostang-easing);
+}
+
+.rostang-header__burger:focus-visible {
+  outline: 2px solid var(--rostang-link);
+  outline-offset: 4px;
+  border-radius: var(--rostang-radius-sm);
+}
+
+/* ── Mobile overlay ──────────────────────────────────────────────── */
+
+.rostang-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--rostang-overlay);
+  z-index: var(--rostang-z-overlay);
+  opacity: 0;
+  animation: rostang-fade-in var(--rostang-duration-medium) var(--rostang-easing) forwards;
+}
+
+@keyframes rostang-fade-in {
+  to { opacity: 1; }
+}
+
+/* ── Mobile menu panel ───────────────────────────────────────────── */
+
+.rostang-mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 380px;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--rostang-white);
+  z-index: var(--rostang-z-menu);
+  transform: translateX(100%);
+  transition: transform var(--rostang-duration-medium) var(--rostang-easing);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.rostang-mobile-menu--open {
+  transform: translateX(0);
+}
+
+.rostang-mobile-menu__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--rostang-space-lg) var(--rostang-space-xl);
+  border-bottom: 1px solid var(--rostang-border);
+  min-height: var(--rostang-header-height-mobile);
+  flex-shrink: 0;
+}
+
+.rostang-mobile-menu__title {
+  font-size: var(--rostang-text-sm);
+  font-weight: var(--rostang-weight-semibold);
+  color: var(--rostang-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.rostang-mobile-menu__close {
+  width: var(--rostang-touch-target);
+  height: var(--rostang-touch-target);
+  font-size: 1.25rem;
+  color: var(--rostang-navy);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--rostang-radius-sm);
+}
+
+.rostang-mobile-menu__close:hover {
+  background: var(--rostang-bg-light);
+}
+
+.rostang-mobile-menu__close:focus-visible {
+  outline: 2px solid var(--rostang-link);
+  outline-offset: 2px;
+}
+
+.rostang-mobile-menu__list {
+  list-style: none;
+  margin: 0;
+  padding: var(--rostang-space-md) var(--rostang-space-xl);
+  flex: 1;
+}
+
+.rostang-mobile-menu__item {
+  border-bottom: 1px solid var(--rostang-border);
+}
+
+.rostang-mobile-menu__link {
+  display: block;
+  padding: var(--rostang-space-md) 0;
+  font-size: var(--rostang-text-body);
+  font-weight: var(--rostang-weight-medium);
+  color: var(--rostang-navy);
+  text-decoration: none;
+  min-height: var(--rostang-touch-target);
+  display: flex;
+  align-items: center;
+}
+
+.rostang-mobile-menu__link:hover {
+  color: var(--rostang-link);
+}
+
+.rostang-mobile-menu__link:focus-visible {
+  outline: 2px solid var(--rostang-link);
+  outline-offset: 2px;
+  border-radius: var(--rostang-radius-sm);
+}
+
+.rostang-mobile-menu__sublist {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 var(--rostang-space-md) 0;
+}
+
+.rostang-mobile-menu__sublink {
+  display: block;
+  padding: var(--rostang-space-sm) var(--rostang-space-md);
+  font-size: var(--rostang-text-sm);
+  color: var(--rostang-text-muted);
+  text-decoration: none;
+  min-height: var(--rostang-touch-target);
+  display: flex;
+  align-items: center;
+  border-radius: var(--rostang-radius-sm);
+}
+
+.rostang-mobile-menu__sublink:hover {
+  color: var(--rostang-link);
+  background: var(--rostang-bg-light);
+}
+
+.rostang-mobile-menu__sublink:focus-visible {
+  outline: 2px solid var(--rostang-link);
+  outline-offset: 2px;
+}
+
+.rostang-mobile-menu__cta {
+  padding: var(--rostang-space-lg) var(--rostang-space-xl) var(--rostang-space-2xl);
+  flex-shrink: 0;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+  .rostang-header__nav {
+    display: none;
+  }
+
+  .rostang-header__inner {
+    padding-inline: var(--rostang-margin-tablet);
+  height: var(--rostang-header-height-mobile);
+  gap: var(--rostang-space-md);
+  justify-content: space-between;
+  }
+
+  .rostang-header__actions .rostang-btn--primary {
+    display: none;
+  }
+
+  .rostang-header__burger {
+    display: flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .rostang-header__inner {
+    padding-inline: var(--rostang-margin-mobile);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rostang-mobile-menu {
+    transition: none;
+  }
+
+  .rostang-mobile-overlay {
+    animation: none;
+    opacity: 1;
+  }
+}

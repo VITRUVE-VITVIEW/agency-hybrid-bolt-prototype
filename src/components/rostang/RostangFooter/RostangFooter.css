@@ -1,0 +1,200 @@
+.rostang-footer {
+  background: var(--rostang-navy);
+  color: var(--rostang-white);
+  font-family: var(--rostang-font);
+  padding-top: var(--rostang-space-4xl);
+  padding-bottom: var(--rostang-space-2xl);
+}
+
+.rostang-footer__inner {
+  max-width: var(--rostang-container);
+  margin-inline: auto;
+  padding-inline: var(--rostang-margin-desktop);
+}
+
+/* ── CTA strip ─────────────────────────────────────────────────── */
+
+.rostang-footer__cta-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--rostang-space-xl);
+  padding-bottom: var(--rostang-space-3xl);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: var(--rostang-space-3xl);
+}
+
+.rostang-footer__cta-label {
+  font-size: var(--rostang-text-display-sm);
+  font-weight: var(--rostang-weight-semibold);
+  color: var(--rostang-white);
+  margin: 0 0 var(--rostang-space-xs);
+}
+
+.rostang-footer__cta-text {
+  font-size: var(--rostang-text-sm);
+  color: var(--rostang-blue-grey);
+  margin: 0;
+}
+
+/* Override button color for dark footer */
+.rostang-footer .rostang-btn--primary {
+  background: var(--rostang-white);
+  color: var(--rostang-navy);
+  border-color: var(--rostang-white);
+  flex-shrink: 0;
+}
+
+.rostang-footer .rostang-btn--primary:hover {
+  background: var(--rostang-bg-light);
+  border-color: var(--rostang-bg-light);
+}
+
+.rostang-footer .rostang-btn--primary:focus-visible {
+  outline: 2px solid var(--rostang-link);
+  outline-offset: 3px;
+}
+
+/* ── Link groups ────────────────────────────────────────────────── */
+
+.rostang-footer__groups {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--rostang-space-xl);
+  padding-bottom: var(--rostang-space-3xl);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: var(--rostang-space-2xl);
+}
+
+.rostang-footer__group-title {
+  font-size: var(--rostang-text-xs);
+  font-weight: var(--rostang-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--rostang-blue-grey);
+  margin: 0 0 var(--rostang-space-md);
+}
+
+.rostang-footer__group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--rostang-space-sm);
+}
+
+.rostang-footer__group a {
+  font-size: var(--rostang-text-sm);
+  color: var(--rostang-white);
+  text-decoration: none;
+  opacity: 0.85;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  transition: opacity var(--rostang-duration-short) var(--rostang-easing),
+              color var(--rostang-duration-short) var(--rostang-easing);
+}
+
+.rostang-footer__group a:hover {
+  opacity: 1;
+  color: var(--rostang-blue-grey);
+}
+
+.rostang-footer__group a:focus-visible {
+  outline: 2px solid var(--rostang-link);
+  outline-offset: 3px;
+  border-radius: var(--rostang-radius-sm);
+  opacity: 1;
+}
+
+.rostang-footer__cookie-pref {
+  font-size: var(--rostang-text-sm);
+  color: var(--rostang-white);
+  opacity: 0.85;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity var(--rostang-duration-short) var(--rostang-easing);
+}
+
+.rostang-footer__cookie-pref:hover {
+  opacity: 1;
+  color: var(--rostang-blue-grey);
+}
+
+.rostang-footer__cookie-pref:focus-visible {
+  outline: 2px solid var(--rostang-link);
+  outline-offset: 3px;
+  border-radius: var(--rostang-radius-sm);
+}
+
+/* ── Bottom bar ────────────────────────────────────────────────── */
+
+.rostang-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--rostang-space-md);
+  flex-wrap: wrap;
+}
+
+.rostang-footer__brand {
+  font-size: 1.125rem;
+  font-weight: var(--rostang-weight-bold);
+  letter-spacing: 0.08em;
+  color: var(--rostang-white);
+  margin: 0;
+}
+
+.rostang-footer__copyright {
+  font-size: var(--rostang-text-xs);
+  color: var(--rostang-blue-grey);
+  margin: 0;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+  .rostang-footer__inner {
+    padding-inline: var(--rostang-margin-tablet);
+  }
+
+  .rostang-footer__groups {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--rostang-space-2xl) var(--rostang-space-xl);
+  }
+
+  .rostang-footer__cta-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--rostang-space-lg);
+  }
+}
+
+@media (max-width: 767px) {
+  .rostang-footer {
+    padding-top: var(--rostang-space-3xl);
+    padding-bottom: var(--rostang-space-xl);
+  }
+
+  .rostang-footer__inner {
+    padding-inline: var(--rostang-margin-mobile);
+  }
+
+  .rostang-footer__groups {
+    grid-template-columns: 1fr;
+    gap: var(--rostang-space-xl);
+  }
+
+  .rostang-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--rostang-space-sm);
+  }
+}

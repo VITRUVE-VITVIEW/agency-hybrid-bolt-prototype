@@ -1,0 +1,43 @@
+.rostang-placeholder {
+  font-family: var(--rostang-font);
+  min-height: calc(100vh - var(--rostang-header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--rostang-bg-light);
+  padding: var(--rostang-space-4xl) var(--rostang-margin-mobile);
+}
+
+.rostang-placeholder__inner {
+  max-width: 480px;
+  text-align: center;
+}
+
+.rostang-placeholder__label {
+  font-size: var(--rostang-text-xs);
+  font-weight: var(--rostang-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--rostang-blue-grey);
+  margin: 0 0 var(--rostang-space-md);
+}
+
+.rostang-placeholder__title {
+  font-size: var(--rostang-text-display-md);
+  font-weight: var(--rostang-weight-bold);
+  color: var(--rostang-navy);
+  margin: 0 0 var(--rostang-space-lg);
+  line-height: var(--rostang-leading-heading);
+}
+
+.rostang-placeholder__message {
+  font-size: var(--rostang-text-body);
+  line-height: var(--rostang-leading-body);
+  color: var(--rostang-text-muted);
+  margin: 0 0 var(--rostang-space-xl);
+}
+
+.rostang-placeholder .rostang-btn--secondary:focus-visible {
+  outline: 2px solid var(--rostang-link);
+  outline-offset: 3px;
+}
