@@ -1,11 +1,16 @@
+/* ──────────────────────────────────────────────────────────────
+   ROSTANG Header — dark editorial surface
+   Adapted from HeroDarkEditorial.css + Header.css patterns
+   ────────────────────────────────────────────────────────────── */
+
 /* ── Header bar ─────────────────────────────────────────────────── */
 
 .rostang-header {
   position: sticky;
   top: 0;
   z-index: var(--rostang-z-header);
-  background: var(--rostang-white);
-  border-bottom: 1px solid var(--rostang-border);
+  background: var(--rostang-navy);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--rostang-font);
 }
 
@@ -24,16 +29,16 @@
 
 .rostang-header__logo {
   font-family: var(--rostang-font);
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: var(--rostang-weight-bold);
-  letter-spacing: 0.08em;
-  color: var(--rostang-navy);
+  letter-spacing: 0.12em;
+  color: var(--rostang-white);
   text-decoration: none;
   flex-shrink: 0;
 }
 
 .rostang-header__logo:hover {
-  color: var(--rostang-link);
+  color: var(--rostang-blue-grey);
 }
 
 .rostang-header__logo:focus-visible {
@@ -66,7 +71,7 @@
   font-family: var(--rostang-font);
   font-size: var(--rostang-text-sm);
   font-weight: var(--rostang-weight-medium);
-  color: var(--rostang-navy);
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   background: none;
   border: none;
@@ -81,7 +86,7 @@
 
 .rostang-header__nav-link:hover,
 .rostang-header__nav-trigger:hover {
-  color: var(--rostang-link);
+  color: var(--rostang-white);
 }
 
 .rostang-header__nav-link:focus-visible,
@@ -103,10 +108,9 @@
   top: 100%;
   left: 0;
   min-width: 220px;
-  background: var(--rostang-white);
-  border: 1px solid var(--rostang-border);
-  border-radius: var(--rostang-radius-md);
-  box-shadow: 0 8px 24px rgba(28, 28, 51, 0.1);
+  background: var(--rostang-navy);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--rostang-radius-sm);
   list-style: none;
   margin: 0;
   padding: var(--rostang-space-sm);
@@ -114,22 +118,21 @@
 }
 
 .rostang-header__submenu-link {
-  display: block;
+  display: flex;
+  align-items: center;
   padding: var(--rostang-space-sm) var(--rostang-space-md);
   font-size: var(--rostang-text-sm);
-  color: var(--rostang-navy);
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   border-radius: var(--rostang-radius-sm);
   min-height: var(--rostang-touch-target);
-  display: flex;
-  align-items: center;
   transition: background var(--rostang-duration-short) var(--rostang-easing),
               color var(--rostang-duration-short) var(--rostang-easing);
 }
 
 .rostang-header__submenu-link:hover {
-  background: var(--rostang-bg-light);
-  color: var(--rostang-link);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--rostang-white);
 }
 
 .rostang-header__submenu-link:focus-visible {
@@ -166,14 +169,14 @@
 }
 
 .rostang-btn--primary {
-  background: var(--rostang-navy);
-  color: var(--rostang-white);
-  border: 1px solid var(--rostang-navy);
+  background: var(--rostang-white);
+  color: var(--rostang-navy);
+  border: 1px solid var(--rostang-white);
 }
 
 .rostang-btn--primary:hover {
-  background: var(--rostang-link);
-  border-color: var(--rostang-link);
+  background: var(--rostang-bg-light);
+  border-color: var(--rostang-bg-light);
 }
 
 .rostang-btn--primary:focus-visible {
@@ -184,7 +187,7 @@
 .rostang-btn--secondary {
   background: transparent;
   color: var(--rostang-navy);
-  border: 1px solid var(--rostang-border-strong);
+  border: 1px solid var(--rostang-border);
 }
 
 .rostang-btn--secondary:hover {
@@ -220,7 +223,7 @@
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--rostang-navy);
+  background: var(--rostang-white);
   border-radius: 1px;
   transition: opacity var(--rostang-duration-short) var(--rostang-easing);
 }
@@ -236,14 +239,8 @@
 .rostang-mobile-overlay {
   position: fixed;
   inset: 0;
-  background: var(--rostang-overlay);
+  background: rgba(28, 28, 51, 0.92);
   z-index: var(--rostang-z-overlay);
-  opacity: 0;
-  animation: rostang-fade-in var(--rostang-duration-medium) var(--rostang-easing) forwards;
-}
-
-@keyframes rostang-fade-in {
-  to { opacity: 1; }
 }
 
 /* ── Mobile menu panel ───────────────────────────────────────────── */
@@ -256,17 +253,12 @@
   max-width: 380px;
   height: 100vh;
   height: 100dvh;
-  background: var(--rostang-white);
+  background: var(--rostang-navy);
   z-index: var(--rostang-z-menu);
-  transform: translateX(100%);
-  transition: transform var(--rostang-duration-medium) var(--rostang-easing);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-}
-
-.rostang-mobile-menu--open {
-  transform: translateX(0);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .rostang-mobile-menu__header {
@@ -274,24 +266,24 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--rostang-space-lg) var(--rostang-space-xl);
-  border-bottom: 1px solid var(--rostang-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   min-height: var(--rostang-header-height-mobile);
   flex-shrink: 0;
 }
 
 .rostang-mobile-menu__title {
-  font-size: var(--rostang-text-sm);
+  font-size: var(--rostang-text-xs);
   font-weight: var(--rostang-weight-semibold);
-  color: var(--rostang-text-muted);
+  color: var(--rostang-blue-grey);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
 }
 
 .rostang-mobile-menu__close {
   width: var(--rostang-touch-target);
   height: var(--rostang-touch-target);
   font-size: 1.25rem;
-  color: var(--rostang-navy);
+  color: var(--rostang-white);
   background: none;
   border: none;
   cursor: pointer;
@@ -302,7 +294,7 @@
 }
 
 .rostang-mobile-menu__close:hover {
-  background: var(--rostang-bg-light);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .rostang-mobile-menu__close:focus-visible {
@@ -318,23 +310,22 @@
 }
 
 .rostang-mobile-menu__item {
-  border-bottom: 1px solid var(--rostang-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .rostang-mobile-menu__link {
-  display: block;
+  display: flex;
+  align-items: center;
   padding: var(--rostang-space-md) 0;
   font-size: var(--rostang-text-body);
   font-weight: var(--rostang-weight-medium);
-  color: var(--rostang-navy);
+  color: var(--rostang-white);
   text-decoration: none;
   min-height: var(--rostang-touch-target);
-  display: flex;
-  align-items: center;
 }
 
 .rostang-mobile-menu__link:hover {
-  color: var(--rostang-link);
+  color: var(--rostang-blue-grey);
 }
 
 .rostang-mobile-menu__link:focus-visible {
@@ -350,20 +341,19 @@
 }
 
 .rostang-mobile-menu__sublink {
-  display: block;
-  padding: var(--rostang-space-sm) var(--rostang-space-md);
-  font-size: var(--rostang-text-sm);
-  color: var(--rostang-text-muted);
-  text-decoration: none;
-  min-height: var(--rostang-touch-target);
   display: flex;
   align-items: center;
+  padding: var(--rostang-space-sm) var(--rostang-space-md);
+  font-size: var(--rostang-text-sm);
+  color: var(--rostang-blue-grey);
+  text-decoration: none;
+  min-height: var(--rostang-touch-target);
   border-radius: var(--rostang-radius-sm);
 }
 
 .rostang-mobile-menu__sublink:hover {
-  color: var(--rostang-link);
-  background: var(--rostang-bg-light);
+  color: var(--rostang-white);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .rostang-mobile-menu__sublink:focus-visible {
@@ -376,6 +366,18 @@
   flex-shrink: 0;
 }
 
+/* Override button for dark menu context */
+.rostang-mobile-menu .rostang-btn--primary {
+  background: var(--rostang-white);
+  color: var(--rostang-navy);
+  border-color: var(--rostang-white);
+}
+
+.rostang-mobile-menu .rostang-btn--primary:hover {
+  background: var(--rostang-bg-light);
+  border-color: var(--rostang-bg-light);
+}
+
 /* ── Responsive ──────────────────────────────────────────────────── */
 
 @media (max-width: 1023px) {
@@ -385,9 +387,9 @@
 
   .rostang-header__inner {
     padding-inline: var(--rostang-margin-tablet);
-  height: var(--rostang-header-height-mobile);
-  gap: var(--rostang-space-md);
-  justify-content: space-between;
+    height: var(--rostang-header-height-mobile);
+    gap: var(--rostang-space-md);
+    justify-content: space-between;
   }
 
   .rostang-header__actions .rostang-btn--primary {
@@ -408,10 +410,5 @@
 @media (prefers-reduced-motion: reduce) {
   .rostang-mobile-menu {
     transition: none;
-  }
-
-  .rostang-mobile-overlay {
-    animation: none;
-    opacity: 1;
   }
 }

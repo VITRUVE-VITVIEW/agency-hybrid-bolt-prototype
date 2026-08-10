@@ -12,6 +12,7 @@ export default function RostangHeader() {
   const location = useLocation()
   const menuRef = useRef<HTMLElement>(null)
   const toggleRef = useRef<HTMLButtonElement>(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
 
   useBodyScrollLock(mobileOpen)
   useEscapeKey(mobileOpen, () => setMobileOpen(false))
@@ -23,10 +24,19 @@ export default function RostangHeader() {
     setProjectsOpen(false)
   }, [location.pathname])
 
-  // Close desktop dropdown on route change
+  // Restore focus to toggle when menu closes
   useEffect(() => {
-    setProjectsOpen(false)
-  }, [location.pathname])
+    if (!mobileOpen && toggleRef.current) {
+      toggleRef.current.focus()
+    }
+  }, [mobileOpen])
+
+  // Focus close button when menu opens
+  useEffect(() => {
+    if (mobileOpen && closeRef.current) {
+      closeRef.current.focus()
+    }
+  }, [mobileOpen])
 
   return (
     <header className="rostang-header" role="banner">
@@ -102,61 +112,65 @@ export default function RostangHeader() {
         </div>
       </div>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile menu — conditionally mounted so closed state is fully removed from DOM */}
       {mobileOpen && (
-        <div className="rostang-mobile-overlay" onClick={() => setMobileOpen(false)} aria-hidden="true" />
-      )}
-
-      {/* Mobile menu panel */}
-      <nav
-        ref={menuRef}
-        id="rostang-mobile-menu"
-        className={`rostang-mobile-menu${mobileOpen ? ' rostang-mobile-menu--open' : ''}`}
-        aria-label="Navigation mobile"
-        aria-hidden={!mobileOpen}
-      >
-        <div className="rostang-mobile-menu__header">
-          <span className="rostang-mobile-menu__title">Menu</span>
-          <button
-            type="button"
-            className="rostang-mobile-menu__close"
-            aria-label="Fermer le menu"
+        <>
+          <div
+            className="rostang-mobile-overlay"
             onClick={() => setMobileOpen(false)}
+            aria-hidden="true"
+          />
+          <nav
+            ref={menuRef}
+            id="rostang-mobile-menu"
+            className="rostang-mobile-menu rostang-mobile-menu--open"
+            aria-label="Navigation mobile"
           >
-            ✕
-          </button>
-        </div>
+            <div className="rostang-mobile-menu__header">
+              <span className="rostang-mobile-menu__title">Menu</span>
+              <button
+                ref={closeRef}
+                type="button"
+                className="rostang-mobile-menu__close"
+                aria-label="Fermer le menu"
+                onClick={() => setMobileOpen(false)}
+              >
+                ✕
+              </button>
+            </div>
 
-        <ul className="rostang-mobile-menu__list">
-          {rostangNavigation.map((item) => (
-            <li key={item.path} className="rostang-mobile-menu__item">
-              <Link to={item.path} className="rostang-mobile-menu__link">
-                {item.label}
+            <ul className="rostang-mobile-menu__list">
+              {rostangNavigation.map((item) => (
+                <li key={item.path} className="rostang-mobile-menu__item">
+                  <Link to={item.path} className="rostang-mobile-menu__link">
+                    {item.label}
+                  </Link>
+                  {item.children && (
+                    <ul className="rostang-mobile-menu__sublist">
+                      {item.children.map((child) => (
+                        <li key={child.path}>
+                          <Link to={child.path} className="rostang-mobile-menu__sublink">
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+
+            <div className="rostang-mobile-menu__cta">
+              <Link
+                to={rostangPrimaryCta.path}
+                className="rostang-btn rostang-btn--primary rostang-btn--block"
+              >
+                {rostangPrimaryCta.label}
               </Link>
-              {item.children && (
-                <ul className="rostang-mobile-menu__sublist">
-                  {item.children.map((child) => (
-                    <li key={child.path}>
-                      <Link to={child.path} className="rostang-mobile-menu__sublink">
-                        {child.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ul>
-
-        <div className="rostang-mobile-menu__cta">
-          <Link
-            to={rostangPrimaryCta.path}
-            className="rostang-btn rostang-btn--primary rostang-btn--block"
-          >
-            {rostangPrimaryCta.label}
-          </Link>
-        </div>
-      </nav>
+            </div>
+          </nav>
+        </>
+      )}
     </header>
   )
 }

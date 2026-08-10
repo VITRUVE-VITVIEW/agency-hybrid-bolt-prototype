@@ -2,7 +2,8 @@
    Font families are applied only through --font-display and --font-body tokens.
    No font family name is hardcoded in component CSS. */
 
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Space+Grotesk:wght@400;500;700&display=swap');
+/* Legacy fonts loaded only when Style Lab is active — see StyleLab.tsx dynamic import.
+   Do NOT load Barlow Condensed or Space Grotesk on public ROSTANG pages. */
 
 /* Base element typography */
 

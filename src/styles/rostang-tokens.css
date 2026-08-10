@@ -43,8 +43,8 @@
   --rostang-text-dark: #1C1C33;
 
   /* Derived */
-  --rostang-border: rgba(28, 28, 51, 0.12);
-  --rostang-border-strong: rgba(28, 28, 51, 0.25);
+  --rostang-border: #D8DEE2;
+  --rostang-border-strong: #D8DEE2;
   --rostang-text-muted: rgba(28, 28, 51, 0.65);
   --rostang-text-faint: rgba(28, 28, 51, 0.45);
   --rostang-overlay: rgba(28, 28, 51, 0.92);
@@ -103,4 +103,16 @@
   /* ── Touch target ───────────────────────────────────────────── */
 
   --rostang-touch-target: 44px;
+
+  /* ── Editorial composition ──────────────────────────────────── */
+
+  --rostang-grid-columns: 12;
+  --rostang-grid-gap: 24px;
+  --rostang-grid-gap-mobile: 16px;
+  --rostang-rail-width: 48px;
+  --rostang-number-opacity: 0.05;
+  --rostang-number-opacity-light: 0.06;
+  --rostang-grid-line-dark: rgba(255, 255, 255, 0.06);
+  --rostang-grid-line-light: rgba(28, 28, 51, 0.05);
+  --rostang-stroke-width: 0.02em;
 }

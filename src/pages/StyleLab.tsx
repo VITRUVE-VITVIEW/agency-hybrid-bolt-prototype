@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from 'react'
+import { useRef, useState, useCallback, useEffect } from 'react'
 import './StyleLab.css'
 
 import DemoFrame from '../components/DemoFrame/DemoFrame'
@@ -50,6 +50,17 @@ export default function StyleLab() {
   const [fullscreenOpen, setFullscreenOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
+
+  // Load legacy fonts (Barlow Condensed + Space Grotesk) only when Style Lab is active
+  useEffect(() => {
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Space+Grotesk:wght@400;500;700&display=swap'
+    document.head.appendChild(link)
+    return () => {
+      document.head.removeChild(link)
+    }
+  }, [])
 
   const fullscreenTriggerRef = useRef<HTMLButtonElement>(null)
   const mobileTriggerRef = useRef<HTMLButtonElement>(null)
